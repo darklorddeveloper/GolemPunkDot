@@ -1,0 +1,31 @@
+using Unity.Entities;
+using Unity.Mathematics;
+
+namespace DarkLordGame
+{
+    public class TopdownCharacterInputAuthoring : StructAuthorizer<TopdownCharacterInput>
+    {
+    }
+
+    public class TopdownCharacterInputBaker : StructBaker<TopdownCharacterInputAuthoring, TopdownCharacterInput>
+    {
+
+    }
+
+    [System.Serializable]
+    public struct TopdownCharacterInput : IComponentData
+    {
+        public float3 movement;
+        public float3 lookAtTargetPoint;
+        public bool interactAction;
+        public bool isHoldingInteract;
+        public bool dashAction;
+        public bool isHoldingDashAction;
+        public bool primaryAction, secondaryAction;
+        public bool isHoldingPrimaryAction, isHoldingSecondaryAction;
+        public bool skill1, skill2, skill3, skill4;
+        public bool isHoldingSkill1, isHoldingSkill2;
+        public bool isHoldingSkill3, isHoldingSkill4;
+    }
+
+}
