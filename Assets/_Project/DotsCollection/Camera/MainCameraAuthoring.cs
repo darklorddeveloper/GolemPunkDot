@@ -1,16 +1,34 @@
+using Unity.Entities;
 using UnityEngine;
-
-public class MainCameraAuthoring : MonoBehaviour
+namespace DarkLordGame
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class MainCameraAuthoring : ClassAuthorizer<MainCamera>
+    {
+
+    }
+
+    public class MainCameraBaker : ClassBaker<MainCameraAuthoring, MainCamera>
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    [System.Serializable]
+    public class MainCamera : ClassComponentData
     {
-        
+        public Camera camera;
+        [System.NonSerialized] public GameObject cameraRootObject;
+        [System.NonSerialized] public Transform cameraRootTransform;
+        [System.NonSerialized] public Transform cameraTransform;
+        public override void Init()
+        {
+            base.Init();
+            camera = GameObject.Instantiate<Camera>(camera);
+            cameraTransform = camera.transform;
+            cameraRootObject = new GameObject("Camera Root");
+            cameraRootTransform = cameraRootObject.transform;
+            cameraRootTransform.position = cameraTransform.position;
+            cameraRootTransform.rotation = cameraTransform.rotation;
+            cameraTransform.SetParent(cameraRootTransform);
+        }
     }
 }
