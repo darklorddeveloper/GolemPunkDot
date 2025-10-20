@@ -27,7 +27,7 @@ namespace DarkLordGame
     }
 
 
-    public class ClassBaker<T, T1> : Baker<T> where T : ClassAuthorizer<T1>
+    public abstract class ClassBaker<T, T1> : Baker<T> where T : ClassAuthorizer<T1>
     where T1 : ClassComponentData, IComponentData, new()
     {
         public override void Bake(T authoring)
@@ -50,7 +50,7 @@ namespace DarkLordGame
     }
 
 
-    public class ClassBaker<T, T1, T2> : Baker<T> where T : ClassAuthorizer<T1, T2>
+    public abstract class ClassBaker<T, T1, T2> : Baker<T> where T : ClassAuthorizer<T1, T2>
     where T1 : ClassComponentData, IComponentData, new()
     where T2 : ClassComponentData, IComponentData, new()
     {
@@ -77,7 +77,7 @@ namespace DarkLordGame
     }
 
 
-    public class ClassBaker<T, T1, T2, T3> : Baker<T> where T : ClassAuthorizer<T1, T2, T3>
+    public abstract class ClassBaker<T, T1, T2, T3> : Baker<T> where T : ClassAuthorizer<T1, T2, T3>
     where T1 : ClassComponentData, IComponentData, new()
     where T2 : ClassComponentData, IComponentData, new()
     where T3 : ClassComponentData, IComponentData, new()
@@ -107,7 +107,7 @@ namespace DarkLordGame
     }
 
 
-    public class ClassBaker<T, T1, T2, T3, T4> : Baker<T> where T : ClassAuthorizer<T1, T2, T3, T4>
+    public abstract class ClassBaker<T, T1, T2, T3, T4> : Baker<T> where T : ClassAuthorizer<T1, T2, T3, T4>
     where T1 : ClassComponentData, IComponentData, new()
     where T2 : ClassComponentData, IComponentData, new()
     where T3 : ClassComponentData, IComponentData, new()

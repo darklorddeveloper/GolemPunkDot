@@ -10,7 +10,8 @@ namespace DarkLordGame
 
     }
 
-    public class StructBaker<T, T1> : Baker<T> where T : StructAuthorizer<T1>
+    [DisableAutoCreation]
+    public abstract class StructBaker<T, T1> : Baker<T> where T : StructAuthorizer<T1>
     where T1 : unmanaged, IComponentData
     {
         public override void Bake(T authoring)
@@ -29,8 +30,7 @@ namespace DarkLordGame
         public T2 data2;
     }
 
-
-    public class StructBaker<T, T1, T2> : Baker<T> where T : StructAuthorizer<T1, T2>
+    public abstract class StructBaker<T, T1, T2> : Baker<T> where T : StructAuthorizer<T1, T2>
     where T1 : unmanaged, IComponentData
     where T2 : unmanaged, IComponentData
     {
@@ -55,7 +55,7 @@ namespace DarkLordGame
     }
 
 
-    public class StructBaker<T, T1, T2, T3> : Baker<T> where T : StructAuthorizer<T1, T2, T3>
+    public abstract class StructBaker<T, T1, T2, T3> : Baker<T> where T : StructAuthorizer<T1, T2, T3>
     where T1 : unmanaged, IComponentData
     where T2 : unmanaged, IComponentData
     where T3 : unmanaged, IComponentData
@@ -84,7 +84,7 @@ namespace DarkLordGame
     }
 
 
-    public class StructBaker<T, T1, T2, T3, T4> : Baker<T> where T : StructAuthorizer<T1, T2, T3, T4>
+    public abstract class StructBaker<T, T1, T2, T3, T4> : Baker<T> where T : StructAuthorizer<T1, T2, T3, T4>
     where T1 : unmanaged, IComponentData
     where T2 : unmanaged, IComponentData
     where T3 : unmanaged, IComponentData
