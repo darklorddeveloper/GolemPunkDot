@@ -456,11 +456,22 @@ MonoBehaviour:
     movementSpeed: 5
     currentSpeed: 0
     accereration: 0
-    turnSpeed: 0
+    canTurnOnlyWhileMoving: 0
+    turnSpeed: 3
     size: 0.5
     castOffset: 0.1
     layerBit: 1
     collideWithLayerBit: 64
+    isHittedObstacle: 0
+    hittedPoint:
+      x: 0
+      y: 0
+      z: 0
+    hittedNormal:
+      x: 0
+      y: 0
+      z: 0
+    lastMovedDistance: 0
 --- !u!23 &1982860280
 MeshRenderer:
   m_ObjectHideFlags: 0
