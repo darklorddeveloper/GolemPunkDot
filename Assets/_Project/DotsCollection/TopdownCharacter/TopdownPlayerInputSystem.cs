@@ -6,7 +6,6 @@ using Unity.Mathematics;
 using Unity.Transforms;
 namespace DarkLordGame
 {
-    [UpdateAfter(typeof(BeginSimulationEntityCommandBufferSystem))]
     public partial class TopdownPlayerInputSystem : SystemBase
     {
         private bool initialized = false;
@@ -110,7 +109,6 @@ namespace DarkLordGame
 
             var move = moveAction.ReadValue<Vector2>();
             currentInput.movement = new float3(move.x, 0, move.y);
-
             MainCamera mainCam = null;
             if (isUsingMouseKeyboard)
             {
@@ -126,7 +124,7 @@ namespace DarkLordGame
                 }
             }
 
-            foreach (var (inputCharacter, character, transform, e) in SystemAPI.Query<TopdownPlayerCharacter, TopdownCharacterInput, LocalToWorld>().WithEntityAccess())
+            foreach (var (inputCharacter, character, transform, e) in SystemAPI.Query<TopdownPlayerCharacter, TopdownCharacterInput, LocalTransform>().WithEntityAccess())
             {
                 if (isUsingMouseKeyboard == false)
                 {

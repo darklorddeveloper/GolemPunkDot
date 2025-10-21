@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
-    public class TopdownPlayerCharacterAuthoring : StructAuthorizer<TopdownPlayerCharacter, TopdownCharacterInput>
+    public class TopdownPlayerCharacterAuthoring : StructAuthorizer<TopdownPlayerCharacter, TopdownCharacterInput, TopdownCharacterMovement>
 
     {
 
     }
     
-    public class TopdownPlayerCharacterBaker : StructBaker<TopdownPlayerCharacterAuthoring, TopdownPlayerCharacter, TopdownCharacterInput>
+    public class TopdownPlayerCharacterBaker : StructBaker<TopdownPlayerCharacterAuthoring, TopdownPlayerCharacter, TopdownCharacterInput, TopdownCharacterMovement>
     {
         
     }
