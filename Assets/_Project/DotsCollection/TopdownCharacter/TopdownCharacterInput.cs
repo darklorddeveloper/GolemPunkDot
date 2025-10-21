@@ -3,14 +3,6 @@ using Unity.Mathematics;
 
 namespace DarkLordGame
 {
-    public class TopdownCharacterInputAuthoring : StructAuthorizer<TopdownCharacterInput>
-    {
-    }
-
-    public class TopdownCharacterInputBaker : StructBaker<TopdownCharacterInputAuthoring, TopdownCharacterInput>
-    {
-
-    }
 
     [System.Serializable]
     public struct TopdownCharacterInput : IComponentData
