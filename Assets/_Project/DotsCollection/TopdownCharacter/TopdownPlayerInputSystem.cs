@@ -123,13 +123,18 @@ namespace DarkLordGame
                     }
                 }
             }
+            float3 controllerDirection = float3.zero;
+            if (isUsingMouseKeyboard == false)
+            {
+                var diff = lookAtAction.ReadValue<Vector2>();
+                controllerDirection = math.lengthsq(diff) > 0.01f ? new float3(diff.x, 0, diff.y) : currentInput.movement;
+            }
 
             foreach (var (inputCharacter, character, transform, e) in SystemAPI.Query<TopdownPlayerCharacter, TopdownCharacterInput, LocalTransform>().WithEntityAccess())
             {
                 if (isUsingMouseKeyboard == false)
                 {
-                    var diff = lookAtAction.ReadValue<Vector2>();
-                    currentInput.lookAtTargetPoint = transform.Position + new float3(diff.x, 0, diff.y);
+                    currentInput.lookAtTargetPoint = transform.Position + controllerDirection;
                 }
                 EntityManager.SetComponentData(e, currentInput);
             }
