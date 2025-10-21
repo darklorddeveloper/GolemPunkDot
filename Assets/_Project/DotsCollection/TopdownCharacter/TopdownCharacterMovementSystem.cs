@@ -10,7 +10,7 @@ using UnityEngine;
 namespace DarkLordGame
 {
 
-    // [BurstCompile]
+    [BurstCompile]
     public partial struct CastJob : IJobEntity
     {
         [ReadOnly] public CollisionWorld CollisionWorld;
@@ -97,7 +97,7 @@ namespace DarkLordGame
         }
     }
 
-    // [BurstCompile]
+    [BurstCompile]
     [UpdateAfter(typeof(TopdownPlayerInputSystem))]
     public partial struct TopdownCharacterMovementSystem : ISystem
     {
