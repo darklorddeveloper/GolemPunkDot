@@ -10,7 +10,6 @@ namespace DarkLordGame
 
     }
 
-    [DisableAutoCreation]
     public abstract class StructBaker<T, T1> : Baker<T> where T : StructAuthorizer<T1>
     where T1 : unmanaged, IComponentData
     {
