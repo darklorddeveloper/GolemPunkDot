@@ -586,6 +586,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1790061156}
   - component: {fileID: 1790061157}
+  - component: {fileID: 1790061160}
+  - component: {fileID: 1790061159}
+  - component: {fileID: 1790061158}
   m_Layer: 0
   m_Name: Gamephase
   m_TagString: Untagged
@@ -622,6 +625,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.BootStrapPhaseAuthoring
   flags: 0
   enabledByDefault: 1
+--- !u!114 &1790061158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790061155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b68e69bb793f4f9f91e84ed9583d6ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.SettingPhaseAuthoring
+  flags: 0
+  enabledByDefault: 0
+--- !u!114 &1790061159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790061155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f14f251794165482c935319ad580f1e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.MinePhaseAuthoring
+  flags: 0
+  enabledByDefault: 0
+--- !u!114 &1790061160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790061155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb7304376a8b4a158a3b9237d387fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.GamePhaseAuthoring
+  flags: 0
+  enabledByDefault: 0
 --- !u!1 &1982860277
 GameObject:
   m_ObjectHideFlags: 0
