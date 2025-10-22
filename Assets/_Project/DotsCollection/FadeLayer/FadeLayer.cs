@@ -6,6 +6,9 @@ namespace DarkLordGame
     public class FadeLayer : MonoBehaviour
     {
         [SerializeField] private CanvasGroup canvasGroup;
+        private Coroutine runningCoroutine;
+
+        public bool isAutoFading { get => runningCoroutine != null; }
         private void Awake()
         {
             ForceAlpha(1.0f);
@@ -17,6 +20,17 @@ namespace DarkLordGame
             gameObject.SetActive(alpha > 0);
         }
 
+        public void AutoFade(float alpha, float period = 2.0f)
+        {
+            float startAlpha = canvasGroup.alpha;
+            gameObject.SetActive(true);
+            if (runningCoroutine != null)
+            {
+                StopCoroutine(runningCoroutine);
+            }
+            runningCoroutine = StartCoroutine(Fade(startAlpha, alpha, period));
+        }
+
         public IEnumerator Fade(float start, float target, float period = 2)
         {
             float t = 0;
@@ -24,15 +38,17 @@ namespace DarkLordGame
             transform.SetAsLastSibling();
             while (t < period)
             {
-                ForceAlpha(Mathf.Lerp(start, target, t));
-                t += Time.unscaledDeltaTime;
+                ForceAlpha(Mathf.Lerp(start, target, t / period));
+                t += Time.deltaTime;
                 yield return null;
             }
+            
             ForceAlpha(target);
             if (target <= 0.0f)
             {
                 gameObject.SetActive(false);
             }
+            runningCoroutine = null;
         }
     }
 }

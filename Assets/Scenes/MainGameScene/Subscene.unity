@@ -590,11 +590,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1790061156}
+  - component: {fileID: 1790061161}
   - component: {fileID: 1790061157}
   - component: {fileID: 1790061160}
   - component: {fileID: 1790061159}
   - component: {fileID: 1790061158}
-  - component: {fileID: 1790061161}
+  - component: {fileID: 1790061162}
   m_Layer: 0
   m_Name: Gamephase
   m_TagString: Untagged
@@ -690,6 +691,20 @@ MonoBehaviour:
     phase: 0
     previousPhase: 0
     isChangingPhase: 1
+--- !u!114 &1790061162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790061155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db854ab63c2844be584f67e33c6d73a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.IntroPhaseAuthoring
+  flags: 0
+  enabledByDefault: 1
 --- !u!1 &1982860277
 GameObject:
   m_ObjectHideFlags: 0
