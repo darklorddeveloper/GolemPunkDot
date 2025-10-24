@@ -631,6 +631,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.BootStrapPhaseAuthoring
   flags: 0
+  data1:
+    targetCameraMovement:
+      position:
+        x: 0
+        y: 15
+        z: -8
+      eulerRotation:
+        x: 60
+        y: 0
+        z: 0
+      movePeriod: 0.01
   enabledByDefault: 1
 --- !u!114 &1790061158
 MonoBehaviour:
@@ -645,6 +656,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.SettingPhaseAuthoring
   flags: 0
+  data1:
+    targetCameraMovement:
+      position:
+        x: 0
+        y: 15
+        z: -8
+      eulerRotation:
+        x: 60
+        y: 0
+        z: 0
+      movePeriod: 0.75
   enabledByDefault: 0
 --- !u!114 &1790061159
 MonoBehaviour:
@@ -659,6 +681,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.MinePhaseAuthoring
   flags: 0
+  data1:
+    targetCameraMovement:
+      position:
+        x: 0
+        y: 15
+        z: -8
+      eulerRotation:
+        x: 60
+        y: 0
+        z: 0
+      movePeriod: 0.75
   enabledByDefault: 0
 --- !u!114 &1790061160
 MonoBehaviour:
@@ -673,6 +706,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.GamePhaseAuthoring
   flags: 0
+  data1:
+    targetCameraMovement:
+      position:
+        x: 0
+        y: 15
+        z: -8
+      eulerRotation:
+        x: 60
+        y: 0
+        z: 0
+      movePeriod: 0.75
   enabledByDefault: 0
 --- !u!114 &1790061161
 MonoBehaviour:
@@ -704,6 +748,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.IntroPhaseAuthoring
   flags: 0
+  data1:
+    targetCameraMovement:
+      position:
+        x: 0
+        y: 15
+        z: -8
+      eulerRotation:
+        x: 60
+        y: 0
+        z: 0
+      movePeriod: 0.75
   enabledByDefault: 1
 --- !u!1 &1982860277
 GameObject:
@@ -896,6 +951,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.CameraMovementAuthoring
   flags: 0
+  data1:
+    position:
+      x: 0
+      y: 0
+      z: 0
+    eulerRotation:
+      x: 0
+      y: 0
+      z: 0
+    movePeriod: 0
 --- !u!1001 &8002288235457570399
 PrefabInstance:
   m_ObjectHideFlags: 0
