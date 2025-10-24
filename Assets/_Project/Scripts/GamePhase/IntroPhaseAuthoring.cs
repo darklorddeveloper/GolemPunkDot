@@ -7,11 +7,14 @@ namespace DarkLordGame
     {
         
     }
-    
+
     public class IntroPhaseBaker : EnableStructBaker<IntroPhaseAuthoring, IntroPhase>
     {
     }
+    
+    [System.Serializable]
     public struct IntroPhase : IComponentData, IEnableableComponent
     {
+        public CameraMovement targetCameraMovement;
     }
 }

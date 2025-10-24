@@ -7,11 +7,13 @@ namespace DarkLordGame
     {
         
     }
-    
+
     public class MinePhaseBaker : EnableStructBaker<MinePhaseAuthoring, MinePhase>
     {
     }
+    [System.Serializable]
     public struct MinePhase: IComponentData, IEnableableComponent
     {
+        public CameraMovement targetCameraMovement;
     }
 }

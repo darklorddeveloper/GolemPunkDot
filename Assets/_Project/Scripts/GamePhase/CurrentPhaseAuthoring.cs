@@ -28,4 +28,5 @@ namespace DarkLordGame
         public PhaseType previousPhase;
         public bool isChangingPhase;
     }
+
 }
