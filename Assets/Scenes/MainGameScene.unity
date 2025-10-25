@@ -493,6 +493,10 @@ PrefabInstance:
       value: HomeScreenPaper
       objectReference: {fileID: 0}
     - target: {fileID: 5611156667589108954, guid: 895d5610074704be0ac4fda5b9c1afc2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 21.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5611156667589108954, guid: 895d5610074704be0ac4fda5b9c1afc2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -680,6 +684,10 @@ PrefabInstance:
     - target: {fileID: 3906424936918172499, guid: d3b4264fba58c4b588facb9fe9e08404, type: 3}
       propertyPath: m_Name
       value: Lighting
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171526140582320363, guid: d3b4264fba58c4b588facb9fe9e08404, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7251854986053425478, guid: d3b4264fba58c4b588facb9fe9e08404, type: 3}
       propertyPath: m_LocalPosition.x
