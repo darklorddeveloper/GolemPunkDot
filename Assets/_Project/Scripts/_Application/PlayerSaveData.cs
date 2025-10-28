@@ -17,6 +17,7 @@ namespace DarkLordGame
 
         public CurrentRunData currentRunData;
         public int selectedClassID;
+        public int playCount = 0;
     }
 
     [System.Serializable]

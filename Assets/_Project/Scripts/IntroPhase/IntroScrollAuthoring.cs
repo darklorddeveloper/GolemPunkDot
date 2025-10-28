@@ -1,5 +1,6 @@
 using Unity.Entities;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DarkLordGame
 {
@@ -18,12 +19,15 @@ namespace DarkLordGame
     {
         public GameObject scrollObject;
         [System.NonSerialized] public Animator scrollAnimator;
+        // story assets
+        // next pages.
+        // skip button
         public override void Init()
         {
             base.Init();
-
             scrollObject = GameObject.Instantiate(scrollObject);
             scrollAnimator = scrollObject.GetComponent<Animator>();
+
         }
     }
 }

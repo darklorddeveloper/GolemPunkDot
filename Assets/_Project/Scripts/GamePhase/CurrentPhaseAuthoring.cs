@@ -9,7 +9,7 @@ namespace DarkLordGame
         Intro, // do cinematic intro
         GamePhase,
         SettingPhase,
-        MinePhase,
+        HomeStandbyphase,
     }
 
     public class CurrentPhaseAuthoring : StructAuthorizer<CurrentPhase>

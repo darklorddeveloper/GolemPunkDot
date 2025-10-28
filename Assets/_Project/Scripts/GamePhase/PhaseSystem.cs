@@ -23,7 +23,7 @@ namespace DarkLordGame
                     state.EntityManager.SetComponentEnabled<BootStrapPhase>(e, phase == PhaseType.BootStrap);
                     state.EntityManager.SetComponentEnabled<IntroPhase>(e, phase == PhaseType.Intro);
                     state.EntityManager.SetComponentEnabled<GamePhase>(e, phase == PhaseType.GamePhase);
-                    state.EntityManager.SetComponentEnabled<MinePhase>(e, phase == PhaseType.MinePhase);
+                    state.EntityManager.SetComponentEnabled<MinePhase>(e, phase == PhaseType.HomeStandbyphase);
                     state.EntityManager.SetComponentEnabled<SettingPhase>(e, phase == PhaseType.SettingPhase);
                     CameraMovement targetMovement = default;
                     switch (phase)
@@ -37,7 +37,7 @@ namespace DarkLordGame
                         case PhaseType.GamePhase:
                             targetMovement = state.EntityManager.GetComponentData<GamePhase>(e).targetCameraMovement;
                             break;
-                        case PhaseType.MinePhase:
+                        case PhaseType.HomeStandbyphase:
                             targetMovement = state.EntityManager.GetComponentData<MinePhase>(e).targetCameraMovement;
                             break;
                         case PhaseType.SettingPhase:

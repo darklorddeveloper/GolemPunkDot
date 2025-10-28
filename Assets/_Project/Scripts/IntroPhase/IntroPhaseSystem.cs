@@ -1,19 +1,33 @@
+using Unity.Entities;
 using UnityEngine;
 
 namespace DarkLordGame
 {
-    public class IntroPhaseSystem : MonoBehaviour
+    public partial class IntroPhaseSystem : SystemBase
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        protected override void OnCreate()
         {
-        
+            base.OnCreate();
+            RequireForUpdate<IntroPhase>();
         }
 
-        // Update is called once per frame
-        void Update()
+        protected override void OnUpdate()
         {
-        
+            //check the animation is done. --- intro only
+            // play the current page
+            // fade out then next page
+            // fadeout last page then go to gamephase
+            if (SystemAPI.TryGetSingleton<CurrentPhase>(out var phase))
+            {
+                if (Singleton.instance.playerSaveData.playCount == 0)
+                {
+                    phase.phase = PhaseType.GamePhase;
+                }
+                else
+                {
+                    phase.phase = PhaseType.HomeStandbyphase;
+                }
+            }
         }
     }
 }
