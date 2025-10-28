@@ -6,8 +6,9 @@ namespace DarkLordGame
     {
     }
 
-    public class InteractionUIBaker : ClassBaker<InteractionUIEntityAuthoring, InteractionUIEntity>{}
+    public class InteractionUIBaker : ClassBaker<InteractionUIEntityAuthoring, InteractionUIEntity> { }
     
+    [System.Serializable]
     public class InteractionUIEntity : ClassComponentData
     {
         public InteractionUI ui;

@@ -17,7 +17,7 @@ namespace DarkLordGame
         private bool isPressing = false;
         public InputAction interactAction;
         private double pressedInteractTime;
-        private const double interactTimeSteps = 0.1f;
+        private const double interactTimeSteps = 0.2f;
         private const double longInteractTimeSteps = 3.5f;
 
         private float fadeOutUIPeriod = 0.3f;
@@ -31,6 +31,7 @@ namespace DarkLordGame
         protected override void OnUpdate()
         {
             UpdateFocus();
+            UpdateInteractableUITutorialObject();
             UpdateInteraction();
         }
 
@@ -134,9 +135,11 @@ namespace DarkLordGame
                     {
                         isPressing = false;
                         currentFocusingObject.LongPressInteract(EntityManager);
+                        currentFocusingObject = null;
                     }
                 }
             }
+            if (currentFocusingObject == null) return;
 
             if (interactAction.WasReleasedThisFrame())
             {
@@ -144,6 +147,7 @@ namespace DarkLordGame
                 if (diff < interactTimeSteps)
                 {
                     currentFocusingObject.OnInteract(EntityManager);
+                    currentFocusingObject = null;
                 }
                 isPressing = false;
             }
