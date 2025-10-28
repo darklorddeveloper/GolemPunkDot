@@ -7,7 +7,7 @@ namespace DarkLordGame
     }
 
     public class InteractionUIBaker : ClassBaker<InteractionUIEntityAuthoring, InteractionUIEntity> { }
-    
+
     [System.Serializable]
     public class InteractionUIEntity : ClassComponentData
     {
@@ -15,7 +15,7 @@ namespace DarkLordGame
         public override void Init()
         {
             base.Init();
-            ui = GameObject.Instantiate<InteractionUI>(ui);
+            ui = GameObject.Instantiate(ui);
             ui.gameObject.SetActive(false);
         }
     }

@@ -22,6 +22,8 @@ namespace DarkLordGame
 
         private float fadeOutUIPeriod = 0.3f;
         private float fadeOutTimeCount = 0;
+
+        public static int fadeOutHash = Animator.StringToHash("FadeOut");
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -78,6 +80,7 @@ namespace DarkLordGame
             }
         }
 
+
         private void UpdateInteractableUITutorialObject()
         {
             if (SystemAPI.ManagedAPI.TryGetSingleton<InteractionUIEntity>(out var interactionUI))
@@ -88,18 +91,21 @@ namespace DarkLordGame
                     if (fadeOutTimeCount <= 0)
                     {
                         //play fadeout animation
+                        interactionUI.ui.animator.Play(fadeOutHash);
                     }
                     fadeOutTimeCount += SystemAPI.Time.DeltaTime;
                     interactionUI.ui.gameObject.SetActive(fadeOutTimeCount < fadeOutUIPeriod);
                     return;
                 }
+                fadeOutTimeCount = 0;
                 interactionUI.ui.gameObject.SetActive(true);
                 var transform = EntityManager.GetComponentData<LocalToWorld>(focusingEntity);
                 var position = transform.Position;
 
                 if (SystemAPI.ManagedAPI.TryGetSingleton<MainCamera>(out var mainCamera))
                 {
-                    Vector3 screenPos = mainCamera.camera.WorldToScreenPoint(position);
+                    Vector3 pos = (Vector3)position + interactionUI.ui.worldOffset;
+                    Vector3 screenPos = mainCamera.camera.WorldToScreenPoint(pos);
                     interactionUI.ui.rootTransform.position = screenPos;
                 }
             }
@@ -128,7 +134,7 @@ namespace DarkLordGame
 
             if (interactAction.IsPressed())
             {
-                if (isPressing)
+                if (isPressing && currentFocusingObject.hasLongPressInteraction)
                 {
                     double diff = SystemAPI.Time.ElapsedTime - pressedInteractTime;
                     if (diff >= longInteractTimeSteps)
@@ -136,11 +142,10 @@ namespace DarkLordGame
                         isPressing = false;
                         currentFocusingObject.LongPressInteract(EntityManager);
                         currentFocusingObject = null;
+                        return;
                     }
                 }
             }
-            if (currentFocusingObject == null) return;
-
             if (interactAction.WasReleasedThisFrame())
             {
                 double diff = SystemAPI.Time.ElapsedTime - pressedInteractTime;

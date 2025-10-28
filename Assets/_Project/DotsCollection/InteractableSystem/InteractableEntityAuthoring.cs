@@ -6,8 +6,10 @@ namespace DarkLordGame
     {
     }
 
-    public class InteractableEntityBaker : ClassBaker<InteractableEntityAuthoring, InteractableEntity>{}
+    public class InteractableEntityBaker : ClassBaker<InteractableEntityAuthoring, InteractableEntity> { }
 
+
+    [System.Serializable]
     public class InteractableEntity : ClassComponentData
     {
         public InteractableObject interactableObject;
