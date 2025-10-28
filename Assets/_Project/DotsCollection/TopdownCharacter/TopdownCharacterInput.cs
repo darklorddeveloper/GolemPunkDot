@@ -9,8 +9,6 @@ namespace DarkLordGame
     {
         public float3 movement;
         public float3 lookAtTargetPoint;
-        public bool interactAction;
-        public bool isHoldingInteract;
         public bool dashAction;
         public bool isHoldingDashAction;
         public bool primaryAction, secondaryAction;

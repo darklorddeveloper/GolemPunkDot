@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6aac71588bbb4247a5df05af166f4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.GameStatAuthoring
-  flags: 2
+  flags: 0
 --- !u!4 &1736722066
 Transform:
   m_ObjectHideFlags: 0
@@ -919,7 +919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab66baaa3d7844f6aef0aa5286608ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.MainCameraAuthoring
-  flags: 2
+  flags: 0
   data1:
     initialized: 0
     camera: {fileID: 2505188106795269638, guid: dab6d76e394df41df837c566dcb7ad91, type: 3}

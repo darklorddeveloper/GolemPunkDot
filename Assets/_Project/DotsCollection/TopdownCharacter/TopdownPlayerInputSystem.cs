@@ -11,7 +11,6 @@ namespace DarkLordGame
         private bool initialized = false;
         public InputAction moveAction;
         public InputAction lookAtAction;
-        public InputAction interactAction;
         public InputAction dashAction;
         public InputAction primaryAction, secondaryAction;
         public InputAction skill1Action, skill2Action, skill3Action, skill4Action;
@@ -24,7 +23,7 @@ namespace DarkLordGame
         protected override void OnCreate()
         {
             base.OnCreate();
-            RequireForUpdate<TopdownPlayerCharacterInputAsset>();
+            RequireForUpdate<InputAsset>();
             plane = new Plane(Vector3.up, Vector3.zero);
         }
 
@@ -50,7 +49,7 @@ namespace DarkLordGame
 
         protected override void OnUpdate()
         {
-            if (SystemAPI.ManagedAPI.TryGetSingleton<TopdownPlayerCharacterInputAsset>(out var input) == false)
+            if (SystemAPI.ManagedAPI.TryGetSingleton<InputAsset>(out var input) == false)
             {
                 return;
             }
@@ -68,7 +67,6 @@ namespace DarkLordGame
                 primaryAction = map["Primary"];
                 secondaryAction = map["Secondary"];
                 dashAction = map["Dash"];
-                interactAction = map["Interact"];
                 skill1Action = map["Skill1"];
                 skill2Action = map["Skill2"];
                 skill3Action = map["Skill3"];
@@ -79,7 +77,6 @@ namespace DarkLordGame
                 primaryAction.Enable();
                 secondaryAction.Enable();
                 dashAction.Enable();
-                interactAction.Enable();
                 skill1Action.Enable();
                 skill2Action.Enable();
                 skill3Action.Enable();
@@ -91,7 +88,6 @@ namespace DarkLordGame
 
             currentInput.primaryAction = primaryAction.WasPerformedThisFrame();
             currentInput.secondaryAction = secondaryAction.WasPerformedThisFrame();
-            currentInput.interactAction = interactAction.WasPerformedThisFrame();
             currentInput.dashAction = dashAction.WasPerformedThisFrame();
             currentInput.skill1 = skill1Action.WasPerformedThisFrame();
             currentInput.skill2 = skill2Action.WasPerformedThisFrame();
@@ -100,7 +96,6 @@ namespace DarkLordGame
 
             currentInput.isHoldingPrimaryAction = primaryAction.IsPressed();
             currentInput.isHoldingSecondaryAction = secondaryAction.IsPressed();
-            currentInput.isHoldingInteract = interactAction.IsPressed();
             currentInput.isHoldingDashAction = dashAction.IsPressed();
             currentInput.isHoldingSkill1 = skill1Action.IsPressed();
             currentInput.isHoldingSkill2 = skill2Action.IsPressed();
@@ -130,7 +125,7 @@ namespace DarkLordGame
                 controllerDirection = math.lengthsq(diff) > 0.01f ? new float3(diff.x, 0, diff.y) : currentInput.movement;
             }
 
-            foreach (var (inputCharacter, character, transform, e) in SystemAPI.Query<TopdownPlayerCharacter, TopdownCharacterInput, LocalTransform>().WithEntityAccess())
+            foreach (var (inputCharacter, character, transform, e) in SystemAPI.Query<PlayerComponent, TopdownCharacterInput, LocalTransform>().WithEntityAccess())
             {
                 if (isUsingMouseKeyboard == false)
                 {
