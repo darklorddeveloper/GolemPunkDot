@@ -10,6 +10,7 @@ namespace DarkLordGame
     public partial class InteractionSystem : SystemBase
     {
         private InteractableObject currentFocusingObject;
+        private Entity focusingEntity;
         private float timeCount = 0;
         private const float CastInterval = 0.1f;
         private bool initlizedInput = false;
@@ -18,6 +19,9 @@ namespace DarkLordGame
         private double pressedInteractTime;
         private const double interactTimeSteps = 0.1f;
         private const double longInteractTimeSteps = 3.5f;
+
+        private float fadeOutUIPeriod = 0.3f;
+        private float fadeOutTimeCount = 0;
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -58,8 +62,10 @@ namespace DarkLordGame
                     if (EntityManager.HasComponent<InteractableEntity>(body.Entity))
                     {
                         currentFocusingObject = EntityManager.GetComponentObject<InteractableEntity>(body.Entity).interactableObject;
+                        focusingEntity = body.Entity;
                         return;
-                    } else
+                    }
+                    else
                     {
                         currentFocusingObject = null;
                     }
@@ -67,6 +73,33 @@ namespace DarkLordGame
                 else
                 {
                     currentFocusingObject = null;
+                }
+            }
+        }
+
+        private void UpdateInteractableUITutorialObject()
+        {
+            if (SystemAPI.ManagedAPI.TryGetSingleton<InteractionUIEntity>(out var interactionUI))
+            {
+                if (interactionUI.initialized == false) return;
+                if (currentFocusingObject == null)
+                {
+                    if (fadeOutTimeCount <= 0)
+                    {
+                        //play fadeout animation
+                    }
+                    fadeOutTimeCount += SystemAPI.Time.DeltaTime;
+                    interactionUI.ui.gameObject.SetActive(fadeOutTimeCount < fadeOutUIPeriod);
+                    return;
+                }
+                interactionUI.ui.gameObject.SetActive(true);
+                var transform = EntityManager.GetComponentData<LocalToWorld>(focusingEntity);
+                var position = transform.Position;
+
+                if (SystemAPI.ManagedAPI.TryGetSingleton<MainCamera>(out var mainCamera))
+                {
+                    Vector3 screenPos = mainCamera.camera.WorldToScreenPoint(position);
+                    interactionUI.ui.rootTransform.position = screenPos;
                 }
             }
         }
