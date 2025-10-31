@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
-    public class HybridAnimation : ICleanupComponentData
+    public class HybridAnimation : IComponentData
     {
         public Animator animator;
     }

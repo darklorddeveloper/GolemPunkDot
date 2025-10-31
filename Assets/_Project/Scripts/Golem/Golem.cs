@@ -8,7 +8,7 @@ namespace DarkLordGame
         public Transform skinnedRoot;
         public SkinnedMeshRenderer originalSkinnedMesh;
         public List<GolemPart> attachedParts;
-
+        public Animator animator;
         public void Init()
         {
             for (int i = 0, length = attachedParts.Count; i < length; i++)

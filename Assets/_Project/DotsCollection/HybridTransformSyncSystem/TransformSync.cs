@@ -5,5 +5,7 @@ namespace DarkLordGame
     public class TransformSync : IComponentData
     {
         public Transform targetTransform;
+        public Vector3 previousPosition;
+        public Vector3 deltaPosition;
     }
 }

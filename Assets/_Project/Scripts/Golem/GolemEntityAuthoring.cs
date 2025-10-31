@@ -4,20 +4,16 @@ using UnityEngine;
 namespace DarkLordGame
 {
 
-    public class GolemEntityAuthoring : MonoBehaviour
+    public class GolemEntityAuthoring : ClassAuthorizer<GolemEntity>
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
+
+    public class GolemEntityBaker :ClassBaker<GolemEntityAuthoring, GolemEntity>
+    {
+        
+    }
+
+    [System.Serializable]
     public class GolemEntity : ClassComponentData
     {
         public Golem golem;
@@ -27,6 +23,13 @@ namespace DarkLordGame
             base.Init(entity, manager);
             golem = GameObject.Instantiate<Golem>(golem);
             golem.Init();
+
+            var anim = golem.animator;
+            manager.AddComponentObject(entity, new TransformSync { targetTransform = golem.transform });
+            manager.AddComponentObject(entity, new HybridAnimation { animator = anim });
+            manager.AddComponentObject(entity, new PlayHybridAnimation());
+            manager.AddComponent<HybridLocomotion>(entity);
+            manager.SetComponentEnabled<PlayHybridAnimation>(entity, false);
         }
     }
 }

@@ -8,11 +8,13 @@ namespace DarkLordGame
     {
         protected override void OnUpdate()
         {
-            foreach (var (transform, trans) in SystemAPI.Query<TransformSync, LocalTransform>())
+            foreach (var (transformSync, trans) in SystemAPI.Query<TransformSync, LocalTransform>())
             {
-                if (transform.targetTransform == null) continue;
-                transform.targetTransform.position = trans.Position;
-                transform.targetTransform.rotation = trans.Rotation;
+                if (transformSync.targetTransform == null) continue;
+                transformSync.previousPosition = transformSync.targetTransform.position;
+                transformSync.targetTransform.position = trans.Position;
+                transformSync.deltaPosition = trans.Position - transformSync.previousPosition;
+                transformSync.targetTransform.rotation = trans.Rotation;
             }
         }
     }
