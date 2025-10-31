@@ -989,6 +989,7 @@ GameObject:
   - component: {fileID: 1982860282}
   - component: {fileID: 1982860278}
   - component: {fileID: 1982860283}
+  - component: {fileID: 1982860284}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1085,6 +1086,20 @@ MonoBehaviour:
   data1:
     radius: 2
     interactLayerBit: 128
+--- !u!114 &1982860284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982860277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f972149ca3c4b429777317116a7e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DotCollection::DarkLordGame.SafeDestroyAuthoring
+  shouldDestroyFromStart: 1
+  period: 7
 --- !u!1 &2008723920
 GameObject:
   m_ObjectHideFlags: 0

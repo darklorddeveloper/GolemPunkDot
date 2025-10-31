@@ -15,7 +15,10 @@ namespace DarkLordGame
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new SafeDestroyComponent { period = authoring.period });
-                SetComponentEnabled<SafeDestroyComponent>(entity, authoring.shouldDestroyFromStart); ;
+                SetComponentEnabled<SafeDestroyComponent>(entity, authoring.shouldDestroyFromStart);
+                AddComponent(entity, new DestroyImmediate());
+                SetComponentEnabled<DestroyImmediate>(entity, false);
+
             }
         }
     }
@@ -23,5 +26,10 @@ namespace DarkLordGame
     public struct SafeDestroyComponent : IComponentData, IEnableableComponent
     {
         public float period;
+    }
+
+    public struct DestroyImmediate : IComponentData, IEnableableComponent
+    {
+
     }
 }
