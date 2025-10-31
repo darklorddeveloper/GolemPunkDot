@@ -84,7 +84,7 @@ namespace DarkLordGame
         public void OnCreate(ref SystemState state)
         {
             queryNoChild = SystemAPI.QueryBuilder().WithAll<DestroyImmediate>().WithNone<Child>().Build();
-            query = SystemAPI.QueryBuilder().WithAll<DestroyImmediate>().Build();
+            query = SystemAPI.QueryBuilder().WithAll<DestroyImmediate>().WithAll<Child>().Build();
             state.RequireForUpdate<DestroyImmediate>();
         }
 
