@@ -13,7 +13,7 @@ namespace DarkLordGame
                 if (transformSync.targetTransform == null) continue;
                 transformSync.previousPosition = transformSync.targetTransform.position;
                 transformSync.targetTransform.position = trans.Position;
-                transformSync.deltaPosition = trans.Position - transformSync.previousPosition;
+                transformSync.deltaPosition = (Vector3)trans.Position - transformSync.previousPosition;
                 transformSync.targetTransform.rotation = trans.Rotation;
             }
         }
