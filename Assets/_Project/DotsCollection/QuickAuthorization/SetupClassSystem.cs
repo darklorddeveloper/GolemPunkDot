@@ -37,7 +37,7 @@ namespace DarkLordGame
                     // Fetch the actual managed component instance and call Init
                     // Debug.Log("managed type " + managedType.Name);
                     var compObj = em.GetComponentObject<ClassComponentData>(e, managedType);
-                    compObj.Init();
+                    compObj.Init(e, em);
                 }
 
                 // Done for this entity

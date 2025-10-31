@@ -1,3 +1,4 @@
+using Unity.Entities;
 using UnityEngine;
 
 namespace DarkLordGame
@@ -12,9 +13,9 @@ namespace DarkLordGame
     public class InteractionUIEntity : ClassComponentData
     {
         public InteractionUI ui;
-        public override void Init()
+        public override void Init(Entity entity, EntityManager manager)
         {
-            base.Init();
+            base.Init(entity, manager);
             ui = GameObject.Instantiate(ui);
             ui.gameObject.SetActive(false);
         }

@@ -1,3 +1,4 @@
+using Unity.Entities;
 using UnityEngine;
 
 namespace DarkLordGame
@@ -16,9 +17,9 @@ namespace DarkLordGame
     public class FadeLayerContainer : ClassComponentData
     {
         public FadeLayer fadeLayer;
-        public override void Init()
+        public override void Init(Entity entity, EntityManager manager)
         {
-            base.Init();
+            base.Init(entity, manager);
             fadeLayer = GameObject.Instantiate<FadeLayer>(fadeLayer);
         }
     }

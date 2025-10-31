@@ -19,9 +19,9 @@ namespace DarkLordGame
         [System.NonSerialized] public GameObject cameraRootObject;
         [System.NonSerialized] public Transform cameraRootTransform;
         [System.NonSerialized] public Transform cameraTransform;
-        public override void Init()
+        public override void Init(Entity entity, EntityManager manager)
         {
-            base.Init();
+            base.Init(entity, manager);
             camera = GameObject.Instantiate<Camera>(camera);
             cameraTransform = camera.transform;
             cameraRootObject = new GameObject("Camera Root");

@@ -22,9 +22,9 @@ namespace DarkLordGame
         // story assets
         // next pages.
         // skip button
-        public override void Init()
+        public override void Init(Entity entity, EntityManager manager)
         {
-            base.Init();
+            base.Init(entity, manager);
             scrollObject = GameObject.Instantiate(scrollObject);
             scrollAnimator = scrollObject.GetComponent<Animator>();
 

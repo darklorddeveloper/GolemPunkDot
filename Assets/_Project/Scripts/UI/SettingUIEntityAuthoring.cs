@@ -17,9 +17,9 @@ namespace DarkLordGame
     public class SettingUIEntity: ClassComponentData
     {
         public SettingUI ui;
-        public override void Init()
+        public override void Init(Entity entity, EntityManager manager)
         {
-            base.Init();
+            base.Init(entity, manager);
             ui = GameObject.Instantiate<SettingUI>(ui);
             ui.gameObject.SetActive(false);
         }
