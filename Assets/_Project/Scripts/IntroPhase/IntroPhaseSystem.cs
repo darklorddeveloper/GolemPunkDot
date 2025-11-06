@@ -6,6 +6,8 @@ namespace DarkLordGame
     public partial class IntroPhaseSystem : SystemBase
     {
         private EntityQuery targetQuery;
+        private float timeCount = 0;
+        private const float WaitPeriod = 0.5f;
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -26,7 +28,13 @@ namespace DarkLordGame
             // fadeout last page then go to gamephase
             if (SystemAPI.TryGetSingleton<CurrentPhase>(out var phase))
             {
-                Debug.Log("here is intro phase " + phase.phase + "  " + phase.previousPhase);
+                if (phase.isChangingPhase)
+                {
+                    timeCount = 0;
+                }
+                timeCount += SystemAPI.Time.DeltaTime;
+                if (timeCount < WaitPeriod) return;
+
                 if (Singleton.instance.playerSaveData.playCount == 0)
                 {
                     phase.phase = PhaseType.GamePhase;

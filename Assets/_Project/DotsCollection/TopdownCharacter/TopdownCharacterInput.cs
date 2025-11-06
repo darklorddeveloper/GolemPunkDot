@@ -5,7 +5,7 @@ namespace DarkLordGame
 {
 
     [System.Serializable]
-    public struct TopdownCharacterInput : IComponentData
+    public struct TopdownCharacterInput : IComponentData, IEnableableComponent
     {
         public float3 movement;
         public float3 lookAtTargetPoint;

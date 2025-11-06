@@ -15,6 +15,7 @@ namespace DarkLordGame
     [System.Serializable]
     public struct GamePhaseIntro : IComponentData, IEnableableComponent
     {
-
+        public float delayed;
+        public float period;
     }
 }

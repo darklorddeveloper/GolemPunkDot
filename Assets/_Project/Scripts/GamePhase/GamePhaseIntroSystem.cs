@@ -11,7 +11,7 @@ namespace DarkLordGame
 
         private EntityQuery targetQuery;
         private IEnumerator introEnumberator;
-        private const float introPeriod = 0.5f;
+        private float timeCount = 0;
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -29,11 +29,22 @@ namespace DarkLordGame
             var e = SystemAPI.GetSingletonEntity<CurrentPhase>();
             if (currentPhase.isChangingPhase)
             {
-                //do intiialize golem and start ienumerator
-                var id = Singleton.instance.playerSaveData.selectedClassID;
-                var collection = SystemAPI.GetSingletonBuffer<GolemClassCollection>();
-                var entity = EntityManager.Instantiate(collection[id].prefab);
-                introEnumberator = Intro(entity);
+                timeCount = 0;
+            }
+
+            var intro = EntityManager.GetComponentData<GamePhaseIntro>(e);
+            if(timeCount <= intro.delayed)
+            {
+                timeCount += SystemAPI.Time.DeltaTime;
+                if (timeCount > intro.delayed)
+                {
+                    //do intiialize golem and start ienumerator
+                    var id = Singleton.instance.playerSaveData.selectedClassID;
+                    var collection = SystemAPI.GetSingletonBuffer<GolemClassCollection>();
+                    var entity = EntityManager.Instantiate(collection[id].prefab);
+                    EntityManager.SetComponentEnabled<TopdownCharacterInput>(entity, false);
+                    introEnumberator = Intro(entity, intro.period);
+                }
             }
 
             if (introEnumberator == null)
@@ -50,7 +61,7 @@ namespace DarkLordGame
             introEnumberator = null;
         }
 
-        private IEnumerator Intro(Entity entity)
+        private IEnumerator Intro(Entity entity, float introPeriod)
         {
             float t = 0;
             var transform = EntityManager.GetComponentData<LocalTransform>(entity);
@@ -65,6 +76,7 @@ namespace DarkLordGame
                 yield return null;
             }
             transform.Position = startPos.targetPosition;
+            EntityManager.SetComponentEnabled<TopdownCharacterInput>(entity, true);
             EntityManager.SetComponentData(entity, transform);
         }
     }

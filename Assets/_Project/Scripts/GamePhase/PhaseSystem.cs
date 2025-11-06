@@ -17,7 +17,6 @@ namespace DarkLordGame
                 if (currentPhase.previousPhase != currentPhase.phase)
                 {
                     currentPhase.isChangingPhase = true;
-                    Debug.Log("here changing " + currentPhase.phase + " previous " + currentPhase.previousPhase);
 
                     currentPhase.previousPhase = currentPhase.phase;
                     var e = SystemAPI.GetSingletonEntity<CurrentPhase>();

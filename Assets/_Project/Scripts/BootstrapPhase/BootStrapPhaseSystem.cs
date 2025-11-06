@@ -34,7 +34,7 @@ namespace DarkLordGame
 
             if (startedFadingIn == false)
             {
-                runningFadeEnumerator = fadeLayer.fadeLayer.Fade(1.0f, 0.0f, 3.0f);
+                runningFadeEnumerator = fadeLayer.fadeLayer.Fade(1.0f, 0.0f, 0.8f);
                 startedFadingIn = true;
             }
             if (runningFadeEnumerator != null && runningFadeEnumerator.MoveNext())
