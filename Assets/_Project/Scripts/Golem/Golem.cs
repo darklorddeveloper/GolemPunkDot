@@ -9,6 +9,7 @@ namespace DarkLordGame
         public SkinnedMeshRenderer originalSkinnedMesh;
         public List<GolemPart> attachedParts;
         public Animator animator;
+        public List<GolemAttachPointData> allAttachPoints = new();
         public void Init()
         {
             for (int i = 0, length = attachedParts.Count; i < length; i++)
@@ -29,20 +30,46 @@ namespace DarkLordGame
             }
         }
 
-
+        private Transform GetAttachPoint(GolemAttachPoint point)
+        {
+            for (int i = 0, length = allAttachPoints.Count; i < length; i++)
+            {
+                if(allAttachPoints[i].point == point)
+                {
+                    return allAttachPoints[i].transform;
+                }
+            }
+            return skinnedRoot;
+        }
         private GolemPart SetupPart(GolemPart part)
         {
             var instance = ScriptableObject.Instantiate(part);
             instance.isInstance = true;
+
+
+
             var obj = new GameObject();
-            obj.transform.SetParent(skinnedRoot);
-            var skinned = obj.AddComponent<SkinnedMeshRenderer>();
-            skinned.sharedMaterials = instance.materials;
-            skinned.sharedMesh = instance.mesh;
-            skinned.rootBone = originalSkinnedMesh.rootBone;
-            skinned.bones = originalSkinnedMesh.bones;
+            if (instance.isUsingAttachPoint)
+            {
+                var filter = obj.AddComponent<MeshFilter>();
+                var render = obj.AddComponent<MeshRenderer>();
+                filter.sharedMesh = instance.mesh;
+                render.sharedMaterials = instance.materials;
+                //find point then attach
+                obj.transform.SetParent(transform, GetAttachPoint(instance.attachPoint));
+            }
+            else
+            {
+                obj.transform.SetParent(skinnedRoot);
+
+                var skinned = obj.AddComponent<SkinnedMeshRenderer>();
+                skinned.sharedMaterials = instance.materials;
+                skinned.sharedMesh = instance.mesh;
+                skinned.rootBone = originalSkinnedMesh.rootBone;
+                skinned.bones = originalSkinnedMesh.bones;
+            }
             // skinned.sharedMesh.RecalculateBounds();
-            instance.runtimSkinnedObject = obj;
+            instance.runtimeGameObject = obj;
             return instance;
         }
 
@@ -52,11 +79,11 @@ namespace DarkLordGame
             {
                 if (attachedParts[i].partType == golemPart.partType)
                 {
-                    if (attachedParts[i].runtimSkinnedObject != null)
+                    if (attachedParts[i].runtimeGameObject != null)
                     {
-                        GameObject.Destroy(attachedParts[i].runtimSkinnedObject);
+                        GameObject.Destroy(attachedParts[i].runtimeGameObject);
                     }
-                    if(attachedParts[i].isInstance)
+                    if (attachedParts[i].isInstance)
                     {
                         ScriptableObject.Destroy(attachedParts[i]);
                     }

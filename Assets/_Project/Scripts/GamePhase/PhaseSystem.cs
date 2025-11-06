@@ -23,6 +23,7 @@ namespace DarkLordGame
                     state.EntityManager.SetComponentEnabled<BootStrapPhase>(e, phase == PhaseType.BootStrap);
                     state.EntityManager.SetComponentEnabled<IntroPhase>(e, phase == PhaseType.Intro);
                     state.EntityManager.SetComponentEnabled<GamePhase>(e, phase == PhaseType.GamePhase);
+                    state.EntityManager.SetComponentEnabled<GamePhaseIntro>(e, phase == PhaseType.GamePhase);
                     state.EntityManager.SetComponentEnabled<MinePhase>(e, phase == PhaseType.HomeStandbyphase);
                     state.EntityManager.SetComponentEnabled<SettingPhase>(e, phase == PhaseType.SettingPhase);
                     CameraMovement targetMovement = default;
