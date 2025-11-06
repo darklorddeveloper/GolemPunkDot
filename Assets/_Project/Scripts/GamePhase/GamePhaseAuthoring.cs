@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
-    public class GamePhaseAuthoring : EnableStructAuthorizer<GamePhase, GamePhaseIntro>
+    public class GamePhaseAuthoring : EnableStructAuthorizer<GamePhase>
     {
         
     }
 
-    public class GamePhaseBaker : EnableStructBaker<GamePhaseAuthoring, GamePhase, GamePhaseIntro>
+    public class GamePhaseBaker : EnableStructBaker<GamePhaseAuthoring, GamePhase>
     {
     }
     [System.Serializable]
@@ -17,9 +17,5 @@ namespace DarkLordGame
         public CameraMovement targetCameraMovement;
     }
 
-    [System.Serializable]
-    public struct GamePhaseIntro : IComponentData, IEnableableComponent
-    {
-        
-    }
+
 }

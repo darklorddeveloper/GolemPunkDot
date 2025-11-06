@@ -575,6 +575,60 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1404953115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1404953116}
+  - component: {fileID: 1404953117}
+  m_Layer: 0
+  m_Name: GolemStartPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1404953116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404953115}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2008723921}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1404953117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404953115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e0dae032463c4ad189b54b84aefc613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Main::DarkLordGame.GolemStartPositionAuthoring
+  flags: 0
+  data1:
+    position:
+      x: 0
+      y: 16
+      z: 0
+    targetPosition:
+      x: 0
+      y: 0
+      z: 0
 --- !u!1 &1512642992
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,6 +736,7 @@ GameObject:
   - component: {fileID: 1790061159}
   - component: {fileID: 1790061158}
   - component: {fileID: 1790061162}
+  - component: {fileID: 1790061163}
   m_Layer: 0
   m_Name: Gamephase
   m_TagString: Untagged
@@ -803,8 +858,7 @@ MonoBehaviour:
         y: 0
         z: 0
       movePeriod: 0.75
-  enabledByDefault1: 1
-  enabledByDefault2: 1
+  enabledByDefault: 1
 --- !u!114 &1790061161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -847,6 +901,20 @@ MonoBehaviour:
         z: 0
       movePeriod: 0.75
   enabledByDefault: 1
+--- !u!114 &1790061163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790061155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cafd803e7ef4546e4b048a7bf3b553f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Main::DarkLordGame.GamePhaseIntroAuthoring
+  flags: 0
+  enabledByDefault: 0
 --- !u!1 &2008723920
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,6 +952,7 @@ Transform:
   - {fileID: 859405888}
   - {fileID: 523958441}
   - {fileID: 359163687}
+  - {fileID: 1404953116}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2035457335
