@@ -8,16 +8,22 @@ namespace DarkLordGame
     public partial class BootStrapPhaseSystem : SystemBase
     {
         private bool startedFadingIn = false;
+        private EntityQuery targetQuery;
         private IEnumerator runningFadeEnumerator;
         protected override void OnCreate()
         {
             base.OnCreate();
             Singleton.Init();
-            RequireForUpdate<BootStrapPhase>();
+
+            targetQuery = SystemAPI.QueryBuilder()
+            .WithAll<BootStrapPhase>()
+            .Build();
+            RequireForUpdate(targetQuery);
         }
 
         protected override void OnUpdate()
         {
+            if (targetQuery.IsEmpty) return;
             var fadeLayer = SystemAPI.ManagedAPI.GetSingleton<FadeLayerContainer>();
             if (fadeLayer.initialized == false)
             {
@@ -31,10 +37,11 @@ namespace DarkLordGame
                 runningFadeEnumerator = fadeLayer.fadeLayer.Fade(1.0f, 0.0f, 3.0f);
                 startedFadingIn = true;
             }
-            if(runningFadeEnumerator != null && runningFadeEnumerator.MoveNext())
+            if (runningFadeEnumerator != null && runningFadeEnumerator.MoveNext())
             {
                 return;
             }
+
             currentPhase.phase = PhaseType.Intro;
             SystemAPI.SetSingleton(currentPhase);
         }

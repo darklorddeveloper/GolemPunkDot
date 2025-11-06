@@ -24,7 +24,7 @@ namespace DarkLordGame
     }
 
     [BurstCompile]
-    [UpdateInGroup(typeof(PresentationSystemGroup), OrderLast = true)]
+    [UpdateInGroup(typeof(PresentationSystemGroup))]
     public partial struct SafeDestroySystem : ISystem
     {
         private EntityQuery query;

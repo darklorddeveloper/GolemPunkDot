@@ -8,17 +8,25 @@ namespace DarkLordGame
 {
     public partial class GamePhaseIntroSystem : SystemBase
     {
+
+        private EntityQuery targetQuery;
         private IEnumerator introEnumberator;
         private const float introPeriod = 0.5f;
         protected override void OnCreate()
         {
             base.OnCreate();
-            RequireForUpdate<GamePhaseIntro>();
+            base.OnCreate();
+            targetQuery = SystemAPI.QueryBuilder()
+            .WithAll<GamePhaseIntro>()
+            .Build();
         }
 
         protected override void OnUpdate()
         {
+            if (targetQuery.IsEmpty) return;
+
             var currentPhase = SystemAPI.GetSingleton<CurrentPhase>();
+            var e = SystemAPI.GetSingletonEntity<CurrentPhase>();
             if (currentPhase.isChangingPhase)
             {
                 //do intiialize golem and start ienumerator
@@ -37,7 +45,7 @@ namespace DarkLordGame
             {
                 return;
             }
-            var e = SystemAPI.GetSingletonEntity<CurrentPhase>();
+
             EntityManager.SetComponentEnabled<GamePhaseIntro>(e, false);
             introEnumberator = null;
         }

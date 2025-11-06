@@ -858,7 +858,7 @@ MonoBehaviour:
         y: 0
         z: 0
       movePeriod: 0.75
-  enabledByDefault: 1
+  enabledByDefault: 0
 --- !u!114 &1790061161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,7 +900,7 @@ MonoBehaviour:
         y: 0
         z: 0
       movePeriod: 0.75
-  enabledByDefault: 1
+  enabledByDefault: 0
 --- !u!114 &1790061163
 MonoBehaviour:
   m_ObjectHideFlags: 0
