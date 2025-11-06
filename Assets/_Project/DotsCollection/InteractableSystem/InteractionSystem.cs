@@ -88,7 +88,7 @@ namespace DarkLordGame
                 if (interactionUI.initialized == false) return;
                 if (currentFocusingObject == null)
                 {
-                    if (fadeOutTimeCount <= 0)
+                    if (fadeOutTimeCount == 0 && interactionUI.ui.gameObject.activeSelf)
                     {
                         //play fadeout animation
                         interactionUI.ui.animator.Play(fadeOutHash);
