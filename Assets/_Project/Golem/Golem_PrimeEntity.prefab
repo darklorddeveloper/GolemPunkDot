@@ -49,7 +49,7 @@ MonoBehaviour:
   flags: 0
   data1:
     initialized: 0
-    golem: {fileID: 1652030067586562081, guid: 5994033e6781441c6841ac9acd58910e, type: 3}
+    golem: {fileID: 472062727294222745, guid: 55111586e560548d2af1761e99734a9f, type: 3}
 --- !u!114 &8818217638626796749
 MonoBehaviour:
   m_ObjectHideFlags: 0
