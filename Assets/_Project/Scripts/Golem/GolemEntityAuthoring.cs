@@ -28,7 +28,11 @@ namespace DarkLordGame
             manager.AddComponentObject(entity, new TransformSync { targetTransform = golem.transform });
             manager.AddComponentObject(entity, new HybridAnimation { animator = anim });
             manager.AddComponentObject(entity, new PlayHybridAnimation());
-            manager.AddComponent<HybridLocomotion>(entity);
+            var hybridLocomotion = new HybridLocomotion
+            {
+                lerpSpeed = golem.lerpLocomotionSpeed
+            };
+            manager.AddComponentData(entity, hybridLocomotion);
             manager.SetComponentEnabled<PlayHybridAnimation>(entity, false);
         }
     }

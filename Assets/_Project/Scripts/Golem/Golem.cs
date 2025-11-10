@@ -9,6 +9,7 @@ namespace DarkLordGame
         public SkinnedMeshRenderer originalSkinnedMesh;
         public List<GolemPart> attachedParts;
         public Animator animator;
+        public float lerpLocomotionSpeed = 0.3f;
         public List<GolemAttachPointData> allAttachPoints = new();
         public void Init()
         {

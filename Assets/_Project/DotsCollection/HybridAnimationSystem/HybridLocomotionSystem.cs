@@ -10,21 +10,22 @@ namespace DarkLordGame
         public static int propertyY = Animator.StringToHash("Vertical");
         protected override void OnUpdate()
         {
-            foreach (var (anim, hybridTransform) in SystemAPI.Query<HybridAnimation, TransformSync>().WithAll<HybridLocomotion>())
+            float deltaTime = SystemAPI.Time.DeltaTime;
+            foreach (var (anim, hybridTransform, locomotion) in SystemAPI.Query<HybridAnimation, TransformSync, RefRW<HybridLocomotion>>())
             {
-                if (hybridTransform.deltaPosition.sqrMagnitude > 0.1f)
+                float x = 0, y = 0;
+                if (hybridTransform.deltaPosition.sqrMagnitude > 0.001f)
                 {
                     var norm = hybridTransform.deltaPosition.normalized;
-                    var x = Vector3.Dot(hybridTransform.targetTransform.right, norm);
-                    var y = Vector3.Dot(hybridTransform.targetTransform.forward, norm);
-                    anim.animator.SetFloat(propertyX, x);
-                    anim.animator.SetFloat(propertyY, y);
+                    x = Vector3.Dot(hybridTransform.targetTransform.right, norm);
+                    y = Vector3.Dot(hybridTransform.targetTransform.forward, norm);
+
+
                 }
-                else
-                {
-                    anim.animator.SetFloat(propertyX, 0);
-                    anim.animator.SetFloat(propertyY, 0);
-                }
+                locomotion.ValueRW.x = Mathf.Lerp(locomotion.ValueRO.x, x, locomotion.ValueRO.lerpSpeed * deltaTime);
+                locomotion.ValueRW.y = Mathf.Lerp(locomotion.ValueRO.y, y, locomotion.ValueRO.lerpSpeed * deltaTime);
+                anim.animator.SetFloat(propertyX, locomotion.ValueRO.x);
+                anim.animator.SetFloat(propertyY, locomotion.ValueRO.y);
             }
         }
     }
