@@ -1176,6 +1176,7 @@ MonoBehaviour:
   originalSkinnedMesh: {fileID: 6799433412717278784}
   attachedParts:
   - {fileID: 11400000, guid: 6a67339406e3642d586fca228dd64afa, type: 2}
+  - {fileID: 11400000, guid: db5d87f69294546b098ce696a966c02a, type: 2}
   animator: {fileID: 8758359090291214714}
   allAttachPoints:
   - point: 0
