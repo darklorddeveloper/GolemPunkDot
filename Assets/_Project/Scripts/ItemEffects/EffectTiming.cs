@@ -4,7 +4,8 @@ namespace DarkLordGame
 {
     public enum EffectTiming
     {
-        OnSpawnAttack = 0,
+        ManualActivate = 0,
+        OnSpawnAttack = 10,
         OnSpawnAnyAttack,
 
         OnTakeDamage = 20,
