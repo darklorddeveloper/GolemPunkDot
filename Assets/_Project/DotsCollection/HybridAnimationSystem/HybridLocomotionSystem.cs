@@ -19,8 +19,6 @@ namespace DarkLordGame
                     var norm = hybridTransform.deltaPosition.normalized;
                     x = Vector3.Dot(hybridTransform.targetTransform.right, norm);
                     y = Vector3.Dot(hybridTransform.targetTransform.forward, norm);
-
-
                 }
                 locomotion.ValueRW.x = Mathf.Lerp(locomotion.ValueRO.x, x, locomotion.ValueRO.lerpSpeed * deltaTime);
                 locomotion.ValueRW.y = Mathf.Lerp(locomotion.ValueRO.y, y, locomotion.ValueRO.lerpSpeed * deltaTime);

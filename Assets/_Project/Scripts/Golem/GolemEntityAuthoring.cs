@@ -8,9 +8,9 @@ namespace DarkLordGame
     {
     }
 
-    public class GolemEntityBaker :ClassBaker<GolemEntityAuthoring, GolemEntity>
+    public class GolemEntityBaker : ClassBaker<GolemEntityAuthoring, GolemEntity>
     {
-        
+
     }
 
     [System.Serializable]
@@ -18,6 +18,12 @@ namespace DarkLordGame
     {
         public Golem golem;
 
+        private static ComponentTypeSet typeset = new ComponentTypeSet(
+            ComponentType.ReadWrite<TransformSync>(),
+            ComponentType.ReadWrite<HybridAnimation>(),
+            ComponentType.ReadWrite<PlayHybridAnimation>(),
+            ComponentType.ReadWrite<HybridLocomotion>()
+        );
         public override void Init(Entity entity, EntityManager manager)
         {
             base.Init(entity, manager);
@@ -25,14 +31,17 @@ namespace DarkLordGame
             golem.Init();
 
             var anim = golem.animator;
-            manager.AddComponentObject(entity, new TransformSync { targetTransform = golem.transform });
-            manager.AddComponentObject(entity, new HybridAnimation { animator = anim });
-            manager.AddComponentObject(entity, new PlayHybridAnimation());
+
+            manager.AddComponent(entity, typeset);
+
+            manager.SetComponentData(entity, new TransformSync { targetTransform = golem.transform });
+            manager.SetComponentData(entity, new HybridAnimation { animator = anim });
+            manager.SetComponentData(entity, new PlayHybridAnimation());
             var hybridLocomotion = new HybridLocomotion
             {
                 lerpSpeed = golem.lerpLocomotionSpeed
             };
-            manager.AddComponentData(entity, hybridLocomotion);
+            manager.SetComponentData(entity, hybridLocomotion);
             manager.SetComponentEnabled<PlayHybridAnimation>(entity, false);
         }
     }
