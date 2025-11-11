@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -17,6 +18,16 @@ namespace DarkLordGame
         
         [System.NonSerialized] public GameObject runtimeGameObject;
         [System.NonSerialized] public bool isInstance;
+
+        public List<EffectBase> effects = new();
+
+        public void Init()
+        {
+            for (int i = 0, length = effects.Count; i < length; i++)
+            {
+                effects[i] = ScriptableObject.Instantiate(effects[i]);
+            }
+        }
         
         // public list
         public virtual string GetLocalizedDescription()

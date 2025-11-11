@@ -35,7 +35,7 @@ namespace DarkLordGame
         {
             for (int i = 0, length = allAttachPoints.Count; i < length; i++)
             {
-                if(allAttachPoints[i].point == point)
+                if (allAttachPoints[i].point == point)
                 {
                     return allAttachPoints[i].transform;
                 }
@@ -46,9 +46,8 @@ namespace DarkLordGame
         {
             var instance = ScriptableObject.Instantiate(part);
             instance.isInstance = true;
-
-
-
+            instance.Init();
+            
             var obj = new GameObject();
             if (instance.isUsingAttachPoint)
             {
