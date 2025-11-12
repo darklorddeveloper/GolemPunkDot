@@ -5,7 +5,7 @@ using UnityEditor;
 namespace DarkLordGame
 {
     [CustomEditor(typeof(PrefabPoolAuthoring))]
-    public class GameObjectRegistratorAuthoringEditor : Editor
+    public class PrefabPoolAuthoringEditor : Editor
     {
         private string text = "";
         public override void OnInspectorGUI()

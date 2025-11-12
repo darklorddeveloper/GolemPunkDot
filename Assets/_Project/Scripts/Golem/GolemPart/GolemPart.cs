@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Entities;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -28,7 +30,7 @@ namespace DarkLordGame
                 effects[i] = ScriptableObject.Instantiate(effects[i]);
             }
         }
-        
+
         // public list
         public virtual string GetLocalizedDescription()
         {
@@ -37,5 +39,11 @@ namespace DarkLordGame
         }
 
         //effects related
+        
+        public virtual IEnumerator OnManualActivate(Entity activator, EntityManager manager)
+        {
+            //do something with timing.
+            yield break;
+        }
     }
 }

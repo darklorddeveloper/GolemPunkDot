@@ -8,7 +8,6 @@ namespace DarkLordGame
 {
     public partial class SetupPrefabSystem : SystemBase
     {
-
         protected override void OnCreate()
         {
             base.OnCreate();
