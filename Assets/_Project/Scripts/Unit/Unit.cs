@@ -12,15 +12,18 @@ namespace DarkLordGame
         public float shield;//always temp
         public float attack;
         public float tempAttack;
-        public float oneTimeBoostAttack;
         public float criticalChance;//50%
         public float tempCriticalChance;
         public float criitcalDamage;//1.5f
         public float tempCriticalDamage;
+        public float bonusAoeDamage;
+        public float bonusAoeRange;
+
         public float movementSpeed;
         public float tempMovementSpeed;
         public float cooldownSpeed;
         public float tempCooldownSpeed;
+
 
     }
     [System.Serializable]

@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
+    //calculate damage pass to attack
     [UpdateAfter(typeof(AttackAutoAssignSystem))]
     public partial struct AttackSystem : ISystem
     {
@@ -14,48 +15,63 @@ namespace DarkLordGame
             // state.EntityManager.SetComponentEnabled()
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             var deltaTime = SystemAPI.Time.DeltaTime;
-            foreach (var (attackRW, attackEntity) in SystemAPI.Query<RefRW<AttackRequestData>>().WithEntityAccess())
+            foreach (var (attackRequestRW, unit, attackEntity) in SystemAPI.Query<RefRW<AttackRequestData>, Unit>().WithEntityAccess())
             {
-                var attack = attackRW.ValueRO;
-                attackRW.ValueRW.loopTimeCount += deltaTime;
+                var attackRequest = attackRequestRW.ValueRO;
+                attackRequestRW.ValueRW.loopTimeCount += deltaTime;
 
-                if (attack.loopCasted >= 1 && attack.loopTimeCount < attack.loopCastInterval)
+                if (attackRequest.loopCasted >= 1 && attackRequest.loopTimeCount < attackRequest.loopCastInterval)
                 {
                     continue;
                 }
-                attackRW.ValueRW.loopTimeCount = 0;
+                attackRequestRW.ValueRW.loopTimeCount = 0;
 
-                var rot = attack.rotation;
-                var pos = attack.position;
-
-                if (attack.extraSplit > 0)
+                float baseDamage = unit.attack + unit.tempAttack;
+                float critDamage = unit.criitcalDamage + unit.tempCriticalDamage;
+                float critChance = unit.criticalChance + unit.tempCriticalChance;
+                var attack = new Attack
                 {
-                    int split = attack.extraSplit + 1;
-                    float startAngle = -attack.splitAngle * (split - 1.0f) / 2.0f;
+                    damage = baseDamage * attackRequest.attackDamageMultipler,
+                    attackProperty = attackRequest.attackProperty,
+                    propertyValue = attackRequest.propertyValue,
+                    aoeDamage = unit.bonusAoeDamage + baseDamage * attackRequest.aoeDamageRate,
+                    aoeRange = unit.bonusAoeRange + attackRequest.aoeRange,
+                    criticalDamage = critDamage + attackRequest.extraCritDamage,
+                    criticalChance = critChance + attackRequest.extracriticalChance,
+                };
+
+                var rot = attackRequest.rotation;
+                var pos = attackRequest.position;
+
+                if (attackRequest.extraSplit > 0)
+                {
+                    int split = attackRequest.extraSplit + 1;
+                    float startAngle = -attackRequest.splitAngle * (split - 1.0f) / 2.0f;
 
                     //instantiate
                     NativeArray<Entity> entities = new NativeArray<Entity>(split, Allocator.Temp);
-                    ecb.Instantiate(attack.prefab, entities);
+                    ecb.Instantiate(attackRequest.prefab, entities);
                     for (int i = 0; i <= split; i++)
                     {
                         //set position and split
-                        var extraRot = quaternion.Euler(0, 0, startAngle + i * attack.splitAngle);
+                        var extraRot = quaternion.Euler(0, 0, startAngle + i * attackRequest.splitAngle);
                         var targetRot = math.mul(rot, extraRot);
                         ecb.SetComponent(entities[i], new LocalTransform { Position = pos, Rotation = targetRot, Scale = 1.0f });
-                        ecb.SetComponent(entities[i], new Spawner { spawner = attack.attacker });
-                        //calculate attack and set here
+                        ecb.SetComponent(entities[i], new Spawner { spawner = attackRequest.attacker });
+                        ecb.SetComponent(entities[i], attack);
                     }
                     entities.Dispose();
                 }
                 else
                 {
-                    var e = ecb.Instantiate(attack.prefab);
+                    var e = ecb.Instantiate(attackRequest.prefab);
                     ecb.SetComponent(e, new LocalTransform { Position = pos, Rotation = rot, Scale = 1.0f });
-                    ecb.SetComponent(e, new Spawner { spawner = attack.attacker });
+                    ecb.SetComponent(e, new Spawner { spawner = attackRequest.attacker });
+                    ecb.SetComponent(e, attack);
                 }
 
-                attackRW.ValueRW.loopCasted++;
-                if (attackRW.ValueRW.loopCasted >= attackRW.ValueRW.loopCast)
+                attackRequestRW.ValueRW.loopCasted++;
+                if (attackRequestRW.ValueRW.loopCasted >= attackRequestRW.ValueRW.loopCast)
                 {
                     ecb.SetComponentEnabled<AttackRequestData>(attackEntity, false);
                 }

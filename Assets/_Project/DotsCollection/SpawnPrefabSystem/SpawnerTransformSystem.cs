@@ -9,13 +9,15 @@ namespace DarkLordGame
     public partial struct SpawnerTransformJob : IJobEntity
     {
         public ComponentLookup<LocalTransform> spawnerLookup;
-        public void Execute(ref SpawnerTransform spawnerTransform, in Spawner spawner)
+        public void Execute(ref SpawnerTransform spawnerTransform, EnabledRefRW<SpawnerTransform> spawnTransformEnable, in Spawner spawner)
         {
             if (spawnerLookup.TryGetComponent(spawner.spawner, out var localTransform))
             {
                 spawnerTransform.position = localTransform.Position;
                 spawnerTransform.rotation = localTransform.Rotation;
+                return;
             }
+            spawnTransformEnable.ValueRW = false;
         }
     }
     [BurstCompile]
@@ -24,7 +26,6 @@ namespace DarkLordGame
         public ComponentLookup<LocalTransform> componentLookup;
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<SpawnerTransform>();
             componentLookup = state.GetComponentLookup<LocalTransform>();
         }
 

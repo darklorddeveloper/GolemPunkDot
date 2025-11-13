@@ -21,7 +21,7 @@ namespace DarkLordGame
         public float aoeRange; //hit fx ----
         public float aoeDamage;
         public float criticalChance;
-        public float extraCritDamage;
+        public float criticalDamage;
         public AttackProperty attackProperty;
         public float propertyValue;
 

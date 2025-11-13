@@ -10,14 +10,17 @@ namespace DarkLordGame
         public Entity attacker;
         public Entity prefab;//entity with attack
         //attack stat
-        public float attackMultipler;
+        [Header("attack stats")]
+        public float attackDamageMultipler;
         public float aoeRange;
-        public float damageRate;
-        public float criticalChanceRate; //default 1
+        public float aoeDamageRate;//bigger need to do with Unit attack system
+        public float extraCritDamage; //default 1
+        public float extracriticalChance; //default 1
         public AttackProperty attackProperty;
         public int propertyValue;
 
         //attack itself stats
+        [Header("attack request stats")]
         public int extraSplit;
         public float splitAngle;
         public int loopCast;//minimal 1
