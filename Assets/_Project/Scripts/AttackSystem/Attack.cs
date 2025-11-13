@@ -18,8 +18,8 @@ namespace DarkLordGame
     {
         //hit damage related
         public float damage;
-        public float attackMultiplier;//
         public float aoeRange; //hit fx ----
+        public float aoeDamage;
         public float criticalChance;
         public float extraCritDamage;
         public AttackProperty attackProperty;
