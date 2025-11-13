@@ -26,15 +26,15 @@ namespace DarkLordGame
                 }
                 attackRequestRW.ValueRW.loopTimeCount = 0;
 
-                float baseDamage = unit.attack + unit.tempAttack;
+                float baseDamage = (unit.attack + unit.tempAttack + attackRequest.bonusDamage) * (1 + unit.tempAttackMultiplier + attackRequest.attackDamageMultipler);
                 float critDamage = unit.criitcalDamage + unit.tempCriticalDamage;
                 float critChance = unit.criticalChance + unit.tempCriticalChance;
                 var attack = new Attack
                 {
-                    damage = baseDamage * attackRequest.attackDamageMultipler,
+                    damage = baseDamage,
                     attackProperty = attackRequest.attackProperty,
                     propertyValue = attackRequest.propertyValue,
-                    aoeDamage = unit.bonusAoeDamage + baseDamage * attackRequest.aoeDamageRate,
+                    aoeDamage = baseDamage * (unit.bonusAoeDamageRate + attackRequest.aoeDamageRate),
                     aoeRange = unit.bonusAoeRange + attackRequest.aoeRange,
                     criticalDamage = critDamage + attackRequest.extraCritDamage,
                     criticalChance = critChance + attackRequest.extracriticalChance,

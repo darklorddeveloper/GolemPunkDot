@@ -5,7 +5,7 @@ using UnityEngine;
 namespace DarkLordGame
 {
     //pass bonus buff or runes effects into attack request multiply it
-    //pass bonus enemies attack
+    //Enemy global stats increase in spawn time. No affect in runtime only player units are complex
     public partial class UnitAttackSystem : SystemBase
     {
         public static Action<Entity, Entity, AttackRequestData> onUnitAttack;
@@ -21,6 +21,7 @@ namespace DarkLordGame
         {
             data.attacker = attacker;
             data.prefab = prefab;
+
             EntityManager.SetComponentData(attacker, data);
             EntityManager.SetComponentEnabled<AttackRequestData>(attacker, true);
         }

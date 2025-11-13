@@ -31,6 +31,7 @@ namespace DarkLordGame
 
         public void OnUpdate(ref SystemState state)
         {
+            componentLookup.Update(ref state);
             var job = new SpawnerTransformJob
             {
                 spawnerLookup = componentLookup,

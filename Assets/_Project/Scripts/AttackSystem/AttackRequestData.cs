@@ -11,6 +11,7 @@ namespace DarkLordGame
         public Entity prefab;//entity with attack
         //attack stat
         [Header("attack stats")]
+        public float bonusDamage;
         public float attackDamageMultipler;
         public float aoeRange;
         public float aoeDamageRate;//bigger need to do with Unit attack system

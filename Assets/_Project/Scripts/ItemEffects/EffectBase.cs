@@ -10,6 +10,5 @@ namespace DarkLordGame
         public LocalizedString effectDetails;
         public EffectTiming effectTiming = EffectTiming.ManualActivate;
 
-        public abstract void Activate(Entity activator, EntityManager entityManager);//things that needed
     }
 }

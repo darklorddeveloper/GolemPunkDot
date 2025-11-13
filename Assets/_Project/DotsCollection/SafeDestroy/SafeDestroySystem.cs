@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
-    // [BurstCompile]
+    [BurstCompile]
     public partial struct SafeDestroyCountDownJob : IJobEntity
     {
         public float deltaTime;
