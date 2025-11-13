@@ -9,28 +9,31 @@ namespace DarkLordGame
         Poison = 1,
         Burn = 2,
         Stun = 4,
-        Knockback = 8,
+        Freeze = 8,
+        Knockback = 16,
     }
 
     [System.Serializable]//only set in runtime
     public struct Attack : IComponentData
     {
-        //hit target
+        //hit damage related
         public float damage;
+        public float attackMultiplier;//
         public float aoeRange; //hit fx ----
-        //AOEID
         public float criticalChance;
         public float extraCritDamage;
         public AttackProperty attackProperty;
         public float propertyValue;
-        public float lifeTime;
-        public float bounce;
-        public float chainAttack;
+
+        //movement related need to think about this
+        // public float lifeTime;
+        // public float bounce;
+        // public float chainAttack;
     }
 
     [System.Serializable]//attach in prefabs
     public struct HitEffect : IComponentData
     {
-
+        public Entity entity;
     }
 }

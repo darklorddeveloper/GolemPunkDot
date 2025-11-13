@@ -5,12 +5,10 @@ using UnityEngine;
 namespace DarkLordGame
 {
     [System.Serializable]
-    public struct AttackRequestData : IComponentData
+    public struct AttackRequestData : IComponentData, IEnableableComponent
     {
         public Entity attacker;
         public Entity prefab;//entity with attack
-        public Attack attack;
-
         public int extraSplit;
         public float splitAngle;
 

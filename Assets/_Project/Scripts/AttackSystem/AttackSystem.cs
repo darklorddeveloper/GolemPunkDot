@@ -60,7 +60,7 @@ namespace DarkLordGame
                 attackRW.ValueRW.loopCasted++;
                 if (attackRW.ValueRW.loopCasted >= attackRW.ValueRW.loopCast)
                 {
-                    ecb.DestroyEntity(attackEntity);
+                    ecb.SetComponentEnabled<AttackRequestData>(attackEntity, false);
                 }
             }
             ecb.Playback(state.EntityManager);
