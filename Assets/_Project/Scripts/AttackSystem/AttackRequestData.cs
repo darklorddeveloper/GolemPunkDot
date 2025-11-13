@@ -33,4 +33,16 @@ namespace DarkLordGame
         public float bounce;
         public float chainAttack;
     }
+
+    [System.Serializable]
+    public struct AttackRequestAutoAssignAttacker : IComponentData, IEnableableComponent
+    {
+
+    }
+
+    [System.Serializable]
+    public struct AttackRequestAutoAssignPrefab : IComponentData, IEnableableComponent
+    {
+        public Entity prefab;
+    }
 }

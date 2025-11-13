@@ -6,15 +6,12 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
+    [UpdateAfter(typeof(AttackAutoAssignSystem))]
     public partial struct AttackSystem : ISystem
     {
-
-        public void OnCreate(ref SystemState state)
-        {
-        }
-
         public void OnUpdate(ref SystemState state)
         {
+            // state.EntityManager.SetComponentEnabled()
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             var deltaTime = SystemAPI.Time.DeltaTime;
             foreach (var (attackRW, attackEntity) in SystemAPI.Query<RefRW<AttackRequestData>>().WithEntityAccess())
