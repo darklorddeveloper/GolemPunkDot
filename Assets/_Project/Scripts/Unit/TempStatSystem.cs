@@ -1,9 +1,46 @@
+using System;
 using Unity.Burst;
 using Unity.Entities;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace DarkLordGame
 {
+    public partial class CreateTempStatSystem : SystemBase
+    {
+        private EntityArchetype componentTypeSet;
+        public static Action<TempStat, Entity, float> onCreateTempStat;
+
+        protected override void OnCreate()
+        {
+            base.OnCreate();
+            onCreateTempStat = OnCreateTempStat;
+            componentTypeSet = EntityManager.CreateArchetype(typeof(TempStat),
+            typeof(ApplyTempStatFlag),
+            typeof(SafeDestroyComponent),
+            typeof(DestroyImmediate));
+
+        }
+
+        private void OnCreateTempStat(TempStat stat, Entity target, float period)
+        {
+            var e = EntityManager.CreateEntity(componentTypeSet);
+            stat.target = target;
+            EntityManager.SetComponentData(e, stat);
+            EntityManager.SetComponentData(e, new SafeDestroyComponent
+            {
+                period = period,
+            });
+            EntityManager.SetComponentEnabled<DestroyImmediate>(e, false);
+        }
+
+        protected override void OnUpdate()
+        {
+
+        }
+    }
+
+
     [BurstCompile]
 
     public partial struct ApplyTempStatSystem : ISystem
