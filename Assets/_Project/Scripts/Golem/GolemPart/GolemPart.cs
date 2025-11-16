@@ -17,7 +17,7 @@ namespace DarkLordGame
         [Header("Special")]
         public bool isUsingAttachPoint;
         public GolemAttachPoint attachPoint;
-        
+
         [System.NonSerialized] public GameObject runtimeGameObject;
         [System.NonSerialized] public bool isInstance;
 
@@ -38,8 +38,10 @@ namespace DarkLordGame
             return "";
         }
 
+        //can activate... manacost etc
+
+
         //effects related
-        
         public virtual IEnumerator OnManualActivate(Entity activator, EntityManager manager)
         {
             //do something with timing.

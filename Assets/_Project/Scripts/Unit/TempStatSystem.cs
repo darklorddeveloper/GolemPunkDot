@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
-    public partial class CreateTempStatSystem : SystemBase
+    public partial class TempStatSystem : SystemBase
     {
         private EntityArchetype componentTypeSet;
         public static Action<TempStat, Entity, float> onCreateTempStat;
