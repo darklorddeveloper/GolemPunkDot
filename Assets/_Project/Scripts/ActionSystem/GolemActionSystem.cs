@@ -11,6 +11,15 @@ namespace DarkLordGame
         private static int locomotionName = Animator.StringToHash("Locomotion");
         protected override void OnUpdate()
         {
+            float delta = SystemAPI.Time.DeltaTime;
+            foreach (var golemEntity in SystemAPI.Query<GolemEntity>())
+            {
+                var golem = golemEntity.golem;
+                for (int i = 0, length = golem.attachedParts.Count; i < length; i++)
+                {
+                    golem.attachedParts[i].cooldownTimeCount += delta;
+                }
+            }
             foreach (var (golemEntity, input, entity) in SystemAPI.Query<GolemEntity, TopdownCharacterInput>().WithEntityAccess())
             {
                 var golem = golemEntity.golem;
@@ -46,6 +55,7 @@ namespace DarkLordGame
             {
                 return;
             }
+            part.cooldownTimeCount = 0;
             bool hasManualEffect = false;
             for (int i = 0, length = part.effects.Count; i < length; i++)
             {
@@ -82,7 +92,7 @@ namespace DarkLordGame
 
         private IEnumerator ChargeActionEnumerator(Entity entity, Golem golem, GolemActionData golemActionData)
         {
-            golem.PlayAnimation(golemActionData.startAnimationName);
+            golem.PlayAnimation(golemActionData.startAnimationName, golemActionData.crossFade);
             float t = 0;
             golem.currentChargeRate = 0;
             var movement = EntityManager.GetComponentData<MovementSpeed>(entity);
@@ -96,6 +106,7 @@ namespace DarkLordGame
                 EntityManager.SetComponentData(entity, movement);
                 yield return null;
             }
+            golem.PlayAnimation(golemActionData.releaseAnimationName, golemActionData.crossFade);
             movement.multiplier = golemActionData.movement.Evaluate(1.0f);
             EntityManager.SetComponentData(entity, movement);
 
@@ -103,7 +114,7 @@ namespace DarkLordGame
         }
         private IEnumerator SimpleActionEnumerator(Entity entity, Golem golem, GolemActionData golemActionData)
         {
-            golem.PlayAnimation(golemActionData.startAnimationName);
+            golem.PlayAnimation(golemActionData.startAnimationName, golemActionData.crossFade);
             float t = 0;
             while (t < golemActionData.activateDelayed)
             {
@@ -147,6 +158,7 @@ namespace DarkLordGame
         private bool CheckHoldingActionKey(Entity entity, Golem golem)
         {
             var input = EntityManager.GetComponentData<TopdownCharacterInput>(entity);
+            Debug.Log("input holding  --- " + input.isHoldingDashAction);
             switch (golem.activatingPart.partType)
             {
                 case GolemPartType.Legs:

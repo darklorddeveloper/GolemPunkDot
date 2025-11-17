@@ -202,7 +202,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Main::DarkLordGame.Golem
   skinnedRoot: {fileID: 664041249677005910}
   originalSkinnedMesh: {fileID: 4119152490491862134}
-  attachedParts: []
+  attachedParts:
+  - {fileID: 11400000, guid: b1b918ad54a23459eb2835d7d808c39e, type: 2}
+  - {fileID: 11400000, guid: db5d87f69294546b098ce696a966c02a, type: 2}
   animator: {fileID: 2233128749130228556}
   lerpLocomotionSpeed: 7
   allAttachPoints:
@@ -210,6 +212,38 @@ MonoBehaviour:
     transform: {fileID: 2864371937328719178}
   - point: 1
     transform: {fileID: 1385323577489330540}
+  activatingPart: {fileID: 0}
+  previousActivatedPart: {fileID: 0}
+  currentChargeRate: 0
+  currentRequestData:
+    bonusDamage: 0
+    attackDamageMultipler: 0
+    aoeRange: 0
+    aoeDamageRate: 0
+    extraCritDamage: 0
+    extracriticalChance: 0
+    attackProperty: 0
+    propertyValue: 0
+    extraSplit: 0
+    splitAngle: 0
+    loopCast: 0
+    loopCasted: 0
+    loopCastInterval: 0
+    loopTimeCount: 0
+    extraBounce: 0
+    position:
+      x: 0
+      y: 0
+      z: 0
+    rotation:
+      value:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+    extraLifeTime: 0
+    bounce: 0
+    chainAttack: 0
 --- !u!1 &1053691325869856876
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a38b4aa111f4d21b1382af16bda29e, type: 3}
-  m_Name: BodyArm
-  m_EditorClassIdentifier: Main::DarkLordGame.GolemPart
-  partName:
+  m_Script: {fileID: 11500000, guid: f2b44d32b79f3423f999d8a1312ffeb1, type: 3}
+  m_Name: Effect_Empty
+  m_EditorClassIdentifier: Main::DarkLordGame.EffectEmpty
+  effectName:
     m_TableReference:
       m_TableCollectionName: 
     m_TableEntryReference:
@@ -21,12 +21,16 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  partType: 1
-  mesh: {fileID: -2078769563275275190, guid: a63a6989364584c2e92d51b8fe3934b8, type: 3}
-  materials:
-  - {fileID: 2100000, guid: e0abc84aa28ca4e84bf0ff10f3139a92, type: 2}
-  isUsingAttachPoint: 0
-  attachPoint: 0
+  effectDetails:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  effectTiming: 0
   references:
     version: 2
     RefIds: []

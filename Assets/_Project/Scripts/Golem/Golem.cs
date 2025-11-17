@@ -111,9 +111,16 @@ namespace DarkLordGame
             attachedParts.Add(part);
         }
 
-        public void PlayAnimation(string animationName)
+        public void PlayAnimation(string animationName, float crossFade = 0.0f)
         {
-            animator.Play(animationName, 0, 0);
+            if (crossFade <= 0)
+            {
+                animator.Play(animationName, 0, 0);
+            }
+            else
+            {
+                animator.CrossFade(animationName, crossFade);
+            }
         }
 
         public void PlayAnimation(int animationHash)
