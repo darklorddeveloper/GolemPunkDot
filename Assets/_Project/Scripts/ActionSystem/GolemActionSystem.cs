@@ -24,15 +24,17 @@ namespace DarkLordGame
                 {
                     continue;
                 }
-                golem.runningEnumerator = null;
-                golem.previousActivatedPart = null;
-                golem.activatingPart = null;
-                golem.PlayAnimation(locomotionName);
+                if (golem.runningEnumerator != null)
+                {
+                    golem.runningEnumerator = null;
+                    golem.previousActivatedPart = null;
+                    golem.activatingPart = null;
+                    golem.PlayAnimation(locomotionName);
 
-                var movement = EntityManager.GetComponentData<MovementSpeed>(entity);
-                movement.multiplier = 1.0f;
-                EntityManager.SetComponentData(entity, movement);
-
+                    var movement = EntityManager.GetComponentData<MovementSpeed>(entity);
+                    movement.multiplier = 1.0f;
+                    EntityManager.SetComponentData(entity, movement);
+                }
             }
         }
 
