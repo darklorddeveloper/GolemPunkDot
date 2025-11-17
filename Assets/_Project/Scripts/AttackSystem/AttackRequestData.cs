@@ -33,6 +33,7 @@ namespace DarkLordGame
         public quaternion rotation;
 
         //attack movement stat
+        [Header("Movement aspect")]
         public float extraLifeTime;
         public float bounce;
         public float chainAttack;

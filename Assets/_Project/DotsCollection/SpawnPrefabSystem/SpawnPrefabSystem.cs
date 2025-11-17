@@ -33,6 +33,7 @@ namespace DarkLordGame
     public partial class SpawnPrefabSystem : SystemBase
     {
         public static Func<string, Entity> SpawnPrefab;
+        public static Func<string, Entity> GetPrefab;
         public static Action<string, NativeArray<Entity>> SpawnPrefabs;
         public static Func<int, Entity> SpawnPrefabWithID;
         public static Action<int, NativeArray<Entity>> SpawnPrefabsWithID;
@@ -41,11 +42,28 @@ namespace DarkLordGame
         {
             base.OnCreate();
             SpawnPrefab = OnSpawnPrefab;
+            GetPrefab = OnGetPrefab;
             SpawnPrefabs = OnSpawnPrefabs;
             SpawnPrefabWithID = OnSpawnPrefabWithID;
             SpawnPrefabsWithID = OnSpawnPrefabsWithID;
         }
+        private Entity OnGetPrefab(string GUID)
+        {
+            Hash128 hash = new Hash128(GUID);
+            if (SystemAPI.ManagedAPI.TryGetSingleton<PoolMap>(out var poolMap) == false)
+            {
+                return Entity.Null;
 
+            }
+            if (poolMap.prefabMaps.ContainsKey(hash) == false)
+            {
+                return Entity.Null;
+            }
+
+            DynamicBuffer<PrefabPool> buffer = SystemAPI.GetSingletonBuffer<PrefabPool>();
+            int prefabindex = poolMap.prefabMaps[hash];
+            return buffer[prefabindex].prefab;
+        }
         private Entity OnSpawnPrefab(string GUID)
         {
             Hash128 hash = new Hash128(GUID);

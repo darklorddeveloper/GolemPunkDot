@@ -11,6 +11,9 @@ namespace DarkLordGame
         public Animator animator;
         public float lerpLocomotionSpeed = 0.3f;
         public List<GolemAttachPointData> allAttachPoints = new();
+        public GolemPart activatingPart;
+        public GolemPart previousActivatedPart;
+        public AttackRequestData currentRequestData;
         public void Init()
         {
             for (int i = 0, length = attachedParts.Count; i < length; i++)
@@ -42,12 +45,13 @@ namespace DarkLordGame
             }
             return skinnedRoot;
         }
+
         private GolemPart SetupPart(GolemPart part)
         {
             var instance = ScriptableObject.Instantiate(part);
             instance.isInstance = true;
             instance.Init();
-            
+
             var obj = new GameObject();
             if (instance.isUsingAttachPoint)
             {
@@ -102,6 +106,11 @@ namespace DarkLordGame
             }
             SetupPart(part);
             attachedParts.Add(part);
+        }
+
+        public void PlayAnimation(string animationName)
+        {
+            animator.Play(animationName, 0, 0);
         }
     }
 }

@@ -202,9 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Main::DarkLordGame.Golem
   skinnedRoot: {fileID: 664041249677005910}
   originalSkinnedMesh: {fileID: 4119152490491862134}
-  attachedParts:
-  - {fileID: 11400000, guid: 6a67339406e3642d586fca228dd64afa, type: 2}
-  - {fileID: 11400000, guid: db5d87f69294546b098ce696a966c02a, type: 2}
+  attachedParts: []
   animator: {fileID: 2233128749130228556}
   lerpLocomotionSpeed: 7
   allAttachPoints:
