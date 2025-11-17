@@ -46,7 +46,7 @@ namespace DarkLordGame
             return math.normalize(math.mul(dq, currentRotation));
         }
 
-        void Execute(in TopdownCharacterInput characterInput, ref TopdownCharacterMovement movement, ref LocalTransform localTransform)
+        void Execute(in TopdownCharacterInput characterInput, ref TopdownCharacterMovement movement, in MovementSpeed speed, ref LocalTransform localTransform)
         {
             //if input is not big enough don't move.
             //look at direction
@@ -71,7 +71,7 @@ namespace DarkLordGame
                 localTransform.Rotation = CalculateRotation(localTransform.Rotation, pos, characterInput.lookAtTargetPoint, movement.turnSpeed);
             }
             //movement
-            float distance = math.length(characterInput.movement * movement.movementSpeed * deltaTime);
+            float distance = math.length(characterInput.movement * speed.value * speed.multiplier * deltaTime);
 
             ColliderCastHit hit;
             bool hitted = CollisionWorld.SphereCast(pos + movement.castOffset * characterInput.movement, movement.size, characterInput.movement, distance, out hit,

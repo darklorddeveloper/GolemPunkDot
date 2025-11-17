@@ -106,6 +106,9 @@ MonoBehaviour:
       y: 0
       z: 0
     lastMovedDistance: 0
+  data4:
+    value: 20
+    activeRate: 1
 --- !u!114 &8831691265261923697
 MonoBehaviour:
   m_ObjectHideFlags: 0

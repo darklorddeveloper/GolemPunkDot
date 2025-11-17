@@ -5,17 +5,13 @@ namespace DarkLordGame
     public enum EffectTiming
     {
         ManualActivate = 0,
-        OnSpawnAttack = 10,
-        OnSpawnAnyAttack,
-
+        OnAttack = 10,
+        OnAttackWithCurrentPart,// for runes only not include relics
         OnTakeDamage = 20,
         OnDeath = 21,
         OnTakeCriticalDamage = 22,
-
         OnCrit = 30,
-
         OnDealDamage = 40,
-
         OnMoved = 50,
         OnDash = 51,
 

@@ -5,11 +5,11 @@ namespace DarkLordGame
     public enum GolemPartType
     {
         None,
-        LeftArms,
         RightArms,
+        LeftArms,
         Body,
         Head,
-        Legs
+        Legs,
     }
 
 }

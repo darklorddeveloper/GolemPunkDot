@@ -31,9 +31,6 @@ namespace DarkLordGame
                     golem.activatingPart.runes[i].effect.OnActivate(attacker, EntityManager);
                 }
             }
-            //do current effects applying
-            //all attack power multipliers such as combos or etc
-
             EntityManager.SetComponentData(attacker, golem.currentRequestData);
             EntityManager.SetComponentEnabled<AttackRequestData>(attacker, true);
         }

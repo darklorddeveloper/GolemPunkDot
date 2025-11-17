@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,9 @@ namespace DarkLordGame
         public List<GolemAttachPointData> allAttachPoints = new();
         public GolemPart activatingPart;
         public GolemPart previousActivatedPart;
+        public float currentChargeRate;
         public AttackRequestData currentRequestData;
+        public IEnumerator runningEnumerator;
         public void Init()
         {
             for (int i = 0, length = attachedParts.Count; i < length; i++)
@@ -111,6 +114,23 @@ namespace DarkLordGame
         public void PlayAnimation(string animationName)
         {
             animator.Play(animationName, 0, 0);
+        }
+
+        public void PlayAnimation(int animationHash)
+        {
+            animator.Play(animationHash, 0, 0);
+        }
+
+        public GolemPart GetPart(GolemPartType golemPartType)
+        {
+            for (int i = 0, length = attachedParts.Count; i < length; i++)
+            {
+                if (attachedParts[i].partType == golemPartType)
+                {
+                    return attachedParts[i];
+                }
+            }
+            return null;
         }
     }
 }

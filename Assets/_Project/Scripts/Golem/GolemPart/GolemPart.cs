@@ -6,6 +6,8 @@ using UnityEngine.Localization;
 
 namespace DarkLordGame
 {
+
+
     [CreateAssetMenu(fileName = "GolemPart", menuName = "GolemPart/DefaultPart")]
     public class GolemPart : ScriptableObject
     {
@@ -25,18 +27,15 @@ namespace DarkLordGame
         [Header("Runes")]
         public int runeSlots = 3;
         public List<Rune> runes = new();
-        public class ActionData
-        {
-            public string startAnimationName = "Attack1";
-            public float activateDelayed = 0.06f;
-            public float totalPeriod = 0.4f;
-            public float movementSpeedRate = 1.0f;
-            public bool isHoldable = false;
-            public float maxHoldPeriod = 1.5f;
-            public string releaseAnimationName = "Release";
-        }
 
-        public List<ActionData> actionDatas = new List<ActionData> { new ActionData() };
+        [Header("Actions")]
+        public int currentActionIndex;
+        public List<GolemActionData> actionDatas = new List<GolemActionData> { new GolemActionData() };
+
+        [Header("cooldown")]
+        public float cooldownTime = 0.1f;
+        public float cooldownTimeCount;
+
 
         public void Init()
         {
