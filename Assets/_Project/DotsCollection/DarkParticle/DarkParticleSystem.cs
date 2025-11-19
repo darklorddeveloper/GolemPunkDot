@@ -23,7 +23,8 @@ namespace DarkLordGame
                 {
                     particleLifeTime.loopCount--;
                     particleLifeTime.timeCount -= particleLifeTime.lifeTime;
-                    ecb.SetComponentEnabled<Particle>(chunk, e, false);
+                    
+                    ecb.SetComponentEnabled<Particle>(chunk, e, particleLifeTime.loopCount > 0);
                     return;
                 }
             }
@@ -42,7 +43,7 @@ namespace DarkLordGame
         {
             float deltaTime = SystemAPI.Time.DeltaTime;
 
-            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.TempJob);
             var lifetimeJob = new ParticleLifeTimeUpdateJob
             {
                 deltaTime = deltaTime,

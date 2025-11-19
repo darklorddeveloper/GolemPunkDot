@@ -96,7 +96,7 @@ namespace DarkLordGame
 
         public void OnUpdate(ref SystemState state)
         {
-            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.TempJob);
             float deltaTime = SystemAPI.Time.DeltaTime;
 
             seed++;
