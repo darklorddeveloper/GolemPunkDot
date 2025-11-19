@@ -1,11 +1,11 @@
 using Unity.Entities;
-
+using UnityEngine;
 namespace DarkLordGame
 {
 
+    [RequireComponent(typeof(SafeDestroyAuthoring))]
     public class ParticleAuthoring : EnableStructAuthorizer<Particle>
     {
-
     }
 
     public class ParticleBaker : EnableStructBaker<ParticleAuthoring, Particle>

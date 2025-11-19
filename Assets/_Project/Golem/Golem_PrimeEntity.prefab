@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2990313784155266086}
   - component: {fileID: 8818217638626796749}
   - component: {fileID: 8831691265261923697}
+  - component: {fileID: 7052865018830192994}
   m_Layer: 0
   m_Name: Golem_PrimeEntity
   m_TagString: Untagged
@@ -125,3 +126,17 @@ MonoBehaviour:
   data1:
     radius: 1.5
     interactLayerBit: 128
+--- !u!114 &7052865018830192994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476147893443169591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f972149ca3c4b429777317116a7e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DotCollection::DarkLordGame.SafeDestroyAuthoring
+  shouldDestroyFromStart: 0
+  period: 0.2

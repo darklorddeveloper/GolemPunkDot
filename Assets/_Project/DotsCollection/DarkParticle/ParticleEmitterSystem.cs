@@ -3,6 +3,7 @@ using Unity.Entities;
 using Unity.Transforms;
 using Unity.Mathematics;
 using UnityEditorInternal;
+using Unity.Collections;
 
 namespace DarkLordGame
 {
@@ -12,7 +13,10 @@ namespace DarkLordGame
         public EntityCommandBuffer.ParallelWriter ecb;
         public Random random;
         public float deltaTime;
-        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref DynamicBuffer<ParticleEmitter> emitters, in LocalTransform localTransform, in ParticleEmitterDestroyWhenFinished whenFinished)
+        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref DynamicBuffer<ParticleEmitter> emitters,
+        in LocalTransform localTransform,
+        in ParticleEmitterDestroyWhenFinished whenFinished,
+        in Spawner spawner)
         {
             random.state += (uint)chunk;
             bool isAnyEnabled = false;
@@ -37,9 +41,13 @@ namespace DarkLordGame
                     emitters[i] = emitter;
                     continue;
                 }
+                var instances = new NativeArray<Entity>(emitter.emmitNumbersPerInterval, Allocator.TempJob);
+                ecb.Instantiate(chunk, emitter.prefab, instances);
+                var targetSpawner = spawner.spawner == Entity.Null ? entity : spawner.spawner;
                 for (int j = 0, numbers = emitter.emmitNumbersPerInterval; j < numbers; j++)
                 {
-                    var e = ecb.Instantiate(chunk, emitter.prefab);
+                    var e = instances[j];
+                    ecb.SetComponent(chunk, e, new Spawner { spawner = entity });
                     var loc = localTransform;
                     switch (emitter.shapeType)
                     {
@@ -48,10 +56,12 @@ namespace DarkLordGame
                             break;
                         case EmitShape.Sphere:
                             loc.Position += random.NextFloat3(new float3(-emitter.shapeSize), new float3(emitter.shapeSize));
+                            var posDir = math.normalizesafe(loc.Position, new float3(0, 0, 1));
+                            loc.Rotation = quaternion.LookRotation(posDir, (posDir.y >= 1) ? new float3(0, 0, 1) : new float3(0, 1, 0));//do forward
                             ecb.SetComponent(chunk, e, loc);
-
                             break;
                     }
+                    ecb.SetComponent(chunk, e, new Spawner { spawner = targetSpawner });
                 }
                 if (emitter.isLooped || emitter.loopCount > 0)
                 {
@@ -63,10 +73,11 @@ namespace DarkLordGame
                     emitter.isEnabled = false;
                 }
                 emitters[i] = emitter;
-            }//for
+            }
+
             if (whenFinished.destroy && isAnyEnabled == false)
             {
-                ecb.DestroyEntity(chunk, entity);
+                ecb.SetComponentEnabled<SafeDestroyComponent>(chunk, entity, true);
             }
         }
     }

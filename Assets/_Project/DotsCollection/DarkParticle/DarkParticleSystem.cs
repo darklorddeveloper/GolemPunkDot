@@ -7,7 +7,7 @@ using UnityEngine;
 namespace DarkLordGame
 {
     [BurstCompile]
-    public partial struct ParticleLifetimeLoopUpdateJob : IJobEntity
+    public partial struct ParticleLifeTimeUpdateJob : IJobEntity
     {
         public float deltaTime;
         public EntityCommandBuffer.ParallelWriter ecb;
@@ -23,14 +23,12 @@ namespace DarkLordGame
                 {
                     particleLifeTime.loopCount--;
                     particleLifeTime.timeCount -= particleLifeTime.lifeTime;
-                    ecb.DestroyEntity(chunk, e);
+                    ecb.SetComponentEnabled<Particle>(chunk, e, false);
                     return;
                 }
             }
             particleLifeTime.timeCount += deltaTime;
             particleLifeTime.currentRate = math.clamp(particleLifeTime.timeCount / particleLifeTime.lifeTime, 0, 1);
-
-
         }
     }
 
@@ -45,7 +43,7 @@ namespace DarkLordGame
             float deltaTime = SystemAPI.Time.DeltaTime;
 
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            var lifetimeJob = new ParticleLifetimeLoopUpdateJob
+            var lifetimeJob = new ParticleLifeTimeUpdateJob
             {
                 deltaTime = deltaTime,
                 ecb = ecb.AsParallelWriter(),

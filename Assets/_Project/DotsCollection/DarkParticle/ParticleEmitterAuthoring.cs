@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
+    [RequireComponent(typeof(SafeDestroyAuthoring))]
     public class ParticleEmitterAuthoring : MonoBehaviour
     {
         public bool shouldDestroyWhenFinished = false;
@@ -14,6 +15,7 @@ namespace DarkLordGame
             public override void Bake(ParticleEmitterAuthoring authoring)
             {
                 var e = GetEntity(TransformUsageFlags.Dynamic);
+                AddComponent(e, new Spawner { spawner = Entity.Null });
                 var buff = AddBuffer<ParticleEmitter>(e);
                 for (int i = 0, length = authoring.emitters.Count; i < length; i++)
                 {
@@ -21,9 +23,14 @@ namespace DarkLordGame
                     var emitter = authoring.emitters[i].particleEmitter;
                     emitter.prefab = prefab;
                     emitter.isEnabled = authoring.emitters[i].enableFromTheBegin;
+                    if (authoring.emitters[i].useFirstBurst)
+                    {
+                        emitter.timeCount = emitter.interval;
+                    }
                     buff.Add(emitter);
                 }
                 AddComponent(e, new ParticleEmitterDestroyWhenFinished { destroy = authoring.shouldDestroyWhenFinished });
+
             }
         }
     }
@@ -37,8 +44,10 @@ namespace DarkLordGame
     [System.Serializable]
     public class ParticleEmitterBakerData
     {
+        [Header("----- Warning: prefab must be particle or have spawner -----")]
         public GameObject prefab;
         public bool enableFromTheBegin = true;
+        public bool useFirstBurst = false;
         public ParticleEmitter particleEmitter;
     }
 
@@ -58,6 +67,7 @@ namespace DarkLordGame
         public float shapeSize;
         public float3 shapeSize3D;
     }
+
 
     public struct ParticleEmitterDestroyWhenFinished : IComponentData
     {

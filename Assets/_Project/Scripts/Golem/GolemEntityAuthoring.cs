@@ -4,6 +4,7 @@ using UnityEngine;
 namespace DarkLordGame
 {
 
+    [RequireComponent(typeof(SafeDestroyAuthoring))]
     public class GolemEntityAuthoring : ClassAuthorizer<GolemEntity>
     {
     }
@@ -22,7 +23,8 @@ namespace DarkLordGame
             ComponentType.ReadWrite<TransformSync>(),
             ComponentType.ReadWrite<HybridAnimation>(),
             ComponentType.ReadWrite<PlayHybridAnimation>(),
-            ComponentType.ReadWrite<HybridLocomotion>()
+            ComponentType.ReadWrite<HybridLocomotion>(),
+            ComponentType.ReadWrite<SafeCleanupObject>()
         );
         public override void Init(Entity entity, EntityManager manager)
         {
@@ -43,6 +45,7 @@ namespace DarkLordGame
             };
             manager.SetComponentData(entity, hybridLocomotion);
             manager.SetComponentEnabled<PlayHybridAnimation>(entity, false);
+            manager.SetComponentData(entity, new SafeCleanupObject{mainGameObject = golem.gameObject});
         }
     }
 }
