@@ -7,7 +7,6 @@ using UnityEngine.Localization;
 namespace DarkLordGame
 {
 
-
     [CreateAssetMenu(fileName = "GolemPart", menuName = "GolemPart/DefaultPart")]
     public class GolemPart : ScriptableObject
     {
@@ -22,6 +21,7 @@ namespace DarkLordGame
         public GolemAttachPoint attachPoint;
         [System.NonSerialized] public GameObject runtimeGameObject;
         [System.NonSerialized] public bool isInstance;
+        [System.NonSerialized] public GolemPart original;
         public List<EffectBase> effects = new();
 
         [Header("Runes")]

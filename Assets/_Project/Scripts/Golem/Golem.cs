@@ -53,6 +53,7 @@ namespace DarkLordGame
         {
             var instance = ScriptableObject.Instantiate(part);
             instance.isInstance = true;
+            instance.original = part;
             instance.Init();
 
             var obj = new GameObject();
