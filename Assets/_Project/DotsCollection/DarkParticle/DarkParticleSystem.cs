@@ -12,8 +12,7 @@ namespace DarkLordGame
     public partial struct ParticleLifeTimeUpdateJob : IJobEntity
     {
         public float deltaTime;
-        [NativeDisableParallelForRestriction] public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunk, Entity e, ref Particle particleLifeTime)
+        public void Execute(EnabledRefRW<Particle> particleEnable, ref Particle particleLifeTime)
         {
             if (particleLifeTime.isInfiniteLoop)
             {
@@ -26,7 +25,7 @@ namespace DarkLordGame
                     particleLifeTime.loopCount--;
                     particleLifeTime.timeCount -= particleLifeTime.lifeTime;
                     if (particleLifeTime.loopCount <= 0)
-                        ecb.SetComponentEnabled<Particle>(chunk, e, false);
+                        particleEnable.ValueRW = false;
                     return;
                 }
             }
@@ -39,29 +38,27 @@ namespace DarkLordGame
     public partial struct ParticleSetupStartRotationJob : IJobEntity
     {
         [NativeDisableParallelForRestriction] public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref ParticleRotationOverTime rotationOverTime, in ParticleStartRotation startRotation, in LocalTransform localTransform)
+        public void Execute(EnabledRefRW<ParticleStartRotation> startRotation, ref ParticleRotationOverTime rotationOverTime, in LocalTransform localTransform)
         {
             rotationOverTime.startRotation = localTransform.Rotation;
-            ecb.SetComponentEnabled<ParticleStartRotation>(chunk, entity, false);
+            startRotation.ValueRW = false;
         }
     }
 
     [BurstCompile]
     public partial struct ParticleSetupStartSizeJob : IJobEntity
     {
-        [NativeDisableParallelForRestriction] public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, in ParticleStartSize particleStartSize, ref ParticleSizeOverTime sizeOverTime, in LocalTransform localTransform)
+        public void Execute(EnabledRefRW<ParticleStartSize> particleStartSize, ref ParticleSizeOverTime sizeOverTime, in LocalTransform localTransform)
         {
             sizeOverTime.maxSize = localTransform.Scale;
-            ecb.SetComponentEnabled<ParticleStartSize>(chunk, entity, false);
+            particleStartSize.ValueRW = false;
         }
     }
 
     [BurstCompile]
     public partial struct ParticleSetupMovementJob : IJobEntity
     {
-        [NativeDisableParallelForRestriction] public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref ParticleStartPosition particleStartPos, ref ParticleMovementOvertime movementOverTime, in LocalTransform localTransform)
+        public void Execute(EnabledRefRW<ParticleStartPosition> startSize, ref ParticleStartPosition particleStartPos, ref ParticleMovementOvertime movementOverTime, in LocalTransform localTransform)
         {
             if (particleStartPos.updatedStartPos == false)
             {
@@ -70,7 +67,7 @@ namespace DarkLordGame
             }
             movementOverTime.movementDirection = math.mul(localTransform.Rotation, movementOverTime.relativeDirection);
             if (particleStartPos.shouldKeepEnabled == false)
-                ecb.SetComponentEnabled<ParticleStartSize>(chunk, entity, false);
+                startSize.ValueRW = false;
         }
     }
 
@@ -125,39 +122,21 @@ namespace DarkLordGame
         {
             float deltaTime = SystemAPI.Time.DeltaTime;
 
-            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.TempJob);
-            var ecbParallel = ecb.AsParallelWriter();
             var lifetimeJob = new ParticleLifeTimeUpdateJob
             {
                 deltaTime = deltaTime,
-                ecb = ecbParallel,
             };
 
-            var handle = lifetimeJob.ScheduleParallel(state.Dependency);
+            lifetimeJob.ScheduleParallel();
             //scale
-            var setupScaleJob = new ParticleSetupStartSizeJob
-            {
-                ecb = ecbParallel
-            };
-            handle = setupScaleJob.ScheduleParallel(handle);
-
+            var setupScaleJob = new ParticleSetupStartSizeJob();
+            setupScaleJob.ScheduleParallel();
             //rotation
-            var setupRotationJob = new ParticleSetupStartRotationJob
-            {
-                ecb = ecbParallel
-            };
-
-            handle = setupRotationJob.ScheduleParallel(handle);
+            var setupRotationJob = new ParticleSetupStartRotationJob();
+            setupRotationJob.ScheduleParallel();
             //position
-            var setupStartPosJob = new ParticleSetupMovementJob
-            {
-                ecb = ecbParallel
-            };
-            handle = setupStartPosJob.ScheduleParallel(handle);
-
-            handle.Complete();
-            ecb.Playback(state.EntityManager);
-            ecb.Dispose();
+            var setupStartPosJob = new ParticleSetupMovementJob();
+            setupStartPosJob.ScheduleParallel();
 
             var sizeJob = new ParticleSizeOverTimeJob();
             sizeJob.ScheduleParallel();
