@@ -23,8 +23,8 @@ namespace DarkLordGame
                 {
                     particleLifeTime.loopCount--;
                     particleLifeTime.timeCount -= particleLifeTime.lifeTime;
-                    
-                    ecb.SetComponentEnabled<Particle>(chunk, e, particleLifeTime.loopCount > 0);
+                    if(particleLifeTime.loopCount <= 0)
+                    ecb.SetComponentEnabled<Particle>(chunk, e, false);
                     return;
                 }
             }

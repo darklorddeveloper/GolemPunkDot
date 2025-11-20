@@ -1,4 +1,6 @@
 using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Rendering;
 using UnityEngine;
 
 namespace DarkLordGame
@@ -6,7 +8,7 @@ namespace DarkLordGame
     public class ParticleColorOverTimeAuthoring : MonoBehaviour
     {
         public bool looped;
-        [GradientUsage(true)]public Gradient gradient;        
+        [GradientUsage(true)] public Gradient gradient;
         public class Baker : Baker<ParticleColorOverTimeAuthoring>
         {
             public override void Bake(ParticleColorOverTimeAuthoring authoring)
@@ -21,8 +23,10 @@ namespace DarkLordGame
         }
     }
 
+    [MaterialProperty("_Color")]
     public struct ParticleColorOverTime : IComponentData
     {
+        public float4 value;
         public BlobAssetReference<Float4CurveBlob> data;
     }
 }
