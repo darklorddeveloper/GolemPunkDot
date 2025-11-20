@@ -58,9 +58,26 @@ namespace DarkLordGame
     }
 
     [BurstCompile]
+    public partial struct ParticleSetupMovementJob : IJobEntity
+    {
+        [NativeDisableParallelForRestriction] public EntityCommandBuffer.ParallelWriter ecb;
+        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref ParticleStartPosition particleStartPos, ref ParticleMovementOvertime movementOverTime, in LocalTransform localTransform)
+        {
+            if (particleStartPos.updatedStartPos == false)
+            {
+                movementOverTime.startPosition = localTransform.Position;
+                particleStartPos.updatedStartPos = true;
+            }
+            movementOverTime.movementDirection = math.mul(localTransform.Rotation, movementOverTime.relativeDirection);
+            if (particleStartPos.shouldKeepEnabled == false)
+                ecb.SetComponentEnabled<ParticleStartSize>(chunk, entity, false);
+        }
+    }
+
+    [BurstCompile]
     public partial struct ParticleSizeOverTimeJob : IJobEntity
     {
-        public void Execute(in Particle particle, ref ParticleSizeOverTime sizeOverTime, ref LocalTransform localTransform)
+        public void Execute(in Particle particle, in ParticleSizeOverTime sizeOverTime, ref LocalTransform localTransform)
         {
             ref var curve = ref sizeOverTime.data.Value;
             localTransform.Scale = curve.Evaluate(particle.currentRate) * sizeOverTime.maxSize;
@@ -70,10 +87,21 @@ namespace DarkLordGame
     [BurstCompile]
     public partial struct ParticleRotationOverTimeJob : IJobEntity
     {
-        public void Execute(in Particle particle, ref ParticleRotationOverTime rotationOverTime, ref LocalTransform localTransform)
+        public void Execute(in Particle particle, in ParticleRotationOverTime rotationOverTime, ref LocalTransform localTransform)
         {
             ref var curve = ref rotationOverTime.data.Value;
             localTransform.Rotation = math.mul(rotationOverTime.startRotation, quaternion.AxisAngle(rotationOverTime.axis, curve.Evaluate(particle.currentRate) * rotationOverTime.maxAngles));
+        }
+    }
+
+    [BurstCompile]
+    public partial struct ParticleMovementOverTimeJob : IJobEntity
+    {
+        public void Execute(in Particle particle, ref ParticleMovementOvertime movementOverTime, ref LocalTransform localTransform)
+        {
+            ref var curve = ref movementOverTime.data.Value;
+
+            localTransform.Position = movementOverTime.startPosition + curve.Evaluate(particle.currentRate) * movementOverTime.movementDirection * movementOverTime.maxDistance;
         }
     }
 
@@ -96,20 +124,27 @@ namespace DarkLordGame
             };
 
             var handle = lifetimeJob.ScheduleParallel(state.Dependency);
-//scale
+            //scale
             var setupScaleJob = new ParticleSetupStartSizeJob
             {
                 ecb = ecbParallel
             };
             handle = setupScaleJob.ScheduleParallel(handle);
 
-//rotation
+            //rotation
             var setupRotationJob = new ParticleSetupStartRotationJob
             {
                 ecb = ecbParallel
             };
 
             handle = setupRotationJob.ScheduleParallel(handle);
+            //position
+            var setupStartPosJob = new ParticleSetupMovementJob
+            {
+                ecb = ecbParallel
+            };
+            handle = setupStartPosJob.ScheduleParallel(handle);
+
             handle.Complete();
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
@@ -119,6 +154,9 @@ namespace DarkLordGame
 
             var rotationJob = new ParticleRotationOverTimeJob();
             rotationJob.ScheduleParallel();
+
+            var movementJob = new ParticleMovementOverTimeJob();
+            movementJob.ScheduleParallel();
         }
     }
 }
