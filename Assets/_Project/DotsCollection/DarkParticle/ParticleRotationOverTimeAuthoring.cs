@@ -11,8 +11,6 @@ namespace DarkLordGame
         public float3 axis = new float3(0, 1, 0);
         [Header("Keep time from 0 - 1")]
         public AnimationCurve curve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
-
-        public bool referenceStartRotation = true;
         public class Baker : Baker<ParticleRotationOverTimeAuthoring>
         {
             public override void Bake(ParticleRotationOverTimeAuthoring authoring)
@@ -27,10 +25,7 @@ namespace DarkLordGame
                     maxAngles = authoring.maxAngle
                 });
 
-                if(authoring.referenceStartRotation)
-                {
-                    AddComponent(e, new ParticleStartRotation());
-                }
+                AddComponent(e, new ParticleStartRotation());
             }
         }
     }
@@ -39,6 +34,7 @@ namespace DarkLordGame
     {
         public float maxAngles;
         public float3 axis;
+        public quaternion startRotation;
         public BlobAssetReference<FloatCurveBlob> data;
     }
 
