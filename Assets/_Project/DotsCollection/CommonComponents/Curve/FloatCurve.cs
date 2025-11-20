@@ -15,6 +15,7 @@ namespace DarkLordGame
 
     public struct FloatCurveBlob
     {
+        public bool looped;
         public BlobArray<FloatCurveKey> keys;
     }
 
@@ -25,7 +26,7 @@ namespace DarkLordGame
 
     public static class FloatCurveUtility
     {
-        public static BlobAssetReference<FloatCurveBlob> CreateFloatCurveBlobReference(AnimationCurve curve)
+        public static BlobAssetReference<FloatCurveBlob> CreateFloatCurveBlobReference(AnimationCurve curve, bool looped)
         {
             // Build the blob
             var curveKeys = curve.keys;
@@ -46,20 +47,21 @@ namespace DarkLordGame
                 times[i].inTangent = k.inTangent;
                 times[i].outTangent = k.outTangent;
             }
-
+            root.looped = looped;
+            
             var blobRef = builder.CreateBlobAssetReference<FloatCurveBlob>(Allocator.Persistent);
             builder.Dispose();
             return blobRef;
         }
-        // [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        // public static float Evaluate(this in FloatCurve curveRef, float t)
-        // {
-        //     if (!curveRef.data.IsCreated)
-        //         return 0f;
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float Evaluate(this in FloatCurve curveRef, float t)
+        {
+            if (!curveRef.data.IsCreated)
+                return 0f;
 
-        //     ref FloatCurveBlob curve = ref curveRef.data.Value;
-        //     return Evaluate(ref curve, t);
-        // }
+            ref FloatCurveBlob curve = ref curveRef.data.Value;
+            return Evaluate(ref curve, t);
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Evaluate(this ref FloatCurveBlob curve, float t)
@@ -71,14 +73,19 @@ namespace DarkLordGame
                 return 0f;
             if (len == 1)
                 return keys[0].value;
-
-            t = math.clamp(t, 0f, 1f);
-
             var first = keys[0];
+            var last = keys[len - 1];
+            if (curve.looped)
+            {
+                t = t.Repeat(first.time, last.time);
+            }
+            else
+            {
+                t = math.clamp(t, first.time, last.time);
+            }
             if (t <= first.time)
                 return first.value;
 
-            var last = keys[len - 1];
             if (t >= last.time)
                 return last.value;
 
@@ -109,7 +116,6 @@ namespace DarkLordGame
                     return h00 * v0 + h10 * m0 + h01 * v1 + h11 * m1;
                 }
             }
-
             return last.value;
         }
     }

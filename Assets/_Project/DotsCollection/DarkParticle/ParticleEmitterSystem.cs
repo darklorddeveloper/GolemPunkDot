@@ -57,7 +57,10 @@ namespace DarkLordGame
                         case EmitShape.Sphere:
                             loc.Position += random.NextFloat3(new float3(-emitter.shapeSize), new float3(emitter.shapeSize));
                             var posDir = math.normalizesafe(loc.Position, new float3(0, 0, 1));
-                            loc.Rotation = quaternion.LookRotation(posDir, (posDir.y >= 1) ? new float3(0, 0, 1) : new float3(0, 1, 0));//do forward
+                            if (emitter.useParentRotation == false)
+                            {
+                                loc.Rotation = quaternion.LookRotation(posDir, (posDir.y >= 1) ? new float3(0, 0, 1) : new float3(0, 1, 0));//do forward                                
+                            }
                             ecb.SetComponent(chunk, e, loc);
                             break;
                     }

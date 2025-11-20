@@ -6,16 +6,19 @@ namespace DarkLordGame
 {
     public class ParticleRotationOverTimeAuthoring : MonoBehaviour
     {
+        public bool looped = false;
         public float maxAngle = 1.0f;
         public float3 axis = new float3(0, 1, 0);
         [Header("Keep time from 0 - 1")]
         public AnimationCurve curve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+
+        public bool referenceStartRotation = true;
         public class Baker : Baker<ParticleRotationOverTimeAuthoring>
         {
             public override void Bake(ParticleRotationOverTimeAuthoring authoring)
             {
                 var e = GetEntity(TransformUsageFlags.Dynamic);
-                var blobRef = FloatCurveUtility.CreateFloatCurveBlobReference(authoring.curve);
+                var blobRef = FloatCurveUtility.CreateFloatCurveBlobReference(authoring.curve, authoring.looped);
                 // Let the baker dedupe and manage lifetime
                 AddComponent(e, new ParticleRotationOverTime
                 {
@@ -23,6 +26,11 @@ namespace DarkLordGame
                     axis = authoring.axis,
                     maxAngles = authoring.maxAngle
                 });
+
+                if(authoring.referenceStartRotation)
+                {
+                    AddComponent(e, new ParticleStartRotation());
+                }
             }
         }
     }
@@ -32,5 +40,9 @@ namespace DarkLordGame
         public float maxAngles;
         public float3 axis;
         public BlobAssetReference<FloatCurveBlob> data;
+    }
+
+    public struct ParticleStartRotation : IComponentData, IEnableableComponent
+    {
     }
 }

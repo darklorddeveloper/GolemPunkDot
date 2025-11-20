@@ -66,6 +66,7 @@ namespace DarkLordGame
         public EmitShape shapeType;
         public float shapeSize;
         public float3 shapeSize3D;
+        public bool useParentRotation;
     }
 
 
