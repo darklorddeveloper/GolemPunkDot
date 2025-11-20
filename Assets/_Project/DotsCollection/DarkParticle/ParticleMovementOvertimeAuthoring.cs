@@ -7,12 +7,12 @@ namespace DarkLordGame
     public class ParticleMovementOvertimeAuthoring : MonoBehaviour
     {
         public bool looped;
+        [Header("Max distance is speed when additive movement")]
+        public bool isAdditiveMovement;
         public float maxDistance = 1.0f;
         [Header("Keep time from 0 - 1")]
         public AnimationCurve curve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
         public float3 relativeDirection = new float3(0, 0, 1);
-        [Header("false = fixed direction true for more fancy random")]
-        public bool shouldRealtimeUpdateDirection = false;
         public class Baker : Baker<ParticleMovementOvertimeAuthoring>
         {
             public override void Bake(ParticleMovementOvertimeAuthoring authoring)
@@ -25,22 +25,22 @@ namespace DarkLordGame
                 {
                     data = blobRef,
                     maxDistance = authoring.maxDistance,
-                    relativeDirection = authoring.relativeDirection
+                    relativeDirection = authoring.relativeDirection,
+                    isAdditiveMovement = authoring.isAdditiveMovement
                 });
-                AddComponent(e, new ParticleStartPosition { shouldKeepEnabled = authoring.shouldRealtimeUpdateDirection });
+                AddComponent(e, new ParticleStartPosition { });
             }
         }
     }
 
     public struct ParticleStartPosition : IComponentData, IEnableableComponent
     {
-        public bool shouldKeepEnabled;
-        public bool updatedStartPos;
     }
 
     public struct ParticleMovementOvertime : IComponentData
     {
         public float maxDistance;
+        public bool isAdditiveMovement;
         public float3 startPosition;
         public float3 relativeDirection;
         public float3 movementDirection;

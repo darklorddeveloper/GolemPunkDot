@@ -32,4 +32,28 @@ namespace DarkLordGame
     {
         public float3 Value;
     }
+
+    [MaterialProperty("_P1Right")]
+    public struct TrailP1Right : IComponentData
+    {
+        public float3 Value;
+    }
+
+    [MaterialProperty("_P2Right")]
+    public struct TrailP2Right : IComponentData
+    {
+        public float3 Value;
+    }
+
+    [MaterialProperty("_P3Right")]
+    public struct TrailP3Right : IComponentData
+    {
+        public float3 Value;
+    }
+
+    [MaterialProperty("_P4Right")]
+    public struct TrailP4Right : IComponentData
+    {
+        public float3 Value;
+    }
 }

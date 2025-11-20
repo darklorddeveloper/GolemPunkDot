@@ -22,7 +22,7 @@ namespace DarkLordGame
                 {
                     data = blobRef,
                     axis = authoring.axis,
-                    maxAngles = authoring.maxAngle
+                    maxAngles = math.radians(authoring.maxAngle)
                 });
 
                 AddComponent(e, new ParticleStartRotation());

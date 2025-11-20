@@ -17,6 +17,13 @@ namespace DarkLordGame
                 {
                     updatePointsInterval = authoring.updatePointInterval
                 });
+                AddComponent<TrailP1>(e);
+                AddComponent<TrailP2>(e);
+                AddComponent<TrailP3>(e);
+                AddComponent<TrailP1Right>(e);
+                AddComponent<TrailP2Right>(e);
+                AddComponent<TrailP3Right>(e);
+
                 AddComponent<SetupTrail>(e);
             }
         }
@@ -32,5 +39,11 @@ namespace DarkLordGame
         public float3 currentP1;
         public float3 currentP2;
         public float3 currentP3;
+
+        public float3 targetP1Right;
+        public float3 targetP2Right;
+        public float3 currentP1Right;
+        public float3 currentP2Right;
+        public float3 currentP3Right;
     }
 }

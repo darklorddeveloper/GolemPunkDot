@@ -57,16 +57,11 @@ namespace DarkLordGame
     [BurstCompile]
     public partial struct ParticleSetupMovementJob : IJobEntity
     {
-        public void Execute(EnabledRefRW<ParticleStartPosition> startSize, ref ParticleStartPosition particleStartPos, ref ParticleMovementOvertime movementOverTime, in LocalTransform localTransform)
+        public void Execute(EnabledRefRW<ParticleStartPosition> startPos, ref ParticleMovementOvertime movementOverTime, in LocalTransform localTransform)
         {
-            if (particleStartPos.updatedStartPos == false)
-            {
-                movementOverTime.startPosition = localTransform.Position;
-                particleStartPos.updatedStartPos = true;
-            }
+            movementOverTime.startPosition = localTransform.Position;
             movementOverTime.movementDirection = math.mul(localTransform.Rotation, movementOverTime.relativeDirection);
-            if (particleStartPos.shouldKeepEnabled == false)
-                startSize.ValueRW = false;
+            startPos.ValueRW = false;
         }
     }
 
@@ -93,11 +88,18 @@ namespace DarkLordGame
     [BurstCompile]
     public partial struct ParticleMovementOverTimeJob : IJobEntity
     {
+        public float deltaTime;
         public void Execute(in Particle particle, ref ParticleMovementOvertime movementOverTime, ref LocalTransform localTransform)
         {
             ref var curve = ref movementOverTime.data.Value;
+            if (movementOverTime.isAdditiveMovement == false)
+            {
+                localTransform.Position = movementOverTime.startPosition + curve.Evaluate(particle.currentRate) * movementOverTime.movementDirection * movementOverTime.maxDistance;
+                return;
+            }
+            movementOverTime.movementDirection = math.mul(localTransform.Rotation, movementOverTime.relativeDirection);
+            localTransform.Position += movementOverTime.movementDirection * deltaTime * curve.Evaluate(particle.currentRate) * movementOverTime.movementDirection * movementOverTime.maxDistance;
 
-            localTransform.Position = movementOverTime.startPosition + curve.Evaluate(particle.currentRate) * movementOverTime.movementDirection * movementOverTime.maxDistance;
         }
     }
 
@@ -138,12 +140,12 @@ namespace DarkLordGame
             setupStartPosJob.ScheduleParallel();
 
             var sizeJob = new ParticleSizeOverTimeJob();
-            sizeJob.ScheduleParallel();
+            sizeJob.ScheduleParallel(state.Dependency);
 
             var rotationJob = new ParticleRotationOverTimeJob();
             rotationJob.ScheduleParallel();
 
-            var movementJob = new ParticleMovementOverTimeJob();
+            var movementJob = new ParticleMovementOverTimeJob { deltaTime = deltaTime };
             movementJob.ScheduleParallel();
 
             var colorOvertimeJob = new ParticleColorOverTimeJob();
