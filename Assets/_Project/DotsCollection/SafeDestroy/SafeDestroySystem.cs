@@ -12,13 +12,12 @@ namespace DarkLordGame
     public partial struct SafeDestroyCountDownJob : IJobEntity
     {
         public float deltaTime;
-        public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunkIndex, Entity entity, ref SafeDestroyComponent component)
+        public void Execute(EnabledRefRW<DestroyImmediate> enabledRefRW, ref SafeDestroyComponent component)
         {
             component.period -= deltaTime;
             if (component.period <= 0)
             {
-                ecb.SetComponentEnabled<DestroyImmediate>(chunkIndex, entity, true);
+                enabledRefRW.ValueRW = true;
             }
         }
     }
@@ -37,17 +36,12 @@ namespace DarkLordGame
         public void OnUpdate(ref SystemState state)
         {
             float deltaTime = SystemAPI.Time.DeltaTime;
-            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.TempJob);
             var job = new SafeDestroyCountDownJob
             {
-                ecb = ecb.AsParallelWriter(),
                 deltaTime = deltaTime
             };
             var dependency = job.ScheduleParallel(state.Dependency);
             dependency.Complete();
-            ecb.Playback(state.EntityManager);
-            ecb.Dispose();
-
         }
     }
 

@@ -37,7 +37,6 @@ namespace DarkLordGame
     [BurstCompile]
     public partial struct ParticleSetupStartRotationJob : IJobEntity
     {
-        [NativeDisableParallelForRestriction] public EntityCommandBuffer.ParallelWriter ecb;
         public void Execute(EnabledRefRW<ParticleStartRotation> startRotation, ref ParticleRotationOverTime rotationOverTime, in LocalTransform localTransform)
         {
             rotationOverTime.startRotation = localTransform.Rotation;
