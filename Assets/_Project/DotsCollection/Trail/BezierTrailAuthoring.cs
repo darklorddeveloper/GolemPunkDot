@@ -29,7 +29,6 @@ namespace DarkLordGame
 
         public float3 targetP1;
         public float3 targetP2;
-        public float3 targetP3;
         public float3 currentP1;
         public float3 currentP2;
         public float3 currentP3;
