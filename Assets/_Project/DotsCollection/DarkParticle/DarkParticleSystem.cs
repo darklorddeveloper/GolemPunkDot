@@ -106,6 +106,16 @@ namespace DarkLordGame
     }
 
     [BurstCompile]
+    public partial struct ParticleColorOverTimeJob : IJobEntity
+    {
+        public void Execute(in Particle particle, ref ParticleColorOverTime particleColorOverTime)
+        {
+            ref var curve = ref particleColorOverTime.data.Value;
+            particleColorOverTime.Value = curve.Evaluate(particle.currentRate);
+        }
+    }
+
+    [BurstCompile]
     public partial struct DarkParticleSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -157,6 +167,9 @@ namespace DarkLordGame
 
             var movementJob = new ParticleMovementOverTimeJob();
             movementJob.ScheduleParallel();
+
+            var colorOvertimeJob = new ParticleColorOverTimeJob();
+            colorOvertimeJob.ScheduleParallel();
         }
     }
 }
