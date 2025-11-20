@@ -9,6 +9,7 @@ namespace DarkLordGame
     {
         public bool shouldDestroyFromStart;
         public float period;
+        public bool destroyChild = true;
         public class Baker : Baker<SafeDestroyAuthoring>
         {
             public override void Bake(SafeDestroyAuthoring authoring)
@@ -16,7 +17,7 @@ namespace DarkLordGame
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new SafeDestroyComponent { period = authoring.period });
                 SetComponentEnabled<SafeDestroyComponent>(entity, authoring.shouldDestroyFromStart);
-                AddComponent(entity, new DestroyImmediate());
+                AddComponent(entity, new DestroyImmediate{destroyChild = authoring.destroyChild});
                 SetComponentEnabled<DestroyImmediate>(entity, false);
 
             }
@@ -30,6 +31,6 @@ namespace DarkLordGame
 
     public struct DestroyImmediate : IComponentData, IEnableableComponent
     {
-
+        public bool destroyChild;
     }
 }

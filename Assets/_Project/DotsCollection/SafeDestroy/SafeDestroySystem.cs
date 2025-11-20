@@ -80,7 +80,8 @@ namespace DarkLordGame
     {
         private EntityQuery queryNoChild;
         private EntityQuery query;
-
+        private NativeArray<Entity> entities;
+        private NativeArray<DestroyImmediate> destroyImmediates;
         public void OnCreate(ref SystemState state)
         {
             queryNoChild = SystemAPI.QueryBuilder().WithAll<DestroyImmediate>().WithNone<Child>().Build();
@@ -92,10 +93,18 @@ namespace DarkLordGame
         {
             state.EntityManager.DestroyEntity(queryNoChild);//faster
 
-            using var entities = query.ToEntityArray(Allocator.Temp);
+            entities = query.ToEntityArray(Allocator.Temp);
+            destroyImmediates = query.ToComponentDataArray<DestroyImmediate>(Allocator.Temp);
             var ecb = new EntityCommandBuffer(Allocator.Temp);
-            foreach (var e in entities)
-                DestroyRecursive(ecb,state.EntityManager, e);
+            for (int i = 0, length = entities.Length; i < length; i++)
+            {
+                if (destroyImmediates[i].destroyChild == false)
+                {
+                    ecb.DestroyEntity(entities[i]);
+                    continue;
+                }
+                DestroyRecursive(ecb, state.EntityManager, entities[i]);
+            }
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
         }
