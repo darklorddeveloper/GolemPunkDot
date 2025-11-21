@@ -37,9 +37,13 @@ namespace DarkLordGame
             {
                 return;
             }
-            int segmentToAdd = math.min(trail.maxSubDivision, (int)math.floor(length / trail.minDistance));
+            // points[trail.currentHeadSequmentIndex] = new TrailPoints { position = pos, rotation = rot };
+            // trail.currentHeadSequmentIndex++;
+            // trail.currentHeadSequmentIndex %= trail.maxSegments;
+            int segmentToAdd = math.clamp((int)math.floor(length / trail.minDistance), 1, trail.maxSubDivision);
+            var point = points[(trail.currentHeadSequmentIndex + trail.maxSegments - 2) % trail.maxSegments];
             float weightPerSegment = 1.0f / segmentToAdd;
-            var lastForward = math.mul(trail.lastRotation, new float3(0, 0, 1));
+            var lastForward = trail.lastPosition - point.position;
             var middlePoint = math.dot(diff, lastForward) * trail.maxSubDivisionCurve * lastForward + pos;
 
             for (int i = 0; i < segmentToAdd; i++)
@@ -52,6 +56,7 @@ namespace DarkLordGame
                 points[trail.currentHeadSequmentIndex] = new TrailPoints { position = p, rotation = r };
                 trail.currentHeadSequmentIndex++;
                 trail.currentHeadSequmentIndex %= trail.maxSegments;
+
             }
             trail.lastPosition = pos;
             trail.lastRotation = rot;
@@ -67,19 +72,24 @@ namespace DarkLordGame
             float3 translation = ltw.Position;       // parent world pos
             quaternion rotation = ltw.Rotation;
             // var previousPoint = ltw.Position;
-
             for (int i = 0, length = bones.Length; i < length; i++)
             {
-                int index = (trail.currentHeadSequmentIndex + trail.maxSegments - i -1) % trail.maxSegments;
+                int index = (trail.currentHeadSequmentIndex + trail.maxSegments - i - 1) % trail.maxSegments;
                 var targetPoint = points[index];
-                var rot = math.mul(ltw.Rotation, targetPoint.rotation);
                 float3 localPos = math.mul(math.inverse(rotation), targetPoint.position - translation);
+                index = (trail.currentHeadSequmentIndex + trail.maxSegments * 2 - i - 2) % trail.maxSegments;
+                targetPoint = points[index];
+                float3 localPos2 = math.mul(math.inverse(rotation), targetPoint.position - translation);
+                // var localRot = math.mul(math.inverse(ltw.Rotation), targetPoint.rotation);
+
+                var rot = quaternion.LookRotation(localPos - localPos2, new float3(0, 1, 0));
                 ecb.SetComponent(chunk, bones[i].entity, new LocalTransform
                 {
                     Position = localPos,
                     Rotation = rot,
                     Scale = bones[i].fixedSize
                 });
+
 
                 // UnityEngine.Debug.DrawLine(targetPoint.position, previousPoint, Color.red);
                 // previousPoint = targetPoint.position;
