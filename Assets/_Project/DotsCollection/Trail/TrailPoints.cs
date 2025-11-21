@@ -9,6 +9,13 @@ namespace DarkLordGame
 
     }
 
+    public struct TrailPoints : IBufferElementData
+    {
+        public float3 position;
+        public quaternion rotation;
+    }
+
+
     [MaterialProperty("_P1")]
     public struct TrailP1 : IComponentData
     {
