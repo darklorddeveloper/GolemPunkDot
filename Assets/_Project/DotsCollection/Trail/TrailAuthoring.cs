@@ -49,6 +49,8 @@ namespace DarkLordGame
         public float minDistance;
         public int maxSubDivision;//for far away distance
         public float maxSubDivisionCurve;//0.5 is good
+        public float stayTime;
+        public float lifeTimePerPeriod;
         public float3 lastPosition;
         public quaternion lastRotation;
         public float3 lastForward;

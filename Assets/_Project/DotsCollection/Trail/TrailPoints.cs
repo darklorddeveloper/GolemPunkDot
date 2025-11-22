@@ -13,6 +13,7 @@ namespace DarkLordGame
     {
         public float3 position;
         public quaternion rotation;
+        public float timeCount;
     }
 
 

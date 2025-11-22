@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -53,7 +52,7 @@ namespace DarkLordGame
                 var p = invert * invert * trail.lastPosition + 2 * invert * weight * middlePoint +
                 weight * weight * pos;
                 var r = math.slerp(trail.lastRotation, rot, weight);
-                points[trail.currentHeadSequmentIndex] = new TrailPoints { position = p, rotation = r };
+                points[trail.currentHeadSequmentIndex] = new TrailPoints { position = p, rotation = r, timeCount = -trail.stayTime };
                 trail.currentHeadSequmentIndex++;
                 trail.currentHeadSequmentIndex %= trail.maxSegments;
 
@@ -67,17 +66,38 @@ namespace DarkLordGame
     public partial struct TrailsUpdateJob : IJobEntity
     {
         public EntityCommandBuffer.ParallelWriter ecb;
+        public float deltaTime;
         public void Execute([ChunkIndexInQuery] int chunk, in Trail trail, in LocalToWorld ltw, DynamicBuffer<TrailBones> bones, DynamicBuffer<TrailPoints> points)
         {
             float3 translation = ltw.Position;       // parent world pos
             quaternion rotation = ltw.Rotation;
+
+            var currentIndex = trail.currentHeadSequmentIndex;
+            var point = points[currentIndex];
+            point.timeCount += deltaTime;
+            points[currentIndex] = point;
+            var increase = math.min(trail.maxSegments - 1, (int)math.floor(point.timeCount / trail.lifeTimePerPeriod) + 1);
+            var targetFade = (currentIndex + increase) % trail.maxSegments;
+            var fadePosition = math.lerp(point.position, points[targetFade].position, math.frac(point.timeCount / trail.lifeTimePerPeriod));
+            for (int i = 0; i < increase; i++)
+            {
+                var ind = (currentIndex + i)%trail.maxSegments;
+                var p = points[ind];
+                p.position = fadePosition;
+                points[ind] = p;
+            }
+
+
+
+            var s1 = trail.maxSegments * 2 - 1 + trail.currentHeadSequmentIndex;
+            var s2 = s1 - 1;
             // var previousPoint = ltw.Position;
             for (int i = 0, length = bones.Length; i < length; i++)
             {
-                int index = (trail.currentHeadSequmentIndex + trail.maxSegments - i - 1) % trail.maxSegments;
+                int index = (s1 - i) % trail.maxSegments;
                 var targetPoint = points[index];
                 float3 localPos = math.mul(math.inverse(rotation), targetPoint.position - translation);
-                index = (trail.currentHeadSequmentIndex + trail.maxSegments * 2 - i - 2) % trail.maxSegments;
+                index = (s2 - i) % trail.maxSegments;
                 targetPoint = points[index];
                 float3 localPos2 = math.mul(math.inverse(rotation), targetPoint.position - translation);
                 // var localRot = math.mul(math.inverse(ltw.Rotation), targetPoint.rotation);
@@ -173,9 +193,11 @@ namespace DarkLordGame
             var trailJob = new TrailJob();
             trailJob.ScheduleParallel();
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.TempJob);
+            float deltaTime = SystemAPI.Time.DeltaTime;
             var trailUpdate = new TrailsUpdateJob
             {
-                ecb = ecb.AsParallelWriter()
+                ecb = ecb.AsParallelWriter(),
+                deltaTime = deltaTime
             };
             var handle = trailUpdate.ScheduleParallel(state.Dependency);
             handle.Complete();
