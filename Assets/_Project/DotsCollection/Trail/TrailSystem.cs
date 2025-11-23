@@ -17,7 +17,7 @@ namespace DarkLordGame
             trail.lastForward = transform.Forward;
             for (int i = 0, length = trail.maxSegments; i < length; i++)
             {
-                points[i] = new TrailPoints { position = float3.zero, rotation = quaternion.identity };
+                points[i] = new TrailPoints { position = pos, rotation = rot };
             }
             setupTrail.ValueRW = false;
         }
@@ -81,17 +81,15 @@ namespace DarkLordGame
             var fadePosition = math.lerp(point.position, points[targetFade].position, math.frac(point.timeCount / trail.lifeTimePerPeriod));
             for (int i = 0; i < increase; i++)
             {
-                var ind = (currentIndex + i)%trail.maxSegments;
+                var ind = (currentIndex + i) % trail.maxSegments;
                 var p = points[ind];
                 p.position = fadePosition;
                 points[ind] = p;
             }
 
-
-
             var s1 = trail.maxSegments * 2 - 1 + trail.currentHeadSequmentIndex;
             var s2 = s1 - 1;
-            // var previousPoint = ltw.Position;
+
             for (int i = 0, length = bones.Length; i < length; i++)
             {
                 int index = (s1 - i) % trail.maxSegments;
@@ -103,6 +101,9 @@ namespace DarkLordGame
                 // var localRot = math.mul(math.inverse(ltw.Rotation), targetPoint.rotation);
 
                 var rot = quaternion.LookRotation(localPos - localPos2, new float3(0, 1, 0));
+
+                // float scale = math.lerp(bones[i].fixedSize, 0.0f)
+
                 ecb.SetComponent(chunk, bones[i].entity, new LocalTransform
                 {
                     Position = localPos,

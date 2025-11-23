@@ -173,11 +173,11 @@ MonoBehaviour:
   trail:
     maxSegments: 0
     currentHeadSequmentIndex: 0
-    minDistance: 0.5
+    minDistance: 0.1
     maxSubDivision: 5
     maxSubDivisionCurve: 0.1
-    stayTime: 0.5
-    lifeTimePerPeriod: 0.2
+    stayTime: 0
+    lifeTimePerPeriod: 0.01
     lastPosition:
       x: 0
       y: 0
@@ -228,26 +228,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0
+      time: 0.0014266968
+      value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.25604138
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.25212663
-      value: 0.98040485
-      inSlope: -0.61292416
-      outSlope: -0.61292416
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 0.2
+      time: 0.9985962
+      value: 0.07702637
       inSlope: -1
       outSlope: -1
       tangentMode: 0
@@ -282,7 +273,7 @@ Transform:
   m_GameObject: {fileID: 1992221400285679921}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.316}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -437,7 +428,7 @@ Transform:
   m_GameObject: {fileID: 3506317017107372439}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.13, y: 0, z: -0.409}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []

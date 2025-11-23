@@ -1192,25 +1192,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 10010929419210445, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.316
-      objectReference: {fileID: 0}
     - target: {fileID: 1828918225902834873, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
       propertyPath: m_Name
       value: SampleTrail
       objectReference: {fileID: 0}
-    - target: {fileID: 3683108456628738482, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 3683108456628738482, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.409
-      objectReference: {fileID: 0}
     - target: {fileID: 6207180870190377146, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7
+      value: 20.45
       objectReference: {fileID: 0}
     - target: {fileID: 6207180870190377146, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1218,7 +1206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6207180870190377146, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.9
+      value: -7.84
       objectReference: {fileID: 0}
     - target: {fileID: 6207180870190377146, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1246,74 +1234,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6207180870190377146, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trail.stayTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trail.minDistance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trail.lifeTimePerPeriod
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trailCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trailCurve.m_Curve.Array.data[0].time
-      value: 0.0014266968
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trailCurve.m_Curve.Array.data[1].time
-      value: 0.9985962
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trailCurve.m_Curve.Array.data[2].time
-      value: 0.9985962
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trailCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trailCurve.m_Curve.Array.data[1].value
-      value: 0.07702637
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trailCurve.m_Curve.Array.data[2].value
-      value: 0.07702637
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trailCurve.m_Curve.Array.data[0].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trailCurve.m_Curve.Array.data[1].inSlope
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trailCurve.m_Curve.Array.data[0].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trailCurve.m_Curve.Array.data[0].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trailCurve.m_Curve.Array.data[1].inWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trailCurve.m_Curve.Array.data[1].outSlope
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756345276867871718, guid: 99eab2c64cc2b4e3589d8015216a8cdf, type: 3}
-      propertyPath: trailCurve.m_Curve.Array.data[1].outWeight
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
