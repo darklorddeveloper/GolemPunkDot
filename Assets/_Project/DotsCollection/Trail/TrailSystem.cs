@@ -89,6 +89,8 @@ namespace DarkLordGame
 
             var s1 = trail.maxSegments * 2 - 1 + trail.currentHeadSequmentIndex;
             var s2 = s1 - 1;
+            float numb = trail.maxSegments - increase - 1;
+            float rate = 1 / numb;
 
             for (int i = 0, length = bones.Length; i < length; i++)
             {
@@ -98,17 +100,18 @@ namespace DarkLordGame
                 index = (s2 - i) % trail.maxSegments;
                 targetPoint = points[index];
                 float3 localPos2 = math.mul(math.inverse(rotation), targetPoint.position - translation);
-                // var localRot = math.mul(math.inverse(ltw.Rotation), targetPoint.rotation);
+                var localRot = math.mul(math.inverse(ltw.Rotation), targetPoint.rotation);
 
-                var rot = quaternion.LookRotation(localPos - localPos2, new float3(0, 1, 0));
+                var rot = quaternion.LookRotation(localPos - localPos2, math.mul(localRot, new float3(0, 1, 0)));
 
-                // float scale = math.lerp(bones[i].fixedSize, 0.0f)
+                int scaleIndex = (int)math.min(i * rate * (length - 1), length - 1);
+                // float scale = math.lerp(bones[i].fixedSize, bones[length - 1].fixedSize, i * rate)
 
                 ecb.SetComponent(chunk, bones[i].entity, new LocalTransform
                 {
                     Position = localPos,
                     Rotation = rot,
-                    Scale = bones[i].fixedSize
+                    Scale = bones[scaleIndex].fixedSize
                 });
 
 
