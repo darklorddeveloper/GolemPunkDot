@@ -1,4 +1,3 @@
-using UnityEngine;
 namespace DarkLordGame
 {
     public class MainCameraAuthoring : ClassAuthorizer<MainCamera>

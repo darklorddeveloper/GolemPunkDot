@@ -3,8 +3,6 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
-
-    [RequireComponent(typeof(SafeDestroyAuthoring))]
     public class GolemEntityAuthoring : ClassAuthorizer<GolemEntity>
     {
     }

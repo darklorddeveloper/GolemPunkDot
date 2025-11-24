@@ -1,5 +1,5 @@
 {
-    "name": "Bakers",
+    "name": "HybrideCore",
     "rootNamespace": "DarkLordGame",
     "references": [
         "GUID:2665a8d13d1b3f18800f46e256720795",
@@ -8,12 +8,14 @@
         "GUID:7a450cf7ca9694b5a8bfa3fd83ec635a",
         "GUID:8819f35a0fc84499b990e90a4ca1911f",
         "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:eec0964c48f6f4e40bc3ec2257ccf8c5",
         "GUID:d8b63aba1907145bea998dd612889d6b",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:a5baed0c9693541a5bd947d336ec7659",
         "GUID:44dcb2bf5b9be4b5aa76674c8edcd1d5",
-        "GUID:fd9e448ffcc2b46a2baa30f349327cdb",
-        "GUID:97a10c0a176da4fbc8e5d34ad8495049"
+        "GUID:63afb046c8423dd448ae7aba042ea63d",
+        "GUID:e00140a815de944528348782854abe39",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:fd9e448ffcc2b46a2baa30f349327cdb"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
