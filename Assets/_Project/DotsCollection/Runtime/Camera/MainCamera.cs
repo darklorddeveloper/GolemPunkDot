@@ -2,15 +2,6 @@ using Unity.Entities;
 using UnityEngine;
 namespace DarkLordGame
 {
-    public class MainCameraAuthoring : ClassAuthorizer<MainCamera>
-    {
-
-    }
-
-    public class MainCameraBaker : ClassBaker<MainCameraAuthoring, MainCamera>
-    {
-        
-    }
 
     [System.Serializable]
     public class MainCamera : ClassComponentData
