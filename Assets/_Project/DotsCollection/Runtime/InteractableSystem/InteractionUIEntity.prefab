@@ -41,10 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8730892352442249762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 747889ea71b8344cf9933ee16f54adb6, type: 3}
+  m_Script: {fileID: 11500000, guid: 699f96d033f4e45a090294dee276a177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.InteractionUIEntityAuthoring
-  flags: 2
+  flags: 0
   data1:
     initialized: 0
-    ui: {fileID: 4323592446515299752, guid: 7955004f281444109a98cffa16fb8484, type: 3}
+    ui: {fileID: 0}

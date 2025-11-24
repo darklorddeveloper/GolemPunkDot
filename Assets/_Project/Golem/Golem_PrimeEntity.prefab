@@ -119,13 +119,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5476147893443169591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeaacfeec4a2046fa9e3144f8bbc606e, type: 3}
+  m_Script: {fileID: 11500000, guid: b5884fc1a5a8e4d4f876fb5e4ae816df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: DotCollection::DarkLordGame.InteractorAuthoring
   flags: 0
   data1:
-    radius: 1.5
-    interactLayerBit: 128
+    radius: 0
+    interactLayerBit: 0
 --- !u!114 &7052865018830192994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,8 +135,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5476147893443169591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68f972149ca3c4b429777317116a7e3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 79bd71c3ac82c4c36821f6ebf42c67e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: DotCollection::DarkLordGame.SafeDestroyAuthoring
   shouldDestroyFromStart: 0
-  period: 0.2
+  period: 0
+  destroyChild: 1

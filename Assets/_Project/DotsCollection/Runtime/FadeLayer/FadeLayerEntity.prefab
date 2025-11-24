@@ -41,10 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2642292064521627767}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7783dd642a44244ce9b39d642a71a907, type: 3}
+  m_Script: {fileID: 11500000, guid: e553d2c8597e94da18410f0bc7e2d473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.FadeLayerEntityAuthoring
   flags: 0
   data1:
     initialized: 0
-    fadeLayer: {fileID: 7959853041775287401, guid: c58529d2af6a84efebe408ef54633909, type: 3}
+    fadeLayer: {fileID: 0}
