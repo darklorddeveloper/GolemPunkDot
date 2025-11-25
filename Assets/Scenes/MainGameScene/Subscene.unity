@@ -218,6 +218,78 @@ MonoBehaviour:
   data1:
     initialized: 0
     inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!1 &681527346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 681527347}
+  - component: {fileID: 681527349}
+  - component: {fileID: 681527348}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &681527347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681527346}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2008723921}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &681527348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681527346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc71a67dfbe614a9db4bd5315846b990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameBakers::DarkLordGame.CameraMovementAuthoring
+  flags: 2
+  data1:
+    position:
+      x: 0
+      y: 0
+      z: 0
+    eulerRotation:
+      x: 0
+      y: 0
+      z: 0
+    movePeriod: 0
+--- !u!114 &681527349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681527346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 213539ca208c849e7ad39fcad6cb0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.MainCameraAuthoring
+  flags: 0
+  data1:
+    initialized: 0
+    camera: {fileID: 0}
 --- !u!1001 &859405887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -652,7 +724,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2035457337}
+  - {fileID: 681527347}
   - {fileID: 532518952}
   - {fileID: 1736722066}
   - {fileID: 1512642994}
@@ -664,78 +736,6 @@ Transform:
   - {fileID: 2035560595}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2035457335
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2035457337}
-  - component: {fileID: 2035457338}
-  - component: {fileID: 2035457339}
-  m_Layer: 0
-  m_Name: Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2035457337
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035457335}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2008723921}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2035457338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035457335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e00a8d840cca0466a9d83f6734a83172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.CameraMovementAuthoring
-  flags: 2
-  data1:
-    position:
-      x: 0
-      y: 115
-      z: -66
-    eulerRotation:
-      x: 60
-      y: 0
-      z: 0
-    movePeriod: 0
---- !u!114 &2035457339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035457335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 213539ca208c849e7ad39fcad6cb0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Bakers::DarkLordGame.MainCameraAuthoring
-  flags: 0
-  data1:
-    initialized: 0
-    camera: {fileID: 0}
 --- !u!1 &2035560594
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,7 +780,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df86c8dcce9e4103bf37c243a6a05f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: DotCollection::DarkLordGame.PrefabPoolAuthoring
-  prefabs: []
+  prefabs:
+  - {fileID: 8056147753816414939, guid: c546d6d1ddbab4c4dabc7b4c7687f39d, type: 3}
   orderKeeping: []
 --- !u!1001 &8002288235457570399
 PrefabInstance:

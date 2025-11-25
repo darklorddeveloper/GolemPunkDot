@@ -4,6 +4,7 @@ namespace DarkLordGame
 {
     public class ParticleAuthoring : EnableStructAuthorizer<Particle>
     {
+        [Header("Already contain safe destroy")]
         public bool shouldDestroyFromStart = true;
         public float fixedLifeTimeWhenUsedInfiniteLoop = 5;
         public bool doNotDestroy;
