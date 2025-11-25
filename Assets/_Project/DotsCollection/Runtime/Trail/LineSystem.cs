@@ -7,7 +7,6 @@ using UnityEngine;
 namespace DarkLordGame
 {
     [BurstCompile]
-    [WithNone(typeof(DynamicLine))]
     public partial struct SetupLineJob : IJobEntity
     {
         public EntityCommandBuffer.ParallelWriter ecb;
@@ -31,12 +30,11 @@ namespace DarkLordGame
     }
 
     [BurstCompile]
-    [WithAll(typeof(DynamicLine))]
     public partial struct UpdateLineJob : IJobEntity
     {
         public EntityCommandBuffer.ParallelWriter ecb;
 
-        public void Execute([ChunkIndexInQuery] int chunk, in Line line, in LocalToWorld transform, DynamicBuffer<TrailBones> bones)
+        public void Execute([ChunkIndexInQuery] int chunk, in Line line, in DynamicLine dynamicLine, in LocalToWorld transform, DynamicBuffer<TrailBones> bones)
         {
             float3 translation = transform.Position;       // parent world pos
             quaternion rotation = math.inverse(transform.Rotation);
@@ -64,13 +62,13 @@ namespace DarkLordGame
                 ecb = ecb.AsParallelWriter(),
             };
             var handle = trailUpdate.ScheduleParallel(state.Dependency);
-            ;
+            handle.Complete();
 
             var dynamicLineJob = new UpdateLineJob
             {
                 ecb = ecb.AsParallelWriter()
             };
-            handle = dynamicLineJob.ScheduleParallel(handle);
+            handle = dynamicLineJob.ScheduleParallel(state.Dependency);
             handle.Complete();
             ecb.Playback(state.EntityManager);
             ecb.Dispose();

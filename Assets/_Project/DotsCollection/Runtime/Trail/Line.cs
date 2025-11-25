@@ -10,14 +10,14 @@ namespace DarkLordGame
         public float3 endPosition;
     }
 
-[System.Serializable]
+    [System.Serializable]
     public struct DynamicLine : IComponentData
     {
-        
+
     }
 
     public struct Setupline : IComponentData, IEnableableComponent
     {
-        
+
     }
 }

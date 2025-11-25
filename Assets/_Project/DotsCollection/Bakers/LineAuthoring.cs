@@ -6,7 +6,6 @@ namespace DarkLordGame
     public class LineAuthoring : MonoBehaviour
     {
         public Line line;
-        public bool isDynamicLine = true;
         public List<GameObject> bones = new();
         public AnimationCurve trailCurve = AnimationCurve.Linear(0, 1, 1, 0);
         public class Baker : Baker<LineAuthoring>
@@ -32,10 +31,6 @@ namespace DarkLordGame
                 }
                 // forwards.Resize(trail.maxSegments, Unity.Collections.NativeArrayOptions.ClearMemory);
                 AddComponent<Setupline>(e);
-                if (authoring.isDynamicLine)
-                {
-                    AddComponent<DynamicLine>(e);
-                }
             }
         }
     }
