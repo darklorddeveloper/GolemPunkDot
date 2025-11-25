@@ -1,3 +1,4 @@
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -5,6 +6,7 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
+    [BurstCompile]
     public partial struct SetupTrailJob : IJobEntity
     {
         public void Execute(ref Trail trail, DynamicBuffer<TrailPoints> points, EnabledRefRW<SetupTrail> setupTrail, in LocalToWorld transform)
@@ -23,6 +25,7 @@ namespace DarkLordGame
         }
     }
 
+    [BurstCompile]
     public partial struct TrailJob : IJobEntity
     {
         public void Execute(ref Trail trail, LocalToWorld transform, DynamicBuffer<TrailPoints> points)
@@ -63,6 +66,7 @@ namespace DarkLordGame
         }
     }
 
+    [BurstCompile]
     public partial struct TrailsUpdateJob : IJobEntity
     {
         public EntityCommandBuffer.ParallelWriter ecb;
@@ -70,7 +74,7 @@ namespace DarkLordGame
         public void Execute([ChunkIndexInQuery] int chunk, in Trail trail, in LocalToWorld ltw, DynamicBuffer<TrailBones> bones, DynamicBuffer<TrailPoints> points)
         {
             float3 translation = ltw.Position;       // parent world pos
-            quaternion rotation = ltw.Rotation;
+            quaternion rotation = math.inverse(ltw.Rotation);
 
             var currentIndex = trail.currentHeadSequmentIndex;
             var point = points[currentIndex];
@@ -96,11 +100,11 @@ namespace DarkLordGame
             {
                 int index = (s1 - i) % trail.maxSegments;
                 var targetPoint = points[index];
-                float3 localPos = math.mul(math.inverse(rotation), targetPoint.position - translation);
+                float3 localPos = math.mul(rotation, targetPoint.position - translation);
                 index = (s2 - i) % trail.maxSegments;
                 targetPoint = points[index];
-                float3 localPos2 = math.mul(math.inverse(rotation), targetPoint.position - translation);
-                var localRot = math.mul(math.inverse(ltw.Rotation), targetPoint.rotation);
+                float3 localPos2 = math.mul(rotation, targetPoint.position - translation);
+                var localRot = math.mul(rotation, targetPoint.rotation);
 
                 var rot = quaternion.LookRotation(localPos - localPos2, math.mul(localRot, new float3(0, 1, 0)));
 
@@ -188,6 +192,7 @@ namespace DarkLordGame
     // }
 
     [UpdateBefore(typeof(TransformSystemGroup))]
+    [BurstCompile]
     public partial struct TrailSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

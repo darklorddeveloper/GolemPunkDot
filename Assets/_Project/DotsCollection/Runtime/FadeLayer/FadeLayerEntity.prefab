@@ -47,4 +47,4 @@ MonoBehaviour:
   flags: 0
   data1:
     initialized: 0
-    fadeLayer: {fileID: 0}
+    fadeLayer: {fileID: 7959853041775287401, guid: c58529d2af6a84efebe408ef54633909, type: 3}

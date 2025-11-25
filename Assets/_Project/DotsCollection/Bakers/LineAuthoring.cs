@@ -1,0 +1,42 @@
+using UnityEngine;
+using System.Collections.Generic;
+using Unity.Entities;
+namespace DarkLordGame
+{
+    public class LineAuthoring : MonoBehaviour
+    {
+        public Line line;
+        public bool isDynamicLine = true;
+        public List<GameObject> bones = new();
+        public AnimationCurve trailCurve = AnimationCurve.Linear(0, 1, 1, 0);
+        public class Baker : Baker<LineAuthoring>
+        {
+            public override void Bake(LineAuthoring authoring)
+            {
+                var line = authoring.line;
+                if (authoring.bones == null) return;
+                int lineSegments = authoring.bones.Count;
+                if (lineSegments <= 1) return;
+
+                var e = GetEntity(TransformUsageFlags.Dynamic);
+                AddComponent(e, line);
+
+                var bones = AddBuffer<TrailBones>(e);
+                float rate = authoring.bones.Count <= 1 ? 1 : (authoring.bones.Count - 1);
+                for (int i = 0, length = authoring.bones.Count; i < length; i++)
+                {
+                    if (authoring.bones[i] == null) continue;
+                    var bone = GetEntity(authoring.bones[i], TransformUsageFlags.Dynamic);
+                    float scale = authoring.trailCurve.Evaluate((float)i / rate);
+                    bones.Add(new TrailBones { entity = bone, fixedSize = scale });
+                }
+                // forwards.Resize(trail.maxSegments, Unity.Collections.NativeArrayOptions.ClearMemory);
+                AddComponent<Setupline>(e);
+                if (authoring.isDynamicLine)
+                {
+                    AddComponent<DynamicLine>(e);
+                }
+            }
+        }
+    }
+}

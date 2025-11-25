@@ -289,7 +289,7 @@ MonoBehaviour:
   flags: 0
   data1:
     initialized: 0
-    camera: {fileID: 0}
+    camera: {fileID: 2505188106795269638, guid: dab6d76e394df41df837c566dcb7ad91, type: 3}
 --- !u!1001 &859405887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -338,6 +338,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7029222081036390796, guid: 25dc526570534462ba5e6bd07b13574b, type: 3}
+      propertyPath: data1.ui
+      value: 
+      objectReference: {fileID: 4323592446515299752, guid: 7955004f281444109a98cffa16fb8484, type: 3}
     - target: {fileID: 8730892352442249762, guid: 25dc526570534462ba5e6bd07b13574b, type: 3}
       propertyPath: m_Name
       value: InteractionUIEntity (1)
