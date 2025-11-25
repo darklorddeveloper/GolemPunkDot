@@ -9,6 +9,9 @@ namespace DarkLordGame
     {
         public Entity attacker;
         public Entity prefab;//entity with attack
+        [Header("hit")]
+        public uint belongToLayer;
+        public uint hitLayer;
         //attack stat
         [Header("attack stats")]
         public float bonusDamage;
