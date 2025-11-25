@@ -4,9 +4,11 @@ using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
 using Unity.Mathematics;
+using Unity.Burst;
 
 namespace DarkLordGame
 {
+    [BurstCompile]
     public partial struct AttackMovementStraightlineJob : IJobEntity
     {
         [ReadOnly] public CollisionWorld CollisionWorld;
@@ -60,8 +62,8 @@ namespace DarkLordGame
                 else
                 {
                     var damage = ecb.CreateEntity(chunk, aoeArchetype);
-                    ecb.SetComponent(chunk, damage, new AoeDamage{position = pos, attack = attack });
-                    
+                    ecb.SetComponent(chunk, damage, new AoeDamage { position = pos, attack = attack });
+
                 }
                 // aoe component first then do the damage from aoe system
 
@@ -77,7 +79,35 @@ namespace DarkLordGame
 
         }
     }
+    [BurstCompile]
     public partial struct AttackMovementStraightlineSystem : ISystem
     {
+        private EntityArchetype damageArchetype;
+        private EntityArchetype aoeArchetype;
+
+        public void OnCreate(ref SystemState state)
+        {
+            damageArchetype = state.EntityManager.CreateArchetype(typeof(Damage));
+            aoeArchetype = state.EntityManager.CreateArchetype(typeof(AoeDamage));
+        }
+
+        public void OnUpdate(ref SystemState state)
+        {
+            var ecb = new EntityCommandBuffer(Allocator.Temp);
+            float deltaTime = SystemAPI.Time.DeltaTime;
+            var physics = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
+            var cw = physics.CollisionWorld; // a value type, safe to capture
+            var job = new AttackMovementStraightlineJob
+            {
+                ecb = ecb.AsParallelWriter(),
+                aoeArchetype = aoeArchetype,
+                damageArchetype = damageArchetype,
+                deltaTime = deltaTime,
+                CollisionWorld = cw
+            };
+            job.ScheduleParallel();
+            ecb.Playback(state.EntityManager);
+            ecb.Dispose();
+        }
     }
 }
