@@ -26,6 +26,11 @@ namespace DarkLordGame
         public float tempMovementSpeed;
         public float cooldownSpeed;
         public float tempCooldownSpeed;
-        public int totalBonusBuff;
+    }
+
+    [System.Serializable]
+    public struct ChangeMovementSpeed : IComponentData, IEnableableComponent
+    {
+
     }
 }
