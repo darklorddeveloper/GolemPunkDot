@@ -22,8 +22,7 @@ namespace DarkLordGame
         in AttackMovementStraightline straightLine,
         in MovementSpeed movementSpeed,
         ref LocalTransform transform,
-        in Spawner spawner,
-        EnabledRefRW<SafeDestroyComponent> safeDestroy)
+        in Spawner spawner)
         {
             var pos = transform.Position;
             var forward = transform.Forward();
@@ -65,11 +64,9 @@ namespace DarkLordGame
                     ecb.SetComponent(chunk, damage, new AoeDamage { position = pos, attack = attack });
 
                 }
-                // aoe component first then do the damage from aoe system
-
                 if (attack.bounce <= 0)
                 {
-                    safeDestroy.ValueRW = true;
+                    ecb.SetComponentEnabled<SafeDestroyComponent>(chunk, e, true);
                 }
             }
             else
