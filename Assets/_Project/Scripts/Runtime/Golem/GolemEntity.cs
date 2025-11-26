@@ -15,6 +15,10 @@ namespace DarkLordGame
             ComponentType.ReadWrite<HybridLocomotion>(),
             ComponentType.ReadWrite<SafeCleanupObject>()
         );
+
+        private static ComponentTypeSet typeset2 = new ComponentTypeSet(
+            ComponentType.ReadWrite<AttackRequestData>()
+        );
         public override void Init(Entity entity, EntityManager manager)
         {
             base.Init(entity, manager);
@@ -24,6 +28,7 @@ namespace DarkLordGame
             var anim = golem.animator;
 
             manager.AddComponent(entity, typeset);
+            manager.AddComponent(entity, typeset2);
 
             manager.SetComponentData(entity, new TransformSync { targetTransform = golem.transform });
             manager.SetComponentData(entity, new HybridAnimation { animator = anim });
@@ -35,6 +40,8 @@ namespace DarkLordGame
             manager.SetComponentData(entity, hybridLocomotion);
             manager.SetComponentEnabled<PlayHybridAnimation>(entity, false);
             manager.SetComponentData(entity, new SafeCleanupObject { mainGameObject = golem.gameObject });
+
+            manager.SetComponentEnabled<AttackRequestData>(entity, false);
         }
     }
 }

@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 551947043471598900}
-  - component: {fileID: 6612638601988539340}
+  - component: {fileID: -1653203927218912595}
+  - component: {fileID: -3734934463046725391}
+  - component: {fileID: 3543921140216588826}
   m_Layer: 0
   m_Name: Knuckle
   m_TagString: Untagged
@@ -33,7 +35,7 @@ Transform:
   - {fileID: 8761739181481727768}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6612638601988539340
+--- !u!114 &-1653203927218912595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,21 +44,57 @@ MonoBehaviour:
   m_GameObject: {fileID: 8056147753816414939}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4f9cbe317b84f349598e2f1d1470c2, type: 3}
+  m_Script: {fileID: 11500000, guid: f17c216fde22b4e11b0331857f9d4691, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Bakers::DarkLordGame.ParticleAuthoring
-  flags: 2
+  m_EditorClassIdentifier: Bakers::DarkLordGame.SpawnerAuthoring
+  flags: 0
+--- !u!114 &-3734934463046725391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056147753816414939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bd71c3ac82c4c36821f6ebf42c67e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.SafeDestroyAuthoring
+  shouldDestroyFromStart: 0
+  period: 0
+  destroyChild: 1
+--- !u!114 &3543921140216588826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056147753816414939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e139b88e84ad3481ab6b715acef9617b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameBakers::DarkLordGame.AttackMovementStraightlineAuthoring
+  flags: 0
   data1:
-    isInfiniteLoop: 0
-    loopCount: 0
-    lifeTime: 0.5
-    timeCount: 0
-    currentRate: 0
-  enabledByDefault: 1
-  shouldDestroyFromStart: 1
-  fixedLifeTimeWhenUsedInfiniteLoop: 5
-  doNotDestroy: 0
-  destroyChildParticle: 0
+    belongToLayer: 0
+    hitLayer: 0
+    damage: 0
+    aoeRange: 0
+    aoeDamage: 0
+    criticalChance: 0
+    criticalDamage: 0
+    attackProperty: 0
+    propertyValue: 0
+    bounce: 0
+    chainAttack: 0
+  data2:
+    offsetFromWall: 0
+  data3:
+    value: 0
+    multiplier: 0
+  data4:
+    inheritRotation: 0
 --- !u!1001 &9087501125886308595
 PrefabInstance:
   m_ObjectHideFlags: 0

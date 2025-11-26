@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
+    [CreateAssetMenu(fileName = "Attack", menuName = "Effect/ Attack")]
     public class EffectAttack : EffectBase
     {
         [GUID] public string attackPrefab;

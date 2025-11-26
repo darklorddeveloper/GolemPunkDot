@@ -22,7 +22,7 @@ namespace DarkLordGame
             data.attacker = attacker;
             data.prefab = prefab;
 
-            var golem = EntityManager.GetComponentObject<Golem>(attacker);
+            var golem = EntityManager.GetComponentObject<GolemEntity>(attacker).golem;
             golem.currentRequestData = data;
             if(golem.activatingPart != null) //normally not null
             {

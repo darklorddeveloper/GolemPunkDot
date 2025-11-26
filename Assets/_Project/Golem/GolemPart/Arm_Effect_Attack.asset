@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89122d636f4b545d39631fe709db71d3, type: 3}
+  m_Name: Arm_Effect_Attack
+  m_EditorClassIdentifier: Main::DarkLordGame.EffectAttack
+  effectName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  effectDetails:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  effectTiming: 0
+  attackPrefab: c546d6d1ddbab4c4dabc7b4c7687f39d
+  attackRequestData:
+    belongToLayer: 1
+    hitLayer: 8
+    bonusDamage: 10
+    attackDamageMultipler: 0
+    aoeRange: 0
+    aoeDamageRate: 0
+    extraCritDamage: 0
+    extracriticalChance: 0
+    attackProperty: 0
+    propertyValue: 0
+    extraSplit: 0
+    splitAngle: 0
+    loopCast: 0
+    loopCasted: 0
+    loopCastInterval: 0
+    loopTimeCount: 0
+    extraBounce: 0
+    position:
+      x: 0
+      y: 0
+      z: 0
+    rotation:
+      value:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+    extraLifeTime: 0
+    bounce: 0
+    chainAttack: 0
+  references:
+    version: 2
+    RefIds: []

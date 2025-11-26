@@ -39,5 +39,6 @@ namespace DarkLordGame
     {
         //must contain spawner component
         public Entity entity;
+        public bool inheritRotation;
     }
 }

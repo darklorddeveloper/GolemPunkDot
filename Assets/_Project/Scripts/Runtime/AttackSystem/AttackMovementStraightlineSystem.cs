@@ -43,10 +43,11 @@ namespace DarkLordGame
                 transform.Position = hit.Position + math.reflect(forward, hit.SurfaceNormal) * straightLine.offsetFromWall;
                 transform.Rotation = quaternion.LookRotation(hit.SurfaceNormal, new float3(0, 1, 0));
                 var e = ecb.Instantiate(chunk, hitEffect.entity);
+                var rot = hitEffect.inheritRotation ? transform.Rotation : quaternion.identity;
                 ecb.SetComponent(chunk, e, new LocalTransform
                 {
                     Position = hit.Position,
-                    Rotation = transform.Rotation,
+                    Rotation = rot,
                     Scale = attack.aoeRange > 1 ? attack.aoeRange : 1.0f
                 });
 
