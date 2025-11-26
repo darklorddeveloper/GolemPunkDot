@@ -57,7 +57,7 @@ namespace DarkLordGame
                 if (attack.aoeRange <= 1.0f)
                 {
                     var damage = ecb.CreateEntity(chunk, damageArchetype);
-                    ecb.SetComponent(chunk, damage, new Damage { attack = attack, target = hit.Entity });
+                    ecb.SetComponent(chunk, damage, new Damage { damagePosition = pos, attack = attack, target = hit.Entity });
                 }
                 else
                 {
@@ -93,7 +93,7 @@ namespace DarkLordGame
 
         public void OnUpdate(ref SystemState state)
         {
-            var ecb = new EntityCommandBuffer(Allocator.Temp);
+            var ecb = new EntityCommandBuffer(Allocator.TempJob);
             float deltaTime = SystemAPI.Time.DeltaTime;
             var physics = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
             var cw = physics.CollisionWorld; // a value type, safe to capture

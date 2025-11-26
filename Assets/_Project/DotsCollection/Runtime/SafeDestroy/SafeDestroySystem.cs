@@ -101,6 +101,7 @@ namespace DarkLordGame
             }
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
+            destroyImmediates.Dispose();
         }
 
         static void DestroyRecursive(EntityCommandBuffer ecb, EntityManager em, Entity e)

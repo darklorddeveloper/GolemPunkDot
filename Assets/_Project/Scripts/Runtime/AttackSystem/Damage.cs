@@ -8,6 +8,7 @@ namespace DarkLordGame
     {
         public Entity target;
         public Attack attack;
+        public float3 damagePosition;
     }
 
     public struct AoeDamage : IComponentData

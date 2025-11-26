@@ -91,7 +91,7 @@ MonoBehaviour:
     movementSpeed: 10
     currentSpeed: 0
     accereration: 0
-    canTurnOnlyWhileMoving: 1
+    canTurnOnlyWhileMoving: 0
     turnSpeed: 1000
     size: 1
     castOffset: 0
