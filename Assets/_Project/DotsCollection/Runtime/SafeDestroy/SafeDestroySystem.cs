@@ -13,12 +13,13 @@ namespace DarkLordGame
     {
         public float deltaTime;
         public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunk, Entity e, ref SafeDestroyComponent component)
+        public void Execute([ChunkIndexInQuery] int chunk, Entity e, ref SafeDestroyComponent component, EnabledRefRW<SafeDestroyComponent> enableSafeDestroy)
         {
             component.period -= deltaTime;
             if (component.period <= 0)
             {
                 ecb.SetComponentEnabled<DestroyImmediate>(chunk, e, true);
+                enableSafeDestroy.ValueRW = false;
             }
         }
     }
