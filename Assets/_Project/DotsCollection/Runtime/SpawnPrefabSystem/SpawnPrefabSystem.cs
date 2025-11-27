@@ -18,9 +18,9 @@ namespace DarkLordGame
         {
             foreach (var (setupPool, prefabPool, map, entity) in SystemAPI.Query<SetupPool, DynamicBuffer<PrefabPool>, PoolMap>().WithEntityAccess())
             {
+                map.prefabMaps = new Dictionary<Unity.Entities.Hash128, int>();
                 for (int i = 0, length = prefabPool.Length; i < length; i++)
                 {
-                    map.prefabMaps = new Dictionary<Unity.Entities.Hash128, int>();
                     if (map.prefabMaps.ContainsKey(prefabPool[i].hash)) continue;
                     map.prefabMaps[prefabPool[i].hash] = i;
                 }

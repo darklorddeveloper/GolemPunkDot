@@ -20,7 +20,8 @@ namespace DarkLordGame
         private void OnGolemAttack(Entity attacker, string prefabPath, AttackRequestData data)
         {
             Entity prefab = SpawnPrefabSystem.GetPrefab(prefabPath);
-
+// Debug.Log("path " + prefabPath + " " + (prefab == Entity.Null));
+// return;
             data.attacker = attacker;
             data.prefab = prefab;
             var golem = EntityManager.GetComponentObject<GolemEntity>(attacker).golem;
