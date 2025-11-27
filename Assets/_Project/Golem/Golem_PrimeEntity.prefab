@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8818217638626796749}
   - component: {fileID: 8831691265261923697}
   - component: {fileID: 7052865018830192994}
+  - component: {fileID: 6211343010587168179}
   m_Layer: 0
   m_Name: Golem_PrimeEntity
   m_TagString: Untagged
@@ -141,3 +142,37 @@ MonoBehaviour:
   shouldDestroyFromStart: 0
   period: 0
   destroyChild: 1
+--- !u!114 &6211343010587168179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476147893443169591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ed269e83c34d12a94e8e99eb56243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameBakers::DarkLordGame.UnitAuthoring
+  flags: 0
+  data1:
+    HP: 0
+    MaxHP: 0
+    bonusMaxHP: 0
+    shield: 0
+    tempShield: 0
+    attack: 0
+    tempAttack: 0
+    tempAttackMultiplier: 0
+    criticalChance: 0
+    tempCriticalChance: 0
+    criitcalDamage: 0
+    tempCriticalDamage: 0
+    bonusAoeDamageRate: 0
+    bonusAoeDamageTempDamageRate: 0
+    bonusAoeRange: 0
+    movementSpeed: 0
+    tempMovementSpeed: 0
+    cooldownSpeed: 0
+    tempCooldownSpeed: 0
+  deathEffect: {fileID: 0}

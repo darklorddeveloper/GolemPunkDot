@@ -30,6 +30,7 @@ namespace DarkLordGame
             manager.AddComponent(entity, typeset);
             manager.AddComponent(entity, typeset2);
 
+
             manager.SetComponentData(entity, new TransformSync { targetTransform = golem.transform });
             manager.SetComponentData(entity, new HybridAnimation { animator = anim });
             manager.SetComponentData(entity, new PlayHybridAnimation());

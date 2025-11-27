@@ -10,8 +10,7 @@ namespace DarkLordGame
         public AttackRequestData attackRequestData;
         public override void OnActivate(Entity activator, EntityManager entityManager)
         {
-            Entity prefab = SpawnPrefabSystem.GetPrefab(attackPrefab);
-            GolemAttackSystem.onGolemAttack(activator, prefab, attackRequestData);
+            GolemAttackSystem.onGolemAttack(activator, attackPrefab, attackRequestData);
         }
     }
 }

@@ -19,7 +19,6 @@ namespace DarkLordGame
             {
                 var attackRequest = attackRequestRW.ValueRO;
                 attackRequestRW.ValueRW.loopTimeCount += deltaTime;
-
                 if (attackRequest.loopCasted >= 1 && attackRequest.loopTimeCount < attackRequest.loopCastInterval)
                 {
                     continue;
