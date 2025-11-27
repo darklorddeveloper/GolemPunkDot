@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17c216fde22b4e11b0331857f9d4691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Bakers::DarkLordGame.SpawnerAuthoring
-  flags: 0
+  flags: 2
 --- !u!114 &-3734934463046725391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e139b88e84ad3481ab6b715acef9617b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameBakers::DarkLordGame.AttackMovementStraightlineAuthoring
-  flags: 0
+  flags: 2
   data1:
     belongToLayer: 0
     hitLayer: 0
@@ -91,10 +91,10 @@ MonoBehaviour:
   data2:
     offsetFromWall: 0
   data3:
-    value: 0
-    multiplier: 0
+    value: 4
+    multiplier: 1
   data4:
-    inheritRotation: 0
+    inheritRotation: 1
 --- !u!1001 &9087501125886308595
 PrefabInstance:
   m_ObjectHideFlags: 0

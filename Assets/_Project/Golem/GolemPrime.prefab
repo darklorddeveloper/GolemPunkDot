@@ -186,6 +186,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3534408319523434655}
+  - {fileID: 6888387621830908797}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &472062727294222745
@@ -212,10 +213,14 @@ MonoBehaviour:
     transform: {fileID: 2864371937328719178}
   - point: 1
     transform: {fileID: 1385323577489330540}
+  - point: 5
+    transform: {fileID: 6888387621830908797}
   activatingPart: {fileID: 0}
   previousActivatedPart: {fileID: 0}
   currentChargeRate: 0
   currentRequestData:
+    belongToLayer: 0
+    hitLayer: 0
     bonusDamage: 0
     attackDamageMultipler: 0
     aoeRange: 0
@@ -687,6 +692,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 664041249677005910}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3986447405149576488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6888387621830908797}
+  m_Layer: 0
+  m_Name: AttackForwardPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6888387621830908797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986447405149576488}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4413712762268091640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4041171155330064164
 GameObject:

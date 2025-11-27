@@ -8,7 +8,7 @@ namespace DarkLordGame
     //Enemy global stats increase in spawn time. No affect in runtime only player units are complex
     public partial class GolemAttackSystem : SystemBase
     {
-        public static Action<Entity, string, AttackRequestData> onGolemAttack;
+        public static Action<Entity, string, GolemAttachPoint, AttackRequestData> onGolemAttack;
 
         protected override void OnCreate()
         {
@@ -17,14 +17,17 @@ namespace DarkLordGame
             Enabled = false;
         }
 
-        private void OnGolemAttack(Entity attacker, string prefabPath, AttackRequestData data)
+        private void OnGolemAttack(Entity attacker, string prefabPath, GolemAttachPoint attachPoint, AttackRequestData data)
         {
             Entity prefab = SpawnPrefabSystem.GetPrefab(prefabPath);
-// Debug.Log("path " + prefabPath + " " + (prefab == Entity.Null));
-// return;
+
             data.attacker = attacker;
             data.prefab = prefab;
+            // data.position = 
             var golem = EntityManager.GetComponentObject<GolemEntity>(attacker).golem;
+            var point =  golem.GetAttachPoint(GolemAttachPoint.AttackForwardPoint);
+            data.position = point.position;
+            data.rotation = point.rotation;
             golem.currentRequestData = data;
             if (golem.activatingPart != null) //normally not null
             {

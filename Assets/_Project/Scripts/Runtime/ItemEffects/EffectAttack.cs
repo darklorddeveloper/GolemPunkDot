@@ -7,10 +7,11 @@ namespace DarkLordGame
     public class EffectAttack : EffectBase
     {
         [GUID] public string attackPrefab;
+        public GolemAttachPoint attachPoint = GolemAttachPoint.AttackForwardPoint;
         public AttackRequestData attackRequestData;
         public override void OnActivate(Entity activator, EntityManager entityManager)
         {
-            GolemAttackSystem.onGolemAttack(activator, attackPrefab, attackRequestData);
+            GolemAttackSystem.onGolemAttack(activator, attackPrefab, attachPoint, attackRequestData);
         }
     }
 }

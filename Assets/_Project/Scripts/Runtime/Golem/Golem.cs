@@ -37,7 +37,7 @@ namespace DarkLordGame
             }
         }
 
-        private Transform GetAttachPoint(GolemAttachPoint point)
+        public Transform GetAttachPoint(GolemAttachPoint point)
         {
             for (int i = 0, length = allAttachPoints.Count; i < length; i++)
             {

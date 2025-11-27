@@ -10,6 +10,8 @@ namespace DarkLordGame
         Weapon,
         WeaponL,
         WeaponR,
+        
+        AttackForwardPoint,
 
     }
 }

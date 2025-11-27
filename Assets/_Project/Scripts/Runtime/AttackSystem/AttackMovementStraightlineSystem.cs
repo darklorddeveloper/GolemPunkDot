@@ -17,12 +17,13 @@ namespace DarkLordGame
         public EntityArchetype damageArchetype;
         public EntityArchetype aoeArchetype;
         public void Execute([ChunkIndexInQuery] int chunk,
-        ref Attack attack,
         in HitEffect hitEffect,
         in AttackMovementStraightline straightLine,
         in MovementSpeed movementSpeed,
-        ref LocalTransform transform,
-        in Spawner spawner)
+        in Spawner spawner,
+        ref Attack attack,
+        ref LocalTransform transform
+        )
         {
             var pos = transform.Position;
             var forward = transform.Forward();
@@ -50,8 +51,8 @@ namespace DarkLordGame
                     Rotation = rot,
                     Scale = attack.aoeRange > 1 ? attack.aoeRange : 1.0f
                 });
-
-                ecb.SetComponent(chunk, e, new Spawner { spawner = spawner.spawner });
+                // if (spawner.spawner != Entity.Null)
+                //     ecb.SetComponent(chunk, e, spawner);
 
                 //create damage entity. --- if no aoe just damage
                 if (attack.aoeRange <= 1.0f)
@@ -78,6 +79,7 @@ namespace DarkLordGame
         }
     }
     [BurstCompile]
+    [UpdateAfter(typeof(AttackSystem))]
     public partial struct AttackMovementStraightlineSystem : ISystem
     {
         private EntityArchetype damageArchetype;
@@ -103,7 +105,8 @@ namespace DarkLordGame
                 deltaTime = deltaTime,
                 CollisionWorld = cw
             };
-            job.ScheduleParallel();
+            var handle = job.ScheduleParallel(state.Dependency);
+            handle.Complete();
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
         }
