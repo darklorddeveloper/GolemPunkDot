@@ -68,6 +68,7 @@ namespace DarkLordGame
             attackRequest.loopCasted++;
             if (attackRequest.loopCasted >= attackRequest.loopCast)
             {
+                attackRequest.loopCasted = 0;
                 ecb.SetComponentEnabled<AttackRequestData>(chunk, entity, false);
             }
         }
@@ -78,17 +79,15 @@ namespace DarkLordGame
     {
         public void OnUpdate(ref SystemState state)
         {
-            var ecb = new EntityCommandBuffer(Allocator.TempJob);
+            var ecbSystem = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+            var ecb = ecbSystem.CreateCommandBuffer(state.WorldUnmanaged);
             float deltaTime = SystemAPI.Time.DeltaTime;
             var job = new AttackJob
             {
                 ecb = ecb.AsParallelWriter(),
                 deltaTime = deltaTime
             };
-            var handle = job.ScheduleParallel(state.Dependency);
-            handle.Complete();
-            ecb.Playback(state.EntityManager);
-            ecb.Dispose();
+            job.ScheduleParallel();
         }
     }
 }

@@ -53,7 +53,6 @@ namespace DarkLordGame
                 });
                 // if (spawner.spawner != Entity.Null)
                 //     ecb.SetComponent(chunk, e, spawner);
-
                 //create damage entity. --- if no aoe just damage
                 if (attack.aoeRange <= 1.0f)
                 {
@@ -74,6 +73,7 @@ namespace DarkLordGame
             else
             {
                 transform.Position = target;
+                Debug.DrawLine(target, target + new float3(0, 4, 0), Color.red);
             }
 
         }

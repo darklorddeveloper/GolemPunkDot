@@ -60,8 +60,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79bd71c3ac82c4c36821f6ebf42c67e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Bakers::DarkLordGame.SafeDestroyAuthoring
-  shouldDestroyFromStart: 0
-  period: 0
+  shouldDestroyFromStart: 1
+  period: 0.5
   destroyChild: 1
 --- !u!114 &3543921140216588826
 MonoBehaviour:
@@ -91,10 +91,11 @@ MonoBehaviour:
   data2:
     offsetFromWall: 0
   data3:
-    value: 4
+    value: 10
     multiplier: 1
   data4:
     inheritRotation: 1
+  hitEffect: {fileID: 0}
 --- !u!1001 &9087501125886308595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -205,7 +206,7 @@ MonoBehaviour:
   enabledByDefault: 1
   shouldDestroyFromStart: 1
   fixedLifeTimeWhenUsedInfiniteLoop: 5
-  doNotDestroy: 0
+  doNotDestroy: 1
   destroyChildParticle: 0
 --- !u!114 &1385280243305234654
 MonoBehaviour:
@@ -240,9 +241,9 @@ MonoBehaviour:
     ctime6: 0
     ctime7: 0
     atime0: 0
-    atime1: 5783
-    atime2: 57825
-    atime3: 65535
+    atime1: 17733
+    atime2: 65535
+    atime3: 0
     atime4: 0
     atime5: 0
     atime6: 0
@@ -250,7 +251,7 @@ MonoBehaviour:
     m_Mode: 0
     m_ColorSpace: -1
     m_NumColorKeys: 2
-    m_NumAlphaKeys: 4
+    m_NumAlphaKeys: 3
 --- !u!4 &8761739181481727768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4f81595c8fc034e38b9a2de4a7a83b83, type: 3}
