@@ -77,8 +77,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: GameBakers::DarkLordGame.AttackMovementStraightlineAuthoring
   flags: 2
   data1:
-    belongToLayer: 0
-    hitLayer: 0
+    belongToLayer: 512
+    hitLayer: 256
     damage: 0
     aoeRange: 0
     aoeDamage: 0
@@ -89,13 +89,13 @@ MonoBehaviour:
     bounce: 0
     chainAttack: 0
   data2:
-    offsetFromWall: 0
+    offsetFromWall: 0.2
   data3:
     value: 10
     multiplier: 1
   data4:
-    inheritRotation: 1
-  hitEffect: {fileID: 0}
+    inheritRotation: 0
+  hitEffect: {fileID: 6923455519616429878, guid: 2952de413f30042c0966d487c6e9ef5a, type: 3}
 --- !u!1001 &9087501125886308595
 PrefabInstance:
   m_ObjectHideFlags: 0

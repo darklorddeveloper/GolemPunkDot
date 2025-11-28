@@ -6,6 +6,7 @@ namespace DarkLordGame
     [System.Serializable]
     public struct Unit : IComponentData
     {
+        public bool canDeath;
         public float HP;
         public float MaxHP;
         public float bonusMaxHP;

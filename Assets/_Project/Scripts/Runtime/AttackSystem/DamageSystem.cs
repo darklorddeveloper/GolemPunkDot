@@ -6,52 +6,43 @@ namespace DarkLordGame
 {
     public partial struct DamageJob : IJobEntity
     {
-        public ComponentLookup<Death> deathLookup;
-        public ComponentLookup<Unit> unitLookup;
         public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunk, in Damage damage)
+        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref Unit unit, ref Damage damage, EnabledRefRW<Damage> damageEnable)
         {
-            if (unitLookup.HasComponent(damage.target))
+            float dealtDamage = damage.attack.damage;
+            float shiled = unit.shield;
+            unit.shield -= dealtDamage;
+            dealtDamage = unit.shield > 0 ? 0 : (dealtDamage - shiled);
+            unit.HP -= dealtDamage;
+            if (unit.HP <= 0)
             {
-                var unit = unitLookup.GetRefRW(damage.target);
-                float dealtDamage = damage.attack.damage;
-                float shiled = unit.ValueRW.shield;
-                unit.ValueRW.shield -= dealtDamage;
-                dealtDamage = unit.ValueRW.shield > 0 ? 0 : (dealtDamage - shiled);
-                unit.ValueRW.HP -= dealtDamage;
-                if (unit.ValueRW.HP <= 0)
+                if (unit.canDeath)
                 {
-                    if (deathLookup.HasComponent(damage.target))
-                    {
-                        ecb.SetComponentEnabled<Death>(chunk, damage.target, true);
-                    }
+                    ecb.SetComponentEnabled<Death>(chunk, entity, true);
+                }
+                else
+                {
+                    unit.HP = unit.MaxHP;
                 }
             }
+            damageEnable.ValueRW = false;
         }
     }
     public partial struct DamageSystem : ISystem
     {
         public EntityQuery entityQuery;
-        private ComponentLookup<Unit> unitLookup;
-        private ComponentLookup<Death> deathLookup;
         public void OnCreate(ref SystemState state)
         {
-            unitLookup = state.GetComponentLookup<Unit>();
-            deathLookup = state.GetComponentLookup<Death>();
             entityQuery = SystemAPI.QueryBuilder().WithAll<Damage>().Build();
 
             state.RequireForUpdate<Damage>();
         }
         public void OnUpdate(ref SystemState state)
         {
-            deathLookup.Update(ref state);
-            unitLookup.Update(ref state);
 
             var ecb = new EntityCommandBuffer(Allocator.TempJob);
             var job = new DamageJob
             {
-                deathLookup = deathLookup,
-                unitLookup = unitLookup,
                 ecb = ecb.AsParallelWriter(),
             };
             job.ScheduleParallel();

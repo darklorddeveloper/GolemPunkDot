@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Unit
+  - UI3D
   - Water
   - UI
   - Obstacle
   - Interactable
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 

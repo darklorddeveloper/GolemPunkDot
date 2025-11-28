@@ -32,11 +32,12 @@ MonoBehaviour:
     m_LocalVariables: []
   effectTiming: 0
   attackPrefab: c546d6d1ddbab4c4dabc7b4c7687f39d
+  attachPoint: 5
   attackRequestData:
-    belongToLayer: 1
-    hitLayer: 8
+    belongToLayer: 512
+    hitLayer: 256
     bonusDamage: 10
-    attackDamageMultipler: 0
+    attackDamageMultipler: 1
     aoeRange: 0
     aoeDamageRate: 0
     extraCritDamage: 0

@@ -38,8 +38,8 @@ namespace DarkLordGame
         //attack movement stat
         [Header("Movement aspect")]
         public float extraLifeTime;
-        public float bounce;
-        public float chainAttack;
+        public int bounce;
+        public int chainAttack;
     }
 
     [System.Serializable]

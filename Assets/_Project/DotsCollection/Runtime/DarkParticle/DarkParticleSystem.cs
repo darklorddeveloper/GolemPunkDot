@@ -142,7 +142,7 @@ namespace DarkLordGame
             setupStartPosJob.ScheduleParallel();
 
             var sizeJob = new ParticleSizeOverTimeJob();
-            sizeJob.ScheduleParallel(state.Dependency);
+            sizeJob.ScheduleParallel();
 
             var rotationJob = new ParticleRotationOverTimeJob();
             rotationJob.ScheduleParallel();

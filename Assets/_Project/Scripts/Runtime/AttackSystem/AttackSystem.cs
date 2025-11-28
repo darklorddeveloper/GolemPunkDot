@@ -26,6 +26,8 @@ namespace DarkLordGame
             float critChance = unit.criticalChance + unit.tempCriticalChance;
             var attack = new Attack
             {
+                belongToLayer = attackRequest.belongToLayer,
+                hitLayer = attackRequest.hitLayer,
                 damage = baseDamage,
                 attackProperty = attackRequest.attackProperty,
                 propertyValue = attackRequest.propertyValue,
@@ -33,6 +35,9 @@ namespace DarkLordGame
                 aoeRange = unit.bonusAoeRange + attackRequest.aoeRange,
                 criticalDamage = critDamage + attackRequest.extraCritDamage,
                 criticalChance = critChance + attackRequest.extracriticalChance,
+                //movement
+                bounce = attackRequest.bounce,
+                chainAttack = attackRequest.chainAttack,
             };
 
             var rot = attackRequest.rotation;

@@ -33,18 +33,21 @@ namespace DarkLordGame
                 });
                 if (hits.Length > 0)
                 {
-                    NativeArray<Entity> damageEntities = new NativeArray<Entity>(hits.Length, Allocator.Temp);
-                    state.EntityManager.CreateEntity(damageArchetype, damageEntities);
-                    for (int j = 0, numbers = damageEntities.Length; j < numbers; j++)
+                    // NativeArray<Entity> damageEntities = new NativeArray<Entity>(hits.Length, Allocator.Temp);
+                    // state.EntityManager.CreateEntity(damageArchetype, damageEntities);
+                    for (int j = 0, numbers = hits.Length; j < numbers; j++)
                     {
-                        state.EntityManager.SetComponentData(damageEntities[i], new Damage
+                        var e = hits[i].Entity;
+                        if (state.EntityManager.HasComponent<Damage>(e))
                         {
-                            target = hits[i].Entity,
-                            attack = attack,
-                            damagePosition = components[i].position
-                        });
+                            state.EntityManager.SetComponentData(e, new Damage
+                            {
+                                attack = attack,
+                                damagePosition = components[i].position
+                            });
+                            state.EntityManager.SetComponentEnabled<Damage>(e, true);
+                        }
                     }
-                    damageEntities.Dispose();
                 }
                 hits.Dispose();
             }

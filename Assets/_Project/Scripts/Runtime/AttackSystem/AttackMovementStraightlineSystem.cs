@@ -51,13 +51,10 @@ namespace DarkLordGame
                     Rotation = rot,
                     Scale = attack.aoeRange > 1 ? attack.aoeRange : 1.0f
                 });
-                // if (spawner.spawner != Entity.Null)
-                //     ecb.SetComponent(chunk, e, spawner);
-                //create damage entity. --- if no aoe just damage
                 if (attack.aoeRange <= 1.0f)
                 {
-                    var damage = ecb.CreateEntity(chunk, damageArchetype);
-                    ecb.SetComponent(chunk, damage, new Damage { damagePosition = pos, attack = attack, target = hit.Entity });
+                    ecb.SetComponent(chunk, hit.Entity, new Damage { damagePosition = pos, attack = attack });
+                    ecb.SetComponentEnabled<Damage>(chunk, hit.Entity, true);
                 }
                 else
                 {
@@ -73,7 +70,6 @@ namespace DarkLordGame
             else
             {
                 transform.Position = target;
-                Debug.DrawLine(target, target + new float3(0, 4, 0), Color.red);
             }
 
         }
@@ -93,7 +89,8 @@ namespace DarkLordGame
 
         public void OnUpdate(ref SystemState state)
         {
-            var ecb = new EntityCommandBuffer(Allocator.TempJob);
+            var ecbSystem = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+            var ecb = ecbSystem.CreateCommandBuffer(state.WorldUnmanaged);
             float deltaTime = SystemAPI.Time.DeltaTime;
             var physics = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
             var cw = physics.CollisionWorld; // a value type, safe to capture
@@ -105,10 +102,7 @@ namespace DarkLordGame
                 deltaTime = deltaTime,
                 CollisionWorld = cw
             };
-            var handle = job.ScheduleParallel(state.Dependency);
-            handle.Complete();
-            ecb.Playback(state.EntityManager);
-            ecb.Dispose();
+            job.ScheduleParallel();
         }
     }
 }

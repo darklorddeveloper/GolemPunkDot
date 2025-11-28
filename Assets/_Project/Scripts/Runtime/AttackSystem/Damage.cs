@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
-    public struct Damage : IComponentData
+    public struct Damage : IComponentData, IEnableableComponent
     {
-        public Entity target;
         public Attack attack;
         public float3 damagePosition;
     }
