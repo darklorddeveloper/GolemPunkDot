@@ -6,6 +6,7 @@ using UnityEngine;
 namespace DarkLordGame
 {
     [UpdateAfter(typeof(TopdownPlayerInputSystem))]
+    [UpdateAfter(typeof(SetupClassSystem))]
     public partial class GolemActionSystem : SystemBase
     {
         private static int locomotionName = Animator.StringToHash("Locomotion");

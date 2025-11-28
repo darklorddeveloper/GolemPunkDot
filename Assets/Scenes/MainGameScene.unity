@@ -607,7 +607,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adf9de1b4754e478d8ef10822d224fe0, type: 3}
---- !u!1001 &1438109826
+--- !u!1001 &1370500746
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -617,15 +617,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3709785355361837635, guid: 56f4fa8ab558d4a0aa471c92a5178110, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.86883
+      value: 3.32091
       objectReference: {fileID: 0}
     - target: {fileID: 3709785355361837635, guid: 56f4fa8ab558d4a0aa471c92a5178110, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.98504
+      value: 3.20291
       objectReference: {fileID: 0}
     - target: {fileID: 3709785355361837635, guid: 56f4fa8ab558d4a0aa471c92a5178110, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.8464
+      value: 69.63238
       objectReference: {fileID: 0}
     - target: {fileID: 3709785355361837635, guid: 56f4fa8ab558d4a0aa471c92a5178110, type: 3}
       propertyPath: m_LocalRotation.w
@@ -657,7 +657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5476147893443169591, guid: 56f4fa8ab558d4a0aa471c92a5178110, type: 3}
       propertyPath: m_Name
-      value: Golem_PrimeEntity
+      value: Golem_PrimeEntity (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -975,11 +975,11 @@ SceneRoots:
   m_Roots:
   - {fileID: 832575519}
   - {fileID: 1784088147}
+  - {fileID: 1370500746}
   - {fileID: 1570860280}
   - {fileID: 1118057113}
   - {fileID: 182417445}
   - {fileID: 2099625656}
   - {fileID: 2049672825}
   - {fileID: 1146002218}
-  - {fileID: 1438109826}
   - {fileID: 1231668808}

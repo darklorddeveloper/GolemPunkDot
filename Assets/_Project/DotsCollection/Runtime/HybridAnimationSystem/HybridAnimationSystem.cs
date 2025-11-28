@@ -3,6 +3,7 @@ using Unity.Collections;
 using Unity.Entities;
 namespace DarkLordGame
 {
+    [UpdateAfter(typeof(SetupClassSystem))]
     public partial class HybridAnimationSystem : SystemBase
     {
         protected override void OnUpdate()

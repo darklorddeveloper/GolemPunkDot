@@ -403,6 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97fd7b749da644cb395f2a8869186e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Bakers::DarkLordGame.InputAssetAuthoring
+  addSetupClassComponent: 1
   flags: 0
   data1:
     initialized: 0
@@ -475,6 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213539ca208c849e7ad39fcad6cb0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Bakers::DarkLordGame.MainCameraAuthoring
+  addSetupClassComponent: 1
   flags: 0
   data1:
     initialized: 0
@@ -628,6 +630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e6a60b96f414e629d0210c473971e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.ReferenceAnchorAuthoring
+  addSetupClassComponent: 1
   flags: 0
   data1:
     initialized: 0

@@ -9,11 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3709785355361837635}
+  - component: {fileID: 2129436609086314334}
   - component: {fileID: 2990313784155266086}
   - component: {fileID: 8818217638626796749}
   - component: {fileID: 8831691265261923697}
   - component: {fileID: 7052865018830192994}
   - component: {fileID: 6211343010587168179}
+  - component: {fileID: 3280195084012512131}
   m_Layer: 0
   m_Name: Golem_PrimeEntity
   m_TagString: Untagged
@@ -36,6 +38,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2129436609086314334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476147893443169591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e4a533eb9f4de4b4c76910fc4fae1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.SetupHybridAnimationAuthoring
+  addSetupClassComponent: 1
+  flags: 2
+  data1:
+    initialized: 0
+    prefab: {fileID: 1030165252173676515, guid: 55111586e560548d2af1761e99734a9f, type: 3}
+  hasLocomotion: 1
+  lerpSpeed: 10
 --- !u!114 &2990313784155266086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,10 +69,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42551e7bfed7b49669a05bcd7f070084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Main::DarkLordGame.GolemEntityAuthoring
+  addSetupClassComponent: 0
   flags: 0
   data1:
     initialized: 0
-    golem: {fileID: 472062727294222745, guid: 55111586e560548d2af1761e99734a9f, type: 3}
 --- !u!114 &8818217638626796749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,4 +196,49 @@ MonoBehaviour:
     tempMovementSpeed: 0
     cooldownSpeed: 0
     tempCooldownSpeed: 0
+  canDeath: 1
   deathEffect: {fileID: 0}
+--- !u!114 &3280195084012512131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476147893443169591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c22e4bcb1f844afa7c1f89373e0fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameBakers::DarkLordGame.AttackRequestDataAuthoring
+  flags: 0
+  data1:
+    belongToLayer: 0
+    hitLayer: 0
+    bonusDamage: 0
+    attackDamageMultipler: 0
+    aoeRange: 0
+    aoeDamageRate: 0
+    extraCritDamage: 0
+    extracriticalChance: 0
+    attackProperty: 0
+    propertyValue: 0
+    extraSplit: 0
+    splitAngle: 0
+    loopCast: 0
+    loopCasted: 0
+    loopCastInterval: 0
+    loopTimeCount: 0
+    extraBounce: 0
+    position:
+      x: 0
+      y: 0
+      z: 0
+    rotation:
+      value:
+        x: 0
+        y: 0
+        z: 0
+        w: 0
+    extraLifeTime: 0
+    bounce: 0
+    chainAttack: 0

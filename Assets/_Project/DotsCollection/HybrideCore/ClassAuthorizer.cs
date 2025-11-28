@@ -6,6 +6,8 @@ namespace DarkLordGame
 
     public class ClassAuthorizer<T1> : MonoBehaviour where T1 : ClassComponentData, IComponentData, new()
     {
+        [Header("Must enabledOnly once incase add multiple class baker")]
+        public bool addSetupClassComponent = true;
         public TransformUsageFlags flags = TransformUsageFlags.None;
         public T1 data1;
 
@@ -19,8 +21,8 @@ namespace DarkLordGame
         {
             var e = GetEntity(authoring.flags);
             AddComponentObject(e, authoring.data1);
-            AddComponent(e, new SetupClassComponent());
-
+            if (authoring.addSetupClassComponent)
+                AddComponent(e, new SetupClassComponent());
         }
     }
 
@@ -28,6 +30,8 @@ namespace DarkLordGame
     where T1 : ClassComponentData, IComponentData, new()
     where T2 : ClassComponentData, IComponentData, new()
     {
+        [Header("Must enabledOnly once incase add multiple class baker")]
+        public bool addSetupClassComponent = true;
         public TransformUsageFlags flags = TransformUsageFlags.None;
         public T1 data1;
         public T2 data2;
@@ -44,7 +48,8 @@ namespace DarkLordGame
             var e = GetEntity(authoring.flags);
             AddComponentObject(e, authoring.data1);
             AddComponentObject(e, authoring.data2);
-            AddComponent(e, new SetupClassComponent());
+            if (authoring.addSetupClassComponent)
+                AddComponent(e, new SetupClassComponent());
         }
     }
 
@@ -54,6 +59,8 @@ namespace DarkLordGame
     where T2 : ClassComponentData, IComponentData, new()
     where T3 : ClassComponentData, IComponentData, new()
     {
+        [Header("Must enabledOnly once incase add multiple class baker")]
+        public bool addSetupClassComponent = true;
         public TransformUsageFlags flags = TransformUsageFlags.None;
         public T1 data1;
         public T2 data2;
@@ -73,7 +80,8 @@ namespace DarkLordGame
             AddComponentObject(e, authoring.data1);
             AddComponentObject(e, authoring.data2);
             AddComponentObject(e, authoring.data3);
-            AddComponent(e, new SetupClassComponent());
+            if (authoring.addSetupClassComponent)
+                AddComponent(e, new SetupClassComponent());
         }
     }
 
@@ -83,6 +91,8 @@ namespace DarkLordGame
      where T3 : ClassComponentData, IComponentData, new()
      where T4 : ClassComponentData, IComponentData, new()
     {
+        [Header("Must enabledOnly once incase add multiple class baker")]
+        public bool addSetupClassComponent = true;
         public TransformUsageFlags flags = TransformUsageFlags.None;
         public T1 data1;
         public T2 data2;
@@ -105,7 +115,8 @@ namespace DarkLordGame
             AddComponentObject(e, authoring.data2);
             AddComponentObject(e, authoring.data3);
             AddComponentObject(e, authoring.data4);
-            AddComponent(e, new SetupClassComponent());
+            if (authoring.addSetupClassComponent)
+                AddComponent(e, new SetupClassComponent());
         }
     }
 
