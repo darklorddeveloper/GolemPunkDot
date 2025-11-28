@@ -49,7 +49,7 @@ MonoBehaviour:
   data1:
     isInfiniteLoop: 0
     loopCount: 0
-    lifeTime: 0.8
+    lifeTime: 0.4
     timeCount: 0
     currentRate: 0
   enabledByDefault: 1

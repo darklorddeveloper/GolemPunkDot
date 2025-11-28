@@ -23,8 +23,11 @@ namespace DarkLordGame
                 var col = new float4(authoring.testColor.r, authoring.testColor.g, authoring.testColor.b, authoring.testColor.a);
                 AddComponent(e, new ParticleColorOverTime
                 {
-                    Value = col,
                     data = blob
+                });
+                AddComponent(e, new ParticleColor
+                {
+                    Value = col,
                 });
             }
         }

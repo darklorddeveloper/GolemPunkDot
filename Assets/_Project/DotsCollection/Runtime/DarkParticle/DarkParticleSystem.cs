@@ -108,10 +108,10 @@ namespace DarkLordGame
     [BurstCompile]
     public partial struct ParticleColorOverTimeJob : IJobEntity
     {
-        public void Execute(in Particle particle, ref ParticleColorOverTime particleColorOverTime)
+        public void Execute(in Particle particle, in ParticleColorOverTime particleColorOverTime, ref ParticleColor color)
         {
             ref var curve = ref particleColorOverTime.data.Value;
-            particleColorOverTime.Value = curve.Evaluate(particle.currentRate);
+            color.Value = curve.Evaluate(particle.currentRate);
         }
     }
 
