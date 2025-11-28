@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
+    [UpdateAfter(typeof(SetupClassSystem))]
     public partial class HybridLocomotionSystem : SystemBase
     {
         public static int propertyX = Animator.StringToHash("Horizontal");
