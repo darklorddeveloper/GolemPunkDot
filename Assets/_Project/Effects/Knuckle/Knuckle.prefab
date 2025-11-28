@@ -204,7 +204,7 @@ MonoBehaviour:
     timeCount: 0
     currentRate: 0
   enabledByDefault: 1
-  shouldDestroyFromStart: 1
+  shouldDestroyFromStart: 0
   fixedLifeTimeWhenUsedInfiniteLoop: 5
   doNotDestroy: 1
   destroyChildParticle: 0

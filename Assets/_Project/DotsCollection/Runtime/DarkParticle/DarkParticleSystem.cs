@@ -14,6 +14,7 @@ namespace DarkLordGame
         public float deltaTime;
         public void Execute(EnabledRefRW<Particle> particleEnable, ref Particle particleLifeTime)
         {
+            particleLifeTime.timeCount += deltaTime;
             if (particleLifeTime.isInfiniteLoop)
             {
                 particleLifeTime.timeCount -= particleLifeTime.timeCount > particleLifeTime.lifeTime ? particleLifeTime.lifeTime : 0;
@@ -25,11 +26,12 @@ namespace DarkLordGame
                     particleLifeTime.loopCount--;
                     particleLifeTime.timeCount -= particleLifeTime.lifeTime;
                     if (particleLifeTime.loopCount <= 0)
+                    {
                         particleEnable.ValueRW = false;
-                    return;
+                        return;
+                    }
                 }
             }
-            particleLifeTime.timeCount += deltaTime;
             particleLifeTime.currentRate = math.clamp(particleLifeTime.timeCount / particleLifeTime.lifeTime, 0, 1);
         }
     }
