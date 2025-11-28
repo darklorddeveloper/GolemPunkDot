@@ -1,5 +1,6 @@
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace DarkLordGame
@@ -10,9 +11,10 @@ namespace DarkLordGame
         public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref Unit unit, ref Damage damage, EnabledRefRW<Damage> damageEnable)
         {
             float dealtDamage = damage.attack.damage;
-            float shiled = unit.shield;
+            float shield = unit.shield;
             unit.shield -= dealtDamage;
-            dealtDamage = unit.shield > 0 ? 0 : (dealtDamage - shiled);
+            unit.shield = math.max(0, unit.shield);
+            dealtDamage = unit.shield > 0 ? 0 : (dealtDamage - shield);
             unit.HP -= dealtDamage;
             if (unit.HP <= 0)
             {
