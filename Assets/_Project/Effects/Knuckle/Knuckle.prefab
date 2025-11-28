@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79bd71c3ac82c4c36821f6ebf42c67e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Bakers::DarkLordGame.SafeDestroyAuthoring
-  shouldDestroyFromStart: 1
+  shouldDestroyFromStart: 0
   period: 0.5
   destroyChild: 1
 --- !u!114 &3543921140216588826
