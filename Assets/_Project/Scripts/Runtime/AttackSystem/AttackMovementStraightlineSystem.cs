@@ -17,6 +17,7 @@ namespace DarkLordGame
         public EntityArchetype damageArchetype;
         public EntityArchetype aoeArchetype;
         public void Execute([ChunkIndexInQuery] int chunk,
+        Entity entity,
         in HitEffect hitEffect,
         in AttackMovementStraightline straightLine,
         in MovementSpeed movementSpeed,
@@ -43,17 +44,20 @@ namespace DarkLordGame
                 attack.bounce--;
                 transform.Position = hit.Position + math.reflect(forward, hit.SurfaceNormal) * straightLine.offsetFromWall;
                 transform.Rotation = quaternion.LookRotation(hit.SurfaceNormal, new float3(0, 1, 0));
-                var e = ecb.Instantiate(chunk, hitEffect.entity);
-                var rot = hitEffect.inheritRotation ? transform.Rotation : quaternion.identity;
-                ecb.SetComponent(chunk, e, new LocalTransform
+                if (hitEffect.entity != Entity.Null)
                 {
-                    Position = hit.Position,
-                    Rotation = rot,
-                    Scale = attack.aoeRange > 1 ? attack.aoeRange : 1.0f
-                });
+                    var e = ecb.Instantiate(chunk, hitEffect.entity);
+                    var rot = hitEffect.inheritRotation ? transform.Rotation : quaternion.identity;
+                    ecb.SetComponent(chunk, e, new LocalTransform
+                    {
+                        Position = hit.Position,
+                        Rotation = rot,
+                        Scale = attack.aoeRange > 1 ? attack.aoeRange : 1.0f
+                    });
+                }
                 if (attack.aoeRange <= 1.0f)
                 {
-                    ecb.SetComponent(chunk, hit.Entity, new Damage { damagePosition = pos, attack = attack });
+                    ecb.SetComponent(chunk, hit.Entity, new Damage { damagePosition = hit.Position, attack = attack });
                     ecb.SetComponentEnabled<Damage>(chunk, hit.Entity, true);
                 }
                 else
@@ -64,7 +68,7 @@ namespace DarkLordGame
                 }
                 if (attack.bounce <= 0)
                 {
-                    ecb.SetComponentEnabled<SafeDestroyComponent>(chunk, e, true);
+                    ecb.SetComponentEnabled<SafeDestroyComponent>(chunk, entity, true);
                 }
             }
             else
