@@ -3,9 +3,8 @@ using Unity.Rendering;
 
 namespace DarkLordGame
 {
-    
-    [MaterialProperty("_StartTime")]
-    public struct StartTime : IComponentData, IEnableableComponent
+    [MaterialProperty("_DamageTime")]
+    public struct DamageTime : IComponentData
     {
         public float Value;
     }
