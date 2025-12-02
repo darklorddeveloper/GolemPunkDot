@@ -1,11 +1,14 @@
 using System.Linq;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Physics;
+using Unity.Transforms;
 using UnityEngine;
 
 namespace DarkLordGame
 {
+
     public partial struct AoeDamageSystem : ISystem
     {
         public EntityQuery entityQuery;
@@ -37,7 +40,16 @@ namespace DarkLordGame
                     // state.EntityManager.CreateEntity(damageArchetype, damageEntities);
                     for (int j = 0, numbers = hits.Length; j < numbers; j++)
                     {
-                        var e = hits[i].Entity;
+                        var e = hits[j].Entity;
+                        if(attack.useLimitedAngle)
+                        {
+                            var dis = math.normalize(hits[j].Position - components[i].position);
+                            var dot = math.dot(dis, components[i].forward);
+                            if(dot < attack.limitedDot)
+                            {
+                                continue;
+                            }
+                        }
                         if (state.EntityManager.HasComponent<Damage>(e))
                         {
                             state.EntityManager.SetComponentData(e, new Damage

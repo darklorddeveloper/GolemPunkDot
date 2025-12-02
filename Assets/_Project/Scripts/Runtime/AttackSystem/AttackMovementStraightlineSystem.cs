@@ -63,7 +63,7 @@ namespace DarkLordGame
                 else
                 {
                     var damage = ecb.CreateEntity(chunk, aoeArchetype);
-                    ecb.SetComponent(chunk, damage, new AoeDamage { position = pos, attack = attack });
+                    ecb.SetComponent(chunk, damage, new AoeDamage { position = pos, forward = forward, attack = attack });
 
                 }
                 if (attack.bounce <= 0)

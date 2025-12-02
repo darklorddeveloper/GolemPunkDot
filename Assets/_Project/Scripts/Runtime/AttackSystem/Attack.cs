@@ -24,6 +24,8 @@ namespace DarkLordGame
         public float damage;
         public float aoeRange; //hit fx ----
         public float aoeDamage;
+        public bool useLimitedAngle;
+        public float limitedDot;
         public float criticalChance;
         public float criticalDamage;
         public AttackProperty attackProperty;

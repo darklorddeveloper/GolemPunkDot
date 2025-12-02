@@ -10,9 +10,10 @@ namespace DarkLordGame
         public float3 damagePosition;
     }
 
-    public struct AoeDamage : IComponentData
+    public struct AoeDamage : IComponentData, IEnableableComponent
     {
         public float3 position;
+        public float3 forward;
         public Attack attack;
     }
 }
