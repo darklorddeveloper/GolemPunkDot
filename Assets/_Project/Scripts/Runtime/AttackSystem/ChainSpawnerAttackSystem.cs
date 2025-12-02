@@ -10,12 +10,14 @@ namespace DarkLordGame
     {
         public ComponentLookup<Attack> attack;
         public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunkIndex, Entity e, in Spawner spawner, in ChainSpawnerAttack chainSpawnerAttack)
+        public void Execute([ChunkIndexInQuery] int chunkIndex, Entity e, in Spawner spawner, EnabledRefRW<ChainSpawnerAttack> chainSpawnerAttack)
         {
             if (attack.TryGetComponent(spawner.spawner, out var atk))
             {
                 ecb.SetComponent(chunkIndex, e, atk);
+                
             }
+            chainSpawnerAttack.ValueRW = false;
         }
     }
 
