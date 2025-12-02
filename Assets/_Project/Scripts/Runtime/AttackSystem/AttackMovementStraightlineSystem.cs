@@ -19,9 +19,11 @@ namespace DarkLordGame
         public void Execute([ChunkIndexInQuery] int chunk,
         Entity entity,
         in HitEffect hitEffect,
-        in AttackMovementStraightline straightLine,
+        ref AttackMovementStraightline straightLine,
+        EnabledRefRW<AttackMovementStraightline> enableStraightline,
         in MovementSpeed movementSpeed,
         in Spawner spawner,
+        
         ref Attack attack,
         ref LocalTransform transform
         )
@@ -68,6 +70,7 @@ namespace DarkLordGame
                 }
                 if (attack.bounce <= 0)
                 {
+                    enableStraightline.ValueRW = false;
                     ecb.SetComponentEnabled<SafeDestroyComponent>(chunk, entity, true);
                 }
             }
