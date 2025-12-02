@@ -33,6 +33,8 @@ namespace DarkLordGame
                 propertyValue = attackRequest.propertyValue,
                 aoeDamage = baseDamage * (unit.bonusAoeDamageRate + attackRequest.aoeDamageRate),
                 aoeRange = unit.bonusAoeRange + attackRequest.aoeRange,
+                useLimitedAngle = attackRequest.useLimitedAngle,
+                limitedDot = attackRequest.limitedDot,
                 criticalDamage = critDamage + attackRequest.extraCritDamage,
                 criticalChance = critChance + attackRequest.extracriticalChance,
                 //movement

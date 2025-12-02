@@ -18,6 +18,8 @@ namespace DarkLordGame
         public float attackDamageMultipler;
         public float aoeRange;
         public float aoeDamageRate;//bigger need to do with Unit attack system
+        public bool useLimitedAngle;
+        public float limitedDot;
         public float extraCritDamage; //default 1
         public float extracriticalChance; //default 1
         public AttackProperty attackProperty;
