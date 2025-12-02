@@ -1,8 +1,10 @@
+using Unity.Burst;
 using Unity.Entities;
 using UnityEngine;
 
 namespace DarkLordGame
 {
+    [BurstCompile]
     public partial struct StartTimeJob : IJobEntity
     {
         public float value;
@@ -13,6 +15,7 @@ namespace DarkLordGame
         }
     }
 
+    [BurstCompile]
     public partial struct StartTimeSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

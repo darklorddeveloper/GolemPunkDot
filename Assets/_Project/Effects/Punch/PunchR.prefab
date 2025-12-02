@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 791371439032999245}
+  - component: {fileID: 4374005924529034917}
+  - component: {fileID: 4938147610346883598}
+  - component: {fileID: 3675418308590102849}
   m_Layer: 0
   m_Name: PunchR
   m_TagString: Untagged
@@ -33,6 +36,67 @@ Transform:
   - {fileID: 4846109582258425989}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4374005924529034917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5643788137463425500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17c216fde22b4e11b0331857f9d4691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.SpawnerAuthoring
+  flags: 2
+--- !u!114 &4938147610346883598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5643788137463425500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bd71c3ac82c4c36821f6ebf42c67e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.SafeDestroyAuthoring
+  shouldDestroyFromStart: 1
+  period: 0.5
+  destroyChild: 1
+--- !u!114 &3675418308590102849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5643788137463425500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90b6cb2b70e4642acaee14eb9c04e3c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameBakers::DarkLordGame.AttackMovementMeleeAuthoring
+  flags: 0
+  data1:
+    delayed: 0.03
+    appliedDamage: 0
+  data2:
+    inheritRotation: 1
+  data3:
+    belongToLayer: 0
+    hitLayer: 0
+    damage: 0
+    aoeRange: 0
+    aoeDamage: 0
+    useLimitedAngle: 0
+    limitedDot: 0
+    criticalChance: 0
+    criticalDamage: 0
+    attackProperty: 0
+    propertyValue: 0
+    bounce: 0
+    chainAttack: 0
+  hitEffect: {fileID: 6923455519616429878, guid: 2952de413f30042c0966d487c6e9ef5a, type: 3}
 --- !u!1001 &2581059138296563863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42,32 +106,44 @@ PrefabInstance:
     m_TransformParent: {fileID: 791371439032999245}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0000010008594
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4099998
+      value: 1.41
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.00000035762787
+      value: 0.09229601
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0000003500866
+      value: -0.09229603
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0.7010575
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7071068
+      value: 0.7010573
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -79,7 +155,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 180
+      value: 165
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_CastShadows
@@ -123,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73111838a4b04d4aa821704584c75de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Bakers::DarkLordGame.StartTimeAuthoring
-  flags: 0
+  flags: 2
   data1:
     Value: 0
   enabledByDefault: 1
@@ -137,43 +217,43 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalScale.x
-      value: 100
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalScale.z
-      value: 100
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0000010008594
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4099998
+      value: 1.41
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.00000035762787
+      value: 0.09229601
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0000003500866
+      value: -0.09229603
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0.7010575
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7071068
+      value: 0.7010573
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -185,7 +265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 180
+      value: 165
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -233,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73111838a4b04d4aa821704584c75de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Bakers::DarkLordGame.StartTimeAuthoring
-  flags: 0
+  flags: 2
   data1:
     Value: 0
   enabledByDefault: 1

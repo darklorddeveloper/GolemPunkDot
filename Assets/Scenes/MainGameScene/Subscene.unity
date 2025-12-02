@@ -983,7 +983,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: DotCollection::DarkLordGame.PrefabPoolAuthoring
   prefabs:
   - {fileID: 8056147753816414939, guid: c546d6d1ddbab4c4dabc7b4c7687f39d, type: 3}
-  - {fileID: 430938337756385614, guid: 2952de413f30042c0966d487c6e9ef5a, type: 3}
+  - {fileID: 5643788137463425500, guid: cc71d272da33f4cedb5bb01674761cc4, type: 3}
+  - {fileID: 6923455519616429878, guid: 2952de413f30042c0966d487c6e9ef5a, type: 3}
   orderKeeping: []
 --- !u!1001 &8002288235457570399
 PrefabInstance:

@@ -55,7 +55,7 @@ namespace DarkLordGame
                             state.EntityManager.SetComponentData(e, new Damage
                             {
                                 attack = attack,
-                                damagePosition = components[i].position
+                                damagePosition = hits[j].Position
                             });
                             state.EntityManager.SetComponentEnabled<Damage>(e, true);
                         }

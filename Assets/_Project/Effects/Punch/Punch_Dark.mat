@@ -3,7 +3,7 @@
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 32
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -50,7 +50,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0.45
+    - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
     - _CastShadows: 1
@@ -59,12 +59,12 @@ Material:
     - _DstBlend: 10
     - _DstBlendAlpha: 10
     - _HASCLAMP: 1
-    - _OffsetTime: -0.03
+    - _OffsetTime: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5
     - _SrcBlendAlpha: 1
-    - _StartTime: 0.06
+    - _StartTime: -0.05
     - _Surface: 1
     - _ZTest: 4
     - _ZWrite: 0
@@ -75,10 +75,12 @@ Material:
     - _ClampValueMin: {r: 0, g: 0, b: 0, a: 0}
     - _ClampValueMin2: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Offset: {r: 0, g: -0.12, b: 0, a: 0}
+    - _Offset2: {r: 0.07, g: -0.12, b: 0, a: 0}
     - _ScrollSpeed: {r: -5, g: 0, b: 0, a: 0}
     - _ScrollSpeed2: {r: -5, g: 0, b: 0, a: 0}
-    - _Tiling: {r: 1, g: 0.23, b: 0, a: 0}
-    - _Tilling2: {r: 0.5, g: 1.32, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1.56, b: 0, a: 0}
+    - _Tilling2: {r: 0.88, g: 1.32, b: 0, a: 0}
     - _UVMinMax: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

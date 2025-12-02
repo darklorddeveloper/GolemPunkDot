@@ -17,12 +17,13 @@ namespace DarkLordGame
         private List<DamageText> sleepingDamageTexts = new();
         private const int prePool = 20;
         private EntityQuery entityQuery;
+        
         protected override void OnCreate()
         {
             base.OnCreate();
             RequireForUpdate<DamageTextRootEntity>();
             RequireForUpdate<Damage>();
-            entityQuery = SystemAPI.QueryBuilder().WithAll<Damage>().Build();
+            entityQuery = SystemAPI.QueryBuilder().WithAll<Damage, LocalTransform>().Build();
         }
 
         protected override void OnUpdate()
