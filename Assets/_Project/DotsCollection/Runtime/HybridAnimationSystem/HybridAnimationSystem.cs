@@ -29,9 +29,8 @@ namespace DarkLordGame
                 }
                 else
                 {
-                    anim.animator.Play(play.animationName);
+                    anim.animator.Play(play.animationName, 0, 0);
                 }
-                Debug.Log("here playing " + play.animationName);
                 EntityManager.SetComponentEnabled<PlayHybridAnimation>(entity, false);
             }
 

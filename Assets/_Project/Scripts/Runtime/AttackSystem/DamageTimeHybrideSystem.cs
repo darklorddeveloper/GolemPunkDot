@@ -18,7 +18,7 @@ namespace DarkLordGame
                 }
                 if (EntityManager.HasComponent<PlayHybridAnimation>(e))
                 {
-                    EntityManager.SetComponentData(e, new PlayHybridAnimation { animationName = "TakeDamage", period = 0.1f });
+                    EntityManager.SetComponentData(e, new PlayHybridAnimation { animationName = "TakeDamage", period = 0.0f});
                     EntityManager.SetComponentEnabled<PlayHybridAnimation>(e, true);
                 }
             }
