@@ -235,7 +235,6 @@ namespace DarkLordGame
                         part.runes[i].effect.OnActivate(entity, entityManager);
                     }
                 }
-
             }
         }
     }

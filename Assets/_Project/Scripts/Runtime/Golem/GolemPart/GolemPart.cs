@@ -34,7 +34,6 @@ namespace DarkLordGame
         public float cooldownTime = 0.1f;
         public float cooldownTimeCount;
 
-
         public void Init()
         {
             for (int i = 0, length = effects.Count; i < length; i++)

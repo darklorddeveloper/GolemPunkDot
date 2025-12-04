@@ -15,6 +15,7 @@ namespace DarkLordGame
         public List<GolemActionData> actionDatas = new List<GolemActionData> { new GolemActionData() };
         public EffectBase preActivateEffect;
         public EffectBase postActivateEffect;
+        public List<EffectBase> chainedEffects = new();
 
         [Header("cooldown")]
         public float cooldownTime = 0.1f;

@@ -197,11 +197,15 @@ namespace DarkLordGame
             }
 
             golem.ActiveAllEffects(entity, EntityManager, effectTiming);
-
+            for (int i = 0, length = skill.chainedEffects.Count; i < length; i++)
+            {
+                skill.chainedEffects[i].OnActivate(entity, EntityManager);
+            }
             if (skill.postActivateEffect != null)
             {
                 skill.postActivateEffect.OnActivate(entity, EntityManager);
             }
+
         }
     }
 }

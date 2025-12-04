@@ -11,5 +11,6 @@ namespace DarkLordGame
         public EffectTiming effectTiming = EffectTiming.ActivePrimary;
         
         public abstract void OnActivate(Entity activator, EntityManager entityManager);
+
     }
 }
