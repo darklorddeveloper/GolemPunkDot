@@ -16,19 +16,19 @@ namespace DarkLordGame
             foreach (var golemEntity in SystemAPI.Query<GolemEntity>())
             {
                 var golem = golemEntity.golem;
-                for (int i = 0, length = golem.attachedParts.Count; i < length; i++)
+                for (int i = 0, length = golem.skills.Count; i < length; i++)
                 {
-                    golem.attachedParts[i].cooldownTimeCount += delta;
+                    golem.skills[i].cooldownTimeCount += delta;
                 }
             }
             foreach (var (golemEntity, input, entity) in SystemAPI.Query<GolemEntity, TopdownCharacterInput>().WithEntityAccess())
             {
                 var golem = golemEntity.golem;
 
-                var part = GetActivatingPart(input, golem);
-                if (part != null)
+                var skill = GetActivatingSkill(input, golem);
+                if (skill != null)
                 {
-                    OnActivatePartAction(entity, golem, part);
+                    OnActivateSkill(entity, golem, skill);
                 }
                 if (golem.runningEnumerator != null && golem.runningEnumerator.MoveNext())
                 {
@@ -37,8 +37,7 @@ namespace DarkLordGame
                 if (golem.runningEnumerator != null)
                 {
                     golem.runningEnumerator = null;
-                    golem.previousActivatedPart = null;
-                    golem.activatingPart = null;
+                    golem.activatingSkill = null;
                     golem.PlayAnimation(locomotionName);
 
                     var movement = EntityManager.GetComponentData<MovementSpeed>(entity);
@@ -49,37 +48,27 @@ namespace DarkLordGame
         }
 
 
-        private void OnActivatePartAction(Entity entity, Golem golem, GolemPart part)
+        private void OnActivateSkill(Entity entity, Golem golem, Skill skill)
         {
-            if (part == null) return;
-            if (part.cooldownTimeCount < part.cooldownTime)
+            if (skill == null) return;
+            if (skill.cooldownTimeCount < skill.cooldownTime)
             {
                 return;
             }
-            part.cooldownTimeCount = 0;
-            bool hasManualEffect = false;
-            for (int i = 0, length = part.effects.Count; i < length; i++)
+            skill.cooldownTimeCount = 0;
+
+            GolemActionData actionData = skill.actionDatas[0];
+            if (golem.activatingSkill == skill)
             {
-                if (part.effects[i].effectTiming == EffectTiming.ManualActivate)
-                {
-                    hasManualEffect = true;
-                    break;
-                }
+                golem.currentActionIndex++;
+                int index = golem.currentActionIndex % skill.actionDatas.Count;
+                actionData = skill.actionDatas[index];
             }
-
-            if (hasManualEffect == false) return;
-
-
-            GolemActionData actionData = part.actionDatas[0];
-            if (golem.previousActivatedPart == part)
+            else
             {
-                part.currentActionIndex++;
-                part.currentActionIndex %= part.actionDatas.Count;
-                actionData = part.actionDatas[part.currentActionIndex];
+                golem.currentActionIndex = 0;
             }
-            golem.previousActivatedPart = golem.activatingPart;
-            golem.activatingPart = part;
-
+            golem.activatingSkill = skill;
             //on activate effects runes and relics
             if (actionData.isHoldable)
             {
@@ -110,8 +99,8 @@ namespace DarkLordGame
             golem.PlayAnimation(golemActionData.releaseAnimationName, golemActionData.crossFade);
             movement.multiplier = golemActionData.movement.Evaluate(1.0f);
             EntityManager.SetComponentData(entity, movement);
-
-            ActivatePartEffect(entity, golem, EffectTiming.ManualActivate);
+            var timing = GetActivatingEffectTiming(golem);
+            ActivateSkill(entity, golem, timing);
         }
         private IEnumerator SimpleActionEnumerator(Entity entity, Golem golem, GolemActionData golemActionData)
         {
@@ -122,8 +111,8 @@ namespace DarkLordGame
                 t += SystemAPI.Time.DeltaTime;
                 yield return null;
             }
-
-            ActivatePartEffect(entity, golem, EffectTiming.ManualActivate);
+            var timing = GetActivatingEffectTiming(golem);
+            ActivateSkill(entity, golem, timing);
             //cooldown time is ready can interupt
             while (t < golemActionData.totalPeriod)
             {
@@ -132,68 +121,86 @@ namespace DarkLordGame
             }
         }
 
-        private GolemPart GetActivatingPart(TopdownCharacterInput input, Golem golem)
+        private Skill GetActivatingSkill(TopdownCharacterInput input, Golem golem)
         {
+            int index = -1;
             if (input.dashAction)
             {
-                return golem.GetPart(GolemPartType.Legs);
+                index = (int)GolemSkillType.Dash;
             }
             else if (input.primaryAction)
             {
-                return golem.GetPart(GolemPartType.RightArms);
+                index = (int)GolemSkillType.Primary;
             }
             else if (input.secondaryAction)
             {
-                return golem.GetPart(GolemPartType.LeftArms);
+                index = (int)GolemSkillType.Secondary;
             }
             else if (input.skill1)
             {
-                return golem.GetPart(GolemPartType.Head);
+                index = (int)GolemSkillType.Special1;
             }
             else if (input.skill2)
             {
-                return golem.GetPart(GolemPartType.Body);
+                index = (int)GolemSkillType.Special2;
+            }
+            if (index != -1)
+            {
+                return golem.GetActiveSkill(index);
             }
             return null;
         }
         private bool CheckHoldingActionKey(Entity entity, Golem golem)
         {
             var input = EntityManager.GetComponentData<TopdownCharacterInput>(entity);
-            Debug.Log("input holding  --- " + input.isHoldingDashAction);
-            switch (golem.activatingPart.partType)
+            switch (golem.activatingSkillType)
             {
-                case GolemPartType.Legs:
+                case GolemSkillType.Dash:
                     return input.isHoldingDashAction;
-                case GolemPartType.RightArms:
+                case GolemSkillType.Primary:
                     return input.isHoldingPrimaryAction;
-                case GolemPartType.LeftArms:
+                case GolemSkillType.Secondary:
                     return input.isHoldingSecondaryAction;
-                case GolemPartType.Head:
+                case GolemSkillType.Special1:
                     return input.isHoldingSkill1;
-                case GolemPartType.Body:
+                case GolemSkillType.Special2:
                     return input.isHoldingSkill2;
             }
             return false;
         }
 
-        private void ActivatePartEffect(Entity entity, Golem golem, EffectTiming effectTiming)
+        private EffectTiming GetActivatingEffectTiming(Golem golem)
         {
-            var part = golem.activatingPart;
-
-            for (int i = 0, length = part.effects.Count; i < length; i++)
+            switch (golem.activatingSkillType)
             {
-                if (part.effects[i].effectTiming == effectTiming)
-                {
-                    part.effects[i].OnActivate(entity, EntityManager);
-                }
+                case GolemSkillType.Dash:
+                    return EffectTiming.ActiveDash;
+                case GolemSkillType.Primary:
+                    return EffectTiming.ActivePrimary;
+                case GolemSkillType.Secondary:
+                    return EffectTiming.ActiveSecondary;
+                case GolemSkillType.Special1:
+                    return EffectTiming.ActiveSpecial1;
+                case GolemSkillType.Special2:
+                    return EffectTiming.ActiveSpecial2;
+                default:
+                    return EffectTiming.ActivePrimary;
+            }
+        }
+
+        private void ActivateSkill(Entity entity, Golem golem, EffectTiming effectTiming)
+        {
+            var skill = golem.activatingSkill;
+            if (skill.preActivateEffect != null)
+            {
+                skill.preActivateEffect.OnActivate(entity, EntityManager);
             }
 
-            for (int i = 0, length = part.runes.Count; i < length; i++)
+            golem.ActiveAllEffects(entity, EntityManager, effectTiming);
+
+            if (skill.postActivateEffect != null)
             {
-                if (part.runes[i].effect.effectTiming == effectTiming)
-                {
-                    part.runes[i].effect.OnActivate(entity, EntityManager);
-                }
+                skill.postActivateEffect.OnActivate(entity, EntityManager);
             }
         }
     }

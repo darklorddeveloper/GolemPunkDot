@@ -9,9 +9,10 @@ namespace DarkLordGame
         [GUID] public string attackPrefab;
         public GolemAttachPoint attachPoint = GolemAttachPoint.AttackForwardPoint;
         public AttackRequestData attackRequestData;
+        public bool canChainAttack = false;
         public override void OnActivate(Entity activator, EntityManager entityManager)
         {
-            GolemAttackSystem.onGolemAttack(activator, attackPrefab, attachPoint, attackRequestData);
+            GolemAttackSystem.onGolemAttack(activator, attackPrefab, attachPoint, attackRequestData, canChainAttack);
         }
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using Unity.Entities;
-using UnityEngine;
 
 namespace DarkLordGame
 {
@@ -8,7 +7,7 @@ namespace DarkLordGame
     //Enemy global stats increase in spawn time. No affect in runtime only player units are complex
     public partial class GolemAttackSystem : SystemBase
     {
-        public static Action<Entity, string, GolemAttachPoint, AttackRequestData> onGolemAttack;
+        public static Action<Entity, string, GolemAttachPoint, AttackRequestData, bool> onGolemAttack;
 
         protected override void OnCreate()
         {
@@ -17,7 +16,7 @@ namespace DarkLordGame
             Enabled = false;
         }
 
-        private void OnGolemAttack(Entity attacker, string prefabPath, GolemAttachPoint attachPoint, AttackRequestData data)
+        private void OnGolemAttack(Entity attacker, string prefabPath, GolemAttachPoint attachPoint, AttackRequestData data, bool canChainEffect)
         {
             Entity prefab = SpawnPrefabSystem.GetPrefab(prefabPath);
 
@@ -25,19 +24,13 @@ namespace DarkLordGame
             data.prefab = prefab;
             // data.position = 
             var golem = EntityManager.GetComponentObject<GolemEntity>(attacker).golem;
-            var point =  golem.GetAttachPoint(GolemAttachPoint.AttackForwardPoint);
+            var point = golem.GetAttachPoint(GolemAttachPoint.AttackForwardPoint);
             data.position = point.position;
             data.rotation = point.rotation;
             golem.currentRequestData = data;
-            if (golem.activatingPart != null) //normally not null
+            if (canChainEffect) //normally not null
             {
-                for (int i = 0; i < golem.activatingPart.runes.Count; i++)
-                {
-                    if (golem.activatingPart.runes[i].effect.effectTiming == EffectTiming.OnAttack)
-                    {
-                        golem.activatingPart.runes[i].effect.OnActivate(attacker, EntityManager);
-                    }
-                }
+                golem.ActiveAllEffects(attacker, EntityManager, EffectTiming.OnAttack);
             }
             EntityManager.SetComponentData(attacker, golem.currentRequestData);
             EntityManager.SetComponentEnabled<AttackRequestData>(attacker, true);

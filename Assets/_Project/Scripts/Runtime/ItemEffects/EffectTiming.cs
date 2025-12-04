@@ -4,9 +4,12 @@ namespace DarkLordGame
 {
     public enum EffectTiming
     {
-        ManualActivate = 0, //sort on frequency
+        ActivePrimary = 0, //sort on frequency
+        ActiveSecondary = 1,
+        ActiveDash = 2,
+        ActiveSpecial1 = 3,
+        ActiveSpecial2 = 4,
         OnAttack = 10,
-        OnAttackWithCurrentPart,// for runes only not include relics
         OnTakeDamage = 20,
         OnDeath = 21,
         OnTakeCriticalDamage = 22,
