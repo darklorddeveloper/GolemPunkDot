@@ -48,7 +48,7 @@ namespace DarkLordGame
 
         public void AddSkill(Skill skill)
         {
-            var instance = ScriptableObject.Instantiate(skill);
+            var instance = skill.isInstance ? skill : ScriptableObject.Instantiate(skill);
             instance.isInstance = true;
             skillPools.Add(instance);
 

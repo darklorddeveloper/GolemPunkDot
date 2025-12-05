@@ -17,13 +17,13 @@ namespace DarkLordGame
         OnDealDamage = 40,
         OnMoved = 50,
         OnDash = 51,
-
         OnHeal = 60,
-
         OnOtherActive = 60,
 
         OnChargingSkill = 70,
         OnActivateChargingEffect,
+        OnEquiped = 80,
+        OnUnequiped = 81,
 
         Always = 100,
 

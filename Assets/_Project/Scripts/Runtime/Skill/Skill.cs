@@ -4,6 +4,7 @@ using UnityEngine.Localization;
 
 namespace DarkLordGame
 {
+    [CreateAssetMenu(fileName = "Skill", menuName = "Skill")]
     public class Skill : ScriptableObject
     {
         [SerializeField] public LocalizedString skillName;
