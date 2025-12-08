@@ -9,6 +9,7 @@ namespace DarkLordGame
         public GameObject deathEffect;
 
         public bool addSafeDestroyComponent;
+        public bool destroyChild;
     }
 
     public class UnitBaker : StructBaker<UnitAuthoring, Unit, ChangeMovementSpeed, Damage>
@@ -34,7 +35,9 @@ namespace DarkLordGame
                 if(authoring.addSafeDestroyComponent)
                 {
                     AddComponent<SafeDestroyComponent>(e);
+                    AddComponent(e, new DestroyImmediate{destroyChild= authoring.destroyChild});
                     SetComponentEnabled<SafeDestroyComponent>(e, false);
+                    SetComponentEnabled<DestroyImmediate>(e, false);
                 }                
             }
         }
