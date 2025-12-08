@@ -1,14 +1,19 @@
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
+using Unity.Transforms;
 using UnityEngine;
 
 namespace DarkLordGame
 {
+    [BurstCompile]
     public partial struct DamageJob : IJobEntity
     {
         public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref Unit unit, ref Damage damage, EnabledRefRW<Damage> damageEnable)
+        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref Unit unit, ref Damage damage,
+        ref LocalTransform localTransform,
+         EnabledRefRW<Damage> damageEnable, in DeathEffect effect)
         {
             float dealtDamage = damage.attack.damage;
             float shield = unit.shield;
@@ -21,6 +26,14 @@ namespace DarkLordGame
                 if (unit.canDeath)
                 {
                     ecb.SetComponentEnabled<Death>(chunk, entity, true);
+                    if (effect.prefab != Entity.Null)
+                    {
+                        var fx = ecb.Instantiate(chunk, effect.prefab);
+                        ecb.SetComponent(chunk, fx, localTransform);
+                        var diff = math.normalizesafe(localTransform.Position - damage.damageSourcePosition, new float3(0, 1, 0));
+                        ecb.SetComponent(chunk, fx, new DeathImpact { velocity = diff * damage.attack.pushPower + new float3(0.0f, damage.attack.riftPower, 0.0f) });
+                        ecb.SetComponent(chunk, fx, new DeathImpactDamage { attack = damage.attack });
+                    }
                 }
                 else
                 {
@@ -30,6 +43,8 @@ namespace DarkLordGame
             damageEnable.ValueRW = false;
         }
     }
+
+    [BurstCompile]
     public partial struct DamageSystem : ISystem
     {
         public EntityQuery entityQuery;
@@ -41,7 +56,6 @@ namespace DarkLordGame
         }
         public void OnUpdate(ref SystemState state)
         {
-
             var ecb = new EntityCommandBuffer(Allocator.TempJob);
             var job = new DamageJob
             {

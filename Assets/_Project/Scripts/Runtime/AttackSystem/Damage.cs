@@ -8,6 +8,7 @@ namespace DarkLordGame
     {
         public Attack attack;
         public float3 damagePosition;
+        public float3 damageSourcePosition;
     }
 
     public struct AoeDamage : IComponentData, IEnableableComponent

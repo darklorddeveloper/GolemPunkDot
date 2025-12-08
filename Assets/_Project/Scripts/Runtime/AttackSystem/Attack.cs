@@ -34,6 +34,10 @@ namespace DarkLordGame
         // public float lifeTime;
         public int bounce;
         public int chainAttack;
+
+        [Header("Impact movement")]
+        public float riftPower;
+        public float pushPower;
     }
 
     [System.Serializable]//attach in prefabs

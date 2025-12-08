@@ -23,7 +23,7 @@ namespace DarkLordGame
         EnabledRefRW<AttackMovementStraightline> enableStraightline,
         in MovementSpeed movementSpeed,
         in Spawner spawner,
-        
+
         ref Attack attack,
         ref LocalTransform transform
         )
@@ -59,7 +59,7 @@ namespace DarkLordGame
                 }
                 if (attack.aoeRange <= 1.0f)
                 {
-                    ecb.SetComponent(chunk, hit.Entity, new Damage { damagePosition = hit.Position, attack = attack });
+                    ecb.SetComponent(chunk, hit.Entity, new Damage { damagePosition = hit.Position, damageSourcePosition = pos, attack = attack });
                     ecb.SetComponentEnabled<Damage>(chunk, hit.Entity, true);
                 }
                 else
