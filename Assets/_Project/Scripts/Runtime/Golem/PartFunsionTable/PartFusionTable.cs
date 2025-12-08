@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
+    [CreateAssetMenu(fileName = "FusionTable", menuName = "FusionTable")]
     public class PartFusionTable : ScriptableObject
     {
         [System.Serializable]
@@ -33,27 +34,14 @@ namespace DarkLordGame
             public List<PartTagValue> partTags = new();
             public List<EffectBase> effects = new();
 
-            [System.NonSerialized] public List<PartTagValue> runtimeValues = new();
+            [System.NonSerialized] public float[] scores;
             public static readonly PartTag[] AllTags = (PartTag[])Enum.GetValues(typeof(PartTag));
             public void Init()
             {
-                runtimeValues = new List<PartTagValue>();
-                for (int i = 0, length = AllTags.Length; i < length; i++)
+                scores = new float[AllTags.Length];
+                for (int i = 0, length = partTags.Count; i < length; i++)
                 {
-                    bool found = false;
-                    for (int j = 0, num = partTags.Count; j < num; j++)
-                    {
-                        if (partTags[j].tagType == AllTags[i])
-                        {
-                            runtimeValues.Add(partTags[j]);
-                            break;
-                        }
-                    }
-                    if (found)
-                    {
-                        continue;
-                    }
-                    runtimeValues.Add(new PartTagValue { tagType = AllTags[i], value = 0 });
+                    scores[(int)partTags[i].tagType] += partTags[i].value;
                 }
             }
 
@@ -62,7 +50,7 @@ namespace DarkLordGame
                 float distance = 0;
                 for (int i = 0, length = values.Length; i < length; i++)//unified array or list
                 {
-                    distance = 100 * math.abs(values[i] - runtimeValues[i].value);
+                    distance = 100 * math.abs(values[i] - scores[i]);
                 }
                 return distance;
             }
@@ -70,6 +58,14 @@ namespace DarkLordGame
 
         public List<SpecialFusionData> specialFusions = new();
         public List<FusionData> fusionDatas = new();
+
+        public void Init()
+        {
+            for (int i = 0, length = fusionDatas.Count; i < length; i++)
+            {
+                fusionDatas[i].Init();
+            }
+        }
 
         public List<EffectBase> GetClosestFusionEffect(List<GolemPart> fuse)
         {
@@ -84,6 +80,7 @@ namespace DarkLordGame
             float distance = math.INFINITY;
             int targetIndex = 0;
             float[] scores = new float[FusionData.AllTags.Length];
+            
             for (int i = 0, length = fuse.Count; i < length; i++)
             {
                 var p = fuse[i];
@@ -92,6 +89,7 @@ namespace DarkLordGame
                     scores[(int)p.partTagValues[j].tagType] += p.partTagValues[j].value;
                 }
             }
+
             for (int i = 0, length = fusionDatas.Count; i < length; i++)
             {
                 var d = fusionDatas[i].GetDistance(scores);
@@ -103,6 +101,5 @@ namespace DarkLordGame
             }
             return fusionDatas[targetIndex].effects;
         }
-
     }
 }
