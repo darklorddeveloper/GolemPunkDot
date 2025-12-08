@@ -33,7 +33,7 @@ namespace DarkLordGame
                         var diff = math.normalizesafe(localTransform.Position - damage.damageSourcePosition, new float3(0, 1, 0));
                         ecb.SetComponent(chunk, fx, new DeathImpact
                         {
-                            forcePoint = diff * damage.attack.pushPower + new float3(0.0f, damage.attack.riftPower, 0.0f),
+                            velocityDirection = diff * damage.attack.pushPower + new float3(0.0f, damage.attack.riftPower, 0.0f),
                             sourcePosition = damage.damageSourcePosition,
                         });
                         ecb.SetComponent(chunk, fx, new DeathImpactDamage { attack = damage.attack });

@@ -349,6 +349,8 @@ MonoBehaviour:
     tempCooldownSpeed: 0
   canDeath: 0
   deathEffect: {fileID: 0}
+  addSafeDestroyComponent: 0
+  destroyChild: 0
 --- !u!4 &781832465
 Transform:
   m_ObjectHideFlags: 0
