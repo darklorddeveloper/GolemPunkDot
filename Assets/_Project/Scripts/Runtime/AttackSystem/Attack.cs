@@ -38,6 +38,7 @@ namespace DarkLordGame
         [Header("Impact movement")]
         public float riftPower;
         public float pushPower;
+        public bool canDealDeathImpact;
     }
 
     [System.Serializable]//attach in prefabs
