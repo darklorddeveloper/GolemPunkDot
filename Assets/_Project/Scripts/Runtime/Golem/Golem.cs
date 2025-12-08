@@ -159,22 +159,39 @@ namespace DarkLordGame
             for (int k = 0, num = attachedParts.Count; k < num; k++)
             {
                 var part = attachedParts[k];
+                ActivatePartEffect(entity, entityManager, part, effectTiming);
+            }
+        }
 
-                for (int i = 0, length = part.effects.Count; i < length; i++)
+        public void ActivatePartEffect(Entity entity, EntityManager entityManager, GolemPart part, EffectTiming effectTiming)
+        {
+            for (int i = 0, length = part.effects.Count; i < length; i++)
+            {
+                if (part.effects[i].effectTiming == effectTiming)
                 {
-                    if (part.effects[i].effectTiming == effectTiming)
-                    {
-                        part.effects[i].OnActivate(entity, entityManager);
-                    }
+                    part.effects[i].OnActivate(entity, entityManager);
                 }
+            }
 
-                for (int i = 0, length = part.runes.Count; i < length; i++)
+            for (int i = 0, length = part.runes.Count; i < length; i++)
+            {
+                if (part.runes[i].effect.effectTiming == effectTiming)
                 {
-                    if (part.runes[i].effect.effectTiming == effectTiming)
-                    {
-                        part.runes[i].effect.OnActivate(entity, entityManager);
-                    }
+                    part.runes[i].effect.OnActivate(entity, entityManager);
                 }
+            }
+        }
+
+        public void ForceActivatePartEffect(Entity entity, EntityManager entityManager, GolemPart part)
+        {
+            for (int i = 0, length = part.effects.Count; i < length; i++)
+            {
+                part.effects[i].OnActivate(entity, entityManager);
+            }
+
+            for (int i = 0, length = part.runes.Count; i < length; i++)
+            {
+                part.runes[i].effect.OnActivate(entity, entityManager);
             }
         }
     }

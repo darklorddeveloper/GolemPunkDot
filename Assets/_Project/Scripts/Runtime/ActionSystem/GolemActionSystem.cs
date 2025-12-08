@@ -9,6 +9,14 @@ namespace DarkLordGame
     public partial class GolemActionSystem : SystemBase
     {
         private static int locomotionName = Animator.StringToHash("Locomotion");
+        public static GolemActionSystem Instance;
+
+        protected override void OnCreate()
+        {
+            base.OnCreate();
+            Instance = this;
+        }
+        
         protected override void OnUpdate()
         {
             float delta = SystemAPI.Time.DeltaTime;
@@ -97,8 +105,7 @@ namespace DarkLordGame
             golem.PlayAnimation(golemActionData.releaseAnimationName, golemActionData.crossFade);
             movement.multiplier = golemActionData.movement.Evaluate(1.0f);
             EntityManager.SetComponentData(entity, movement);
-            var timing = GetActivatingEffectTiming(golem);
-            ActivatePartEffect(entity, golem, timing);
+            ManualActivatePartEffect(entity, golem);
         }
         private IEnumerator SimpleActionEnumerator(Entity entity, Golem golem, GolemActionData golemActionData)
         {
@@ -109,8 +116,8 @@ namespace DarkLordGame
                 t += SystemAPI.Time.DeltaTime;
                 yield return null;
             }
-            var timing = GetActivatingEffectTiming(golem);
-            ActivatePartEffect(entity, golem, timing);
+
+            ManualActivatePartEffect(entity, golem);
             //cooldown time is ready can interupt
             while (t < golemActionData.totalPeriod)
             {
@@ -187,15 +194,31 @@ namespace DarkLordGame
             }
         }
 
-        private void ActivatePartEffect(Entity entity, Golem golem, EffectTiming effectTiming)
+        private void ActivateAllPartEffect(Entity entity, Golem golem, EffectTiming effectTiming)
+        {
+            for (int i = 0, length = golem.attachedParts.Count; i < length; i++)
+            {
+                ActivatePartEffect(entity, golem, golem.attachedParts[i], effectTiming);
+            }
+        }
+        private void ManualActivatePartEffect(Entity entity, Golem golem)
         {
             var part = golem.activatingPart;
             if (part == null) return;
-            for (int i = 0, length = part.effects.Count; i < length; i++)
-            {
-                if (part.effects[i].effectTiming == EffectTiming.MainEffect)
-                    part.effects[i].OnActivate(entity, EntityManager);
-            }
+            golem.ActivatePartEffect(entity, EntityManager, part, EffectTiming.ManualActivate);
+            var timing = GetActivatingEffectTiming(golem);
+            ActivateAllPartEffect(entity, golem, timing);
+        }
+
+        private void ActivatePartEffect(Entity entity, Golem golem, GolemPart part, EffectTiming effectTiming)
+        {
+            if (part == null) return;
+            golem.ActivatePartEffect(entity, EntityManager, part, effectTiming);
+        }
+
+        public void ForceActivateAllEffects(Entity entity, Golem golem, GolemPart part)
+        {
+            golem.ForceActivatePartEffect(entity, EntityManager, part);
         }
     }
 }

@@ -9,6 +9,8 @@ namespace DarkLordGame
         Body,
         Head,
         Legs,
+
+        //extra ---
         Core = 100,//merge skills
     }
 

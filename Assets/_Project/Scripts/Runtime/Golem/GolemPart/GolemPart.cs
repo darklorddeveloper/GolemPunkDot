@@ -35,6 +35,9 @@ namespace DarkLordGame
         public float cooldownTime = 0.1f;
         public float cooldownTimeCount;
 
+        [Header("Tags for fuse")]
+        public List<PartTagValue> partTagValues = new();
+
         public void Init()
         {
             for (int i = 0, length = effects.Count; i < length; i++)
