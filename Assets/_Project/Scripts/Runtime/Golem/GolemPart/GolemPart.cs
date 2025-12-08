@@ -29,6 +29,7 @@ namespace DarkLordGame
         public List<Rune> runes = new();
 
         [Header("Actions")]
+        public List<GolemActionData> actionDatas = new List<GolemActionData> { new GolemActionData() };
 
         [Header("cooldown")]
         public float cooldownTime = 0.1f;

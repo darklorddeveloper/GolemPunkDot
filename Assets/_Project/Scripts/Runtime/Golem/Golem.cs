@@ -23,13 +23,11 @@ namespace DarkLordGame
         public float lerpLocomotionSpeed = 0.3f;
         public List<GolemAttachPointData> allAttachPoints = new();
         public GolemSkillType activatingSkillType;
-        public Skill activatingSkill;
+        public GolemPart activatingPart;
         public float currentChargeRate;
         public AttackRequestData currentRequestData;
         public IEnumerator runningEnumerator;
         public int currentActionIndex;
-        public List<Skill> skills = new();
-        public List<Skill> skillPools = new();
 
         public static int maxSkills = 4;
         public void Init()
@@ -37,64 +35,6 @@ namespace DarkLordGame
             for (int i = 0, length = attachedParts.Count; i < length; i++)
             {
                 attachedParts[i] = SetupPart(attachedParts[i]);
-            }
-
-            for (int i = 0, length = skills.Count; i < length; i++)
-            {
-                skills[i] = ScriptableObject.Instantiate(skills[i]);
-                skills[i].isInstance = true;
-            }
-        }
-
-        public void AddSkill(Skill skill)
-        {
-            var instance = skill.isInstance ? skill : ScriptableObject.Instantiate(skill);
-            instance.isInstance = true;
-            skillPools.Add(instance);
-
-            if (skills.Count < maxSkills)
-            {
-                skills.Add(instance);
-                return;
-            }
-        }
-
-        public Skill GetActiveSkill(int skillID)
-        {
-            if (skillID >= skills.Count)
-            {
-                return null;
-            }
-            return skills[skillID];
-        }
-
-        public void SetSkillAtIndex(Skill skill, int index)
-        {
-            if (skill.isInstance == false)
-            {
-                skill = ScriptableObject.Instantiate(skill);
-                skill.isInstance = true;
-            }
-
-            if (index < skills.Count)
-            {
-                var temp = skills[index];
-                if (temp == skill)
-                {
-                    return;
-                }
-                if (skills.Contains(skill))
-                {
-                    var i = skills.IndexOf(skill);
-                    skills[index] = skill;
-                    skills[i] = temp;
-                    return;
-                }
-                skills[index] = skill;
-            }
-            else
-            {
-                Debug.Log("setting skill over range");
             }
         }
 

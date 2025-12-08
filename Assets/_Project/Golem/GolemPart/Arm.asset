@@ -21,7 +21,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  partType: 1
+  partType: 0
   mesh: {fileID: -2078769563275275190, guid: a63a6989364584c2e92d51b8fe3934b8, type: 3}
   materials:
   - {fileID: 2100000, guid: e0abc84aa28ca4e84bf0ff10f3139a92, type: 2}
@@ -31,7 +31,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7f1549be867f64fe48e56923e423fe0c, type: 2}
   runeSlots: 3
   runes: []
-  currentActionIndex: 0
   actionDatas:
   - startAnimationName: Attack1
     crossFade: 0

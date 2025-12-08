@@ -1,6 +1,5 @@
 using System.Collections;
 using Unity.Entities;
-using UnityEditor.Embree;
 using UnityEngine;
 
 namespace DarkLordGame
@@ -16,19 +15,19 @@ namespace DarkLordGame
             foreach (var golemEntity in SystemAPI.Query<GolemEntity>())
             {
                 var golem = golemEntity.golem;
-                for (int i = 0, length = golem.skills.Count; i < length; i++)
+                for (int i = 0, length = golem.attachedParts.Count; i < length; i++)
                 {
-                    golem.skills[i].cooldownTimeCount += delta;
+                    golem.attachedParts[i].cooldownTimeCount += delta;
                 }
             }
             foreach (var (golemEntity, input, entity) in SystemAPI.Query<GolemEntity, TopdownCharacterInput>().WithEntityAccess())
             {
                 var golem = golemEntity.golem;
 
-                var skill = GetActivatingSkill(input, golem);
-                if (skill != null)
+                var part = GetActivatingPart(input, golem);
+                if (part != null)
                 {
-                    OnActivateSkill(entity, golem, skill);
+                    OnActivateSkill(entity, golem, part);
                 }
                 if (golem.runningEnumerator != null && golem.runningEnumerator.MoveNext())
                 {
@@ -37,7 +36,7 @@ namespace DarkLordGame
                 if (golem.runningEnumerator != null)
                 {
                     golem.runningEnumerator = null;
-                    golem.activatingSkill = null;
+                    golem.activatingPart = null;
                     golem.PlayAnimation(locomotionName);
 
                     var movement = EntityManager.GetComponentData<MovementSpeed>(entity);
@@ -47,28 +46,27 @@ namespace DarkLordGame
             }
         }
 
-
-        private void OnActivateSkill(Entity entity, Golem golem, Skill skill)
+        private void OnActivateSkill(Entity entity, Golem golem, GolemPart part)
         {
-            if (skill == null) return;
-            if (skill.cooldownTimeCount < skill.cooldownTime)
+            if (part == null) return;
+            if (part.cooldownTimeCount < part.cooldownTime)
             {
                 return;
             }
-            skill.cooldownTimeCount = 0;
+            part.cooldownTimeCount = 0;
 
-            GolemActionData actionData = skill.actionDatas[0];
-            if (golem.activatingSkill == skill)
+            GolemActionData actionData = part.actionDatas[0];
+            if (golem.activatingPart == part)
             {
                 golem.currentActionIndex++;
-                int index = golem.currentActionIndex % skill.actionDatas.Count;
-                actionData = skill.actionDatas[index];
+                int index = golem.currentActionIndex % part.actionDatas.Count;
+                actionData = part.actionDatas[index];
             }
             else
             {
                 golem.currentActionIndex = 0;
             }
-            golem.activatingSkill = skill;
+            golem.activatingPart = part;
             //on activate effects runes and relics
             if (actionData.isHoldable)
             {
@@ -100,7 +98,7 @@ namespace DarkLordGame
             movement.multiplier = golemActionData.movement.Evaluate(1.0f);
             EntityManager.SetComponentData(entity, movement);
             var timing = GetActivatingEffectTiming(golem);
-            ActivateSkill(entity, golem, timing);
+            ActivatePartEffect(entity, golem, timing);
         }
         private IEnumerator SimpleActionEnumerator(Entity entity, Golem golem, GolemActionData golemActionData)
         {
@@ -112,7 +110,7 @@ namespace DarkLordGame
                 yield return null;
             }
             var timing = GetActivatingEffectTiming(golem);
-            ActivateSkill(entity, golem, timing);
+            ActivatePartEffect(entity, golem, timing);
             //cooldown time is ready can interupt
             while (t < golemActionData.totalPeriod)
             {
@@ -121,49 +119,50 @@ namespace DarkLordGame
             }
         }
 
-        private Skill GetActivatingSkill(TopdownCharacterInput input, Golem golem)
+        private GolemPart GetActivatingPart(TopdownCharacterInput input, Golem golem)
         {
-            int index = -1;
+            GolemPart part = null;
             if (input.dashAction)
             {
-                index = (int)GolemSkillType.Dash;
+                part = golem.GetPart(GolemPartType.Legs);
             }
             else if (input.primaryAction)
             {
-                index = (int)GolemSkillType.Primary;
+                part = golem.GetPart(GolemPartType.Arms);
             }
             else if (input.secondaryAction)
             {
-                index = (int)GolemSkillType.Secondary;
+                part = golem.GetPart(GolemPartType.Head);
             }
             else if (input.skill1)
             {
-                index = (int)GolemSkillType.Special1;
+                part = golem.GetPart(GolemPartType.Body);
             }
             else if (input.skill2)
             {
-                index = (int)GolemSkillType.Special2;
+                part = golem.GetPart(GolemPartType.Core);
             }
-            if (index != -1)
-            {
-                return golem.GetActiveSkill(index);
-            }
-            return null;
+            return part;
         }
+
         private bool CheckHoldingActionKey(Entity entity, Golem golem)
         {
             var input = EntityManager.GetComponentData<TopdownCharacterInput>(entity);
-            switch (golem.activatingSkillType)
+            if (golem.activatingPart == null)
             {
-                case GolemSkillType.Dash:
+                return false;
+            }
+            switch (golem.activatingPart.partType)
+            {
+                case GolemPartType.Legs:
                     return input.isHoldingDashAction;
-                case GolemSkillType.Primary:
+                case GolemPartType.Arms:
                     return input.isHoldingPrimaryAction;
-                case GolemSkillType.Secondary:
+                case GolemPartType.Head:
                     return input.isHoldingSecondaryAction;
-                case GolemSkillType.Special1:
+                case GolemPartType.Body:
                     return input.isHoldingSkill1;
-                case GolemSkillType.Special2:
+                case GolemPartType.Core:
                     return input.isHoldingSkill2;
             }
             return false;
@@ -171,41 +170,32 @@ namespace DarkLordGame
 
         private EffectTiming GetActivatingEffectTiming(Golem golem)
         {
-            switch (golem.activatingSkillType)
+            switch (golem.activatingPart.partType)
             {
-                case GolemSkillType.Dash:
+                case GolemPartType.Legs:
                     return EffectTiming.ActiveDash;
-                case GolemSkillType.Primary:
+                case GolemPartType.Arms:
                     return EffectTiming.ActivePrimary;
-                case GolemSkillType.Secondary:
+                case GolemPartType.Head:
                     return EffectTiming.ActiveSecondary;
-                case GolemSkillType.Special1:
+                case GolemPartType.Body:
                     return EffectTiming.ActiveSpecial1;
-                case GolemSkillType.Special2:
+                case GolemPartType.Core:
                     return EffectTiming.ActiveSpecial2;
                 default:
                     return EffectTiming.ActivePrimary;
             }
         }
 
-        private void ActivateSkill(Entity entity, Golem golem, EffectTiming effectTiming)
+        private void ActivatePartEffect(Entity entity, Golem golem, EffectTiming effectTiming)
         {
-            var skill = golem.activatingSkill;
-            if (skill.preActivateEffect != null)
+            var part = golem.activatingPart;
+            if (part == null) return;
+            for (int i = 0, length = part.effects.Count; i < length; i++)
             {
-                skill.preActivateEffect.OnActivate(entity, EntityManager);
+                if (part.effects[i].effectTiming == EffectTiming.MainEffect)
+                    part.effects[i].OnActivate(entity, EntityManager);
             }
-
-            golem.ActiveAllEffects(entity, EntityManager, effectTiming);
-            for (int i = 0, length = skill.chainedEffects.Count; i < length; i++)
-            {
-                skill.chainedEffects[i].OnActivate(entity, EntityManager);
-            }
-            if (skill.postActivateEffect != null)
-            {
-                skill.postActivateEffect.OnActivate(entity, EntityManager);
-            }
-
         }
     }
 }

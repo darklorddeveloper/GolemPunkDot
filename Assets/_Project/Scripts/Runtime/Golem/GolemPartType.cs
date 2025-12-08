@@ -4,12 +4,12 @@ namespace DarkLordGame
 {
     public enum GolemPartType
     {
-        None,
-        RightArms,
-        LeftArms,
+        None = -1,
+        Arms = 0,
         Body,
         Head,
         Legs,
+        Core = 100,//merge skills
     }
 
 }

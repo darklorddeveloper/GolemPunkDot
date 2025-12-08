@@ -4,11 +4,12 @@ namespace DarkLordGame
 {
     public enum EffectTiming
     {
-        ActivePrimary = 0, //sort on frequency
-        ActiveSecondary = 1,
-        ActiveDash = 2,
-        ActiveSpecial1 = 3,
-        ActiveSpecial2 = 4,
+        MainEffect = 0,
+        ActivePrimary = 1, //sort on frequency
+        ActiveSecondary = 2,
+        ActiveDash = 3,
+        ActiveSpecial1 = 4,
+        ActiveSpecial2 = 5,
         OnAttack = 10,
         OnTakeDamage = 20,
         OnDeath = 21,
