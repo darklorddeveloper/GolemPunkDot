@@ -7,6 +7,8 @@ namespace DarkLordGame
     {
         public bool canDeath = true;
         public GameObject deathEffect;
+
+        public bool addSafeDestroyComponent;
     }
 
     public class UnitBaker : StructBaker<UnitAuthoring, Unit, ChangeMovementSpeed, Damage>
@@ -29,7 +31,11 @@ namespace DarkLordGame
                     var fx = GetEntity(authoring.deathEffect, TransformUsageFlags.Dynamic);
                     AddComponent(e, new DeathEffect { prefab = fx });
                 }
-                
+                if(authoring.addSafeDestroyComponent)
+                {
+                    AddComponent<SafeDestroyComponent>(e);
+                    SetComponentEnabled<SafeDestroyComponent>(e, false);
+                }                
             }
         }
     }
