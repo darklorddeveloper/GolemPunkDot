@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace DarkLordGame
             base.OnCreate();
             Instance = this;
         }
-        
+
         protected override void OnUpdate()
         {
             float delta = SystemAPI.Time.DeltaTime;
@@ -35,7 +36,7 @@ namespace DarkLordGame
                 var part = GetActivatingPart(input, golem);
                 if (part != null)
                 {
-                    OnActivateSkill(entity, golem, part);
+                    OnActivatePartSkill(entity, golem, part);
                 }
                 if (golem.runningEnumerator != null && golem.runningEnumerator.MoveNext())
                 {
@@ -54,7 +55,7 @@ namespace DarkLordGame
             }
         }
 
-        private void OnActivateSkill(Entity entity, Golem golem, GolemPart part)
+        private void OnActivatePartSkill(Entity entity, Golem golem, GolemPart part)
         {
             if (part == null) return;
             if (part.cooldownTimeCount < part.cooldownTime)
@@ -205,7 +206,32 @@ namespace DarkLordGame
         {
             var part = golem.activatingPart;
             if (part == null) return;
-            golem.ActivatePartEffect(entity, EntityManager, part, EffectTiming.ManualActivate);
+            for (int i = part.linkedPart.Count - 1; i >= 0; i--)
+            {
+                if (part.linkedPart[i] == null)
+                {
+                    part.linkedPart.RemoveAt(i);
+                }
+            }
+            if (part.linkedPart.Count <= 0)
+            {
+                golem.ActivatePartEffect(entity, EntityManager, part, EffectTiming.ManualActivate);
+            }
+            else
+            {
+                var parts = new List<GolemPart> { part };
+                parts.AddRange(part.linkedPart);
+                if (SystemAPI.ManagedAPI.TryGetSingleton<EffectFusionTableEntity>(out var table))
+                {
+                    var effects  =table.table.GetClosestFusionEffect(parts);
+                    for (int i = 0, length = effects.Count; i < length; i++)
+                    {
+                        effects[i].OnActivate(entity, EntityManager);
+                    }
+                }
+            }
+
+
             var timing = GetActivatingEffectTiming(golem);
             ActivateAllPartEffect(entity, golem, timing);
         }

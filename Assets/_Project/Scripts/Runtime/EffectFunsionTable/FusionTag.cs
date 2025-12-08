@@ -1,6 +1,6 @@
 namespace DarkLordGame
 {
-    public enum PartTag
+    public enum FusionTag
     {
         North,
         West,
@@ -11,9 +11,9 @@ namespace DarkLordGame
     }
 
     [System.Serializable]
-    public class PartTagValue
+    public class FusionTagValue
     {
-        public PartTag tagType;
+        public FusionTag tagType;
         public float value;
     }
 }

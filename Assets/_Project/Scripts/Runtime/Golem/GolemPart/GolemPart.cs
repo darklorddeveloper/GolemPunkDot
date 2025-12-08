@@ -36,13 +36,37 @@ namespace DarkLordGame
         public float cooldownTimeCount;
 
         [Header("Tags for fuse")]
-        public List<PartTagValue> partTagValues = new();
+        public List<FusionTagValue> partTagValues = new();
+        [Header("Linked part")]
+        public List<GolemPart> linkedPart = new();
 
         public void Init()
         {
             for (int i = 0, length = effects.Count; i < length; i++)
             {
                 effects[i] = ScriptableObject.Instantiate(effects[i]);
+            }
+        }
+
+        public void ExtractFusionScores(float[] scores)
+        {
+            for (int i = 0, length = effects.Count; i < length; i++)
+            {
+                for (int j = 0, num = effects[i].fusionTagValues.Count; j < num; j++)
+                {
+                    var tagValue = effects[i].fusionTagValues[j];
+                    scores[(int)tagValue.tagType] += tagValue.value;
+                }
+            }
+
+            for (int i = 0, length = runes.Count; i < length; i++)
+            {
+                var fx = runes[i].effect;
+                for (int j = 0, num = fx.fusionTagValues.Count; j < num; j++)
+                {
+                    var tagValue = fx.fusionTagValues[j];
+                    scores[(int)tagValue.tagType] += tagValue.value;
+                }
             }
         }
     }

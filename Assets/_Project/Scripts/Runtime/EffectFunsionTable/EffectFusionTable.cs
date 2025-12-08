@@ -31,11 +31,11 @@ namespace DarkLordGame
         [System.Serializable]
         public class FusionData
         {
-            public List<PartTagValue> partTags = new();
+            public List<FusionTagValue> partTags = new();
             public List<EffectBase> effects = new();
 
             [System.NonSerialized] public float[] scores;
-            public static readonly PartTag[] AllTags = (PartTag[])Enum.GetValues(typeof(PartTag));
+            public static readonly FusionTag[] AllTags = (FusionTag[])Enum.GetValues(typeof(FusionTag));
             public void Init()
             {
                 scores = new float[AllTags.Length];
@@ -50,7 +50,8 @@ namespace DarkLordGame
                 float distance = 0;
                 for (int i = 0, length = values.Length; i < length; i++)//unified array or list
                 {
-                    distance = 100 * math.abs(values[i] - scores[i]);
+                    float v = math.abs(values[i] - scores[i]);
+                    distance = 100 * v * v;
                 }
                 return distance;
             }
@@ -84,10 +85,7 @@ namespace DarkLordGame
             for (int i = 0, length = fuse.Count; i < length; i++)
             {
                 var p = fuse[i];
-                for (int j = 0, num = fuse[i].partTagValues.Count; j < num; j++)
-                {
-                    scores[(int)p.partTagValues[j].tagType] += p.partTagValues[j].value;
-                }
+                p.ExtractFusionScores(scores);
             }
 
             for (int i = 0, length = fusionDatas.Count; i < length; i++)
