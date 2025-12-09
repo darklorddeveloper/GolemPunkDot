@@ -1,14 +1,12 @@
-using System.Linq;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
-using Unity.Transforms;
-using UnityEngine;
 
 namespace DarkLordGame
 {
-
+    [BurstCompile]
     public partial struct AoeDamageSystem : ISystem
     {
         public EntityQuery entityQuery;
@@ -41,11 +39,11 @@ namespace DarkLordGame
                     for (int j = 0, numbers = hits.Length; j < numbers; j++)
                     {
                         var e = hits[j].Entity;
-                        if(attack.useLimitedAngle)
+                        if (attack.useLimitedAngle)
                         {
                             var dis = math.normalize(hits[j].Position - components[i].position);
                             var dot = math.dot(dis, components[i].forward);
-                            if(dot < attack.limitedDot)
+                            if (dot < attack.limitedDot)
                             {
                                 continue;
                             }
