@@ -20,6 +20,7 @@ namespace DarkLordGame
         public float velocityLostPerDistance; // 1.0f
         public float maxHeight;
         public float gravity;
+        public float airDamping;
         public float damping;
     }
 

@@ -12,6 +12,7 @@ namespace DarkLordGame
             for (int i = 0, length = damageReactions.Length; i < length; i++)
             {
                 ecb.SetComponent(chunk, damageReactions[i].target, new DamageTime { Value = time });
+                //do animation changing here
             }
         }
     }

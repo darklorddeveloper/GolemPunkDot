@@ -29,7 +29,7 @@ namespace DarkLordGame
             velocity.y -= impactMovement.gravity * deltaTime;
             if (pos.y <= 0 && velocity.y <= 0)
             {
-                velocity.xz = math.lerp(velocity.xz, 0, impactMovement.damping * deltaTime);
+                velocity.xz = math.lerp(velocity.xz, 0, impactMovement.airDamping * deltaTime);
             }
 
             pos = pos + velocity * deltaTime;
