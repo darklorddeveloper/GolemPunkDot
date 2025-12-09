@@ -1,22 +1,20 @@
+using Unity.Burst;
 using Unity.Entities;
-using UnityEngine;
 
 namespace DarkLordGame
 {
+    [BurstCompile]
     public partial struct DamageReactionJob : IJobEntity
     {
         public float time;
         public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunk, DynamicBuffer<DamageReaction> damageReactions)
+        public void Execute([ChunkIndexInQuery] int chunk, in Damage damage, DynamicBuffer<InstanceAnimation> damageReactions, in CurrentInstanceAnimationIndex index)
         {
-            for (int i = 0, length = damageReactions.Length; i < length; i++)
-            {
-                ecb.SetComponent(chunk, damageReactions[i].target, new DamageTime { Value = time });
-                //do animation changing here
-            }
+            ecb.SetComponent(chunk, damageReactions[index.index].target, new DamageTime { Value = time });
         }
     }
 
+    [BurstCompile]
     public partial struct DamageReactionSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
