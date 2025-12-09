@@ -1,10 +1,11 @@
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace DarkLordGame
 {
 
+    [BurstCompile]
     public partial struct MeleeAttackJob : IJobEntity
     {
         public float deltaTime;
@@ -28,6 +29,7 @@ namespace DarkLordGame
             }
         }
     }
+    [BurstCompile]
     public partial struct AttackMovementMeleeSystem : ISystem
     {
         private EntityArchetype aoeArchetype;

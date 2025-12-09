@@ -21,6 +21,7 @@ namespace DarkLordGame
         }
     }
 
+[BurstCompile]
     public partial struct ChainSpawnerAttackSystem : ISystem
     {
         private ComponentLookup<Attack> atk;

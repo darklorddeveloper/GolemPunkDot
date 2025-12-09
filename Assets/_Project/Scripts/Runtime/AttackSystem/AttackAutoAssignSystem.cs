@@ -14,6 +14,7 @@ namespace DarkLordGame
         }
     }
 
+    [BurstCompile]
     public partial struct AutoAssignAttackPrefabJob : IJobEntity
     {
         public void Execute(ref AttackRequestData attackRequestData, ref AttackRequestAutoAssignPrefab prefab, EnabledRefRW<AttackRequestAutoAssignPrefab> enablePrefab)
