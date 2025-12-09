@@ -32,13 +32,21 @@ namespace DarkLordGame
                     var fx = GetEntity(authoring.deathEffect, TransformUsageFlags.Dynamic);
                     AddComponent(e, new DeathEffect { prefab = fx });
                 }
-                if(authoring.addSafeDestroyComponent)
+                else
+                {
+                    AddComponent(e, new DeathEffect { prefab = Entity.Null });
+                }
+                if (authoring.addSafeDestroyComponent)
                 {
                     AddComponent<SafeDestroyComponent>(e);
-                    AddComponent(e, new DestroyImmediate{destroyChild= authoring.destroyChild});
+                    AddComponent(e, new DestroyImmediate { destroyChild = authoring.destroyChild });
                     SetComponentEnabled<SafeDestroyComponent>(e, false);
                     SetComponentEnabled<DestroyImmediate>(e, false);
-                }                
+                }
+            }
+            else
+            {
+                AddComponent(e, new DeathEffect { prefab = Entity.Null });
             }
         }
     }

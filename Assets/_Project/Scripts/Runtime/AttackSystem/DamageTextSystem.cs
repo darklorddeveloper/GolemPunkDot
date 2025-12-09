@@ -87,11 +87,6 @@ namespace DarkLordGame
             return mainCamera.camera.WorldToScreenPoint(pos);
         }
 
-        private void SetActiveDamageText(List<DamageText> damageTexts, NativeArray<Damage> localTransforms)
-        {
-
-        }
-
         private List<DamageText> GetTextDamageInstance(int numbers)
         {
             List<DamageText> damageTexts;

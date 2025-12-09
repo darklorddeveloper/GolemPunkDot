@@ -11,9 +11,10 @@ namespace DarkLordGame
     public partial struct DamageJob : IJobEntity
     {
         public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref Unit unit, ref Damage damage,
+        public void Execute([ChunkIndexInQuery] int chunk, 
+        Entity entity, ref Unit unit, ref Damage damage,
         ref LocalTransform localTransform,
-         EnabledRefRW<Damage> damageEnable, in DeathEffect effect)
+        EnabledRefRW<Damage> damageEnable, in DeathEffect effect)
         {
             float dealtDamage = damage.attack.damage;
             float shield = unit.shield;
@@ -52,11 +53,8 @@ namespace DarkLordGame
     [BurstCompile]
     public partial struct DamageSystem : ISystem
     {
-        public EntityQuery entityQuery;
         public void OnCreate(ref SystemState state)
         {
-            entityQuery = SystemAPI.QueryBuilder().WithAll<Damage>().Build();
-
             state.RequireForUpdate<Damage>();
         }
         public void OnUpdate(ref SystemState state)
@@ -66,8 +64,8 @@ namespace DarkLordGame
             {
                 ecb = ecb.AsParallelWriter(),
             };
-            job.ScheduleParallel();
-            state.EntityManager.DestroyEntity(entityQuery);
+            var handle = job.ScheduleParallel(state.Dependency);
+            handle.Complete();
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
         }
