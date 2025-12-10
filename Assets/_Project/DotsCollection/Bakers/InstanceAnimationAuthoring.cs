@@ -9,6 +9,11 @@ namespace DarkLordGame
         public bool hasDamageTime = true;
         
         public List<GameObject> targets = new();
+
+        [Header("Auto delay play --- good for intro")]
+        public bool autoDelayedPlay = false;
+        public int delayedPlayTargetIndex = 0;
+        public float delayed = 0.3f;
     }
     public class InstanceAnimationBaker : StructBaker<InstanceAnimationAuthoring, PlayInstanceAnimation, CurrentInstanceAnimationIndex>
     {
@@ -24,8 +29,8 @@ namespace DarkLordGame
                 var child = GetEntity(authoring.targets[i], Unity.Entities.TransformUsageFlags.Dynamic);
                 buff.Add(new InstanceAnimation { target = child });
             }
-            AddComponent<InstanceAnimationDelayedPlay>(e);
-            SetComponentEnabled<InstanceAnimationDelayedPlay>(e, false);
+            AddComponent(e, new InstanceAnimationDelayedPlay{ period = authoring.delayed, targetIndex = authoring.delayedPlayTargetIndex});
+            SetComponentEnabled<InstanceAnimationDelayedPlay>(e, authoring.autoDelayedPlay);
         }
     }
 }
