@@ -1,0 +1,751 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1278279303040711559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6516913834935388214}
+  - component: {fileID: 2883167215309169226}
+  - component: {fileID: 6914710617294645723}
+  - component: {fileID: 306763177032169931}
+  - component: {fileID: 417870912148165874}
+  m_Layer: 8
+  m_Name: CrystalBug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6516913834935388214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278279303040711559}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6636928590277688904}
+  - {fileID: 213378689047862470}
+  - {fileID: 6974528455167679026}
+  - {fileID: 8139606228706776957}
+  - {fileID: 3175971813985248685}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2883167215309169226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278279303040711559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ed269e83c34d12a94e8e99eb56243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameBakers::DarkLordGame.UnitAuthoring
+  flags: 2
+  data1:
+    canDeath: 1
+    HP: 2
+    MaxHP: 2
+    bonusMaxHP: 0
+    shield: 0
+    tempShield: 0
+    attack: 0
+    tempAttack: 0
+    tempAttackMultiplier: 0
+    criticalChance: 0
+    tempCriticalChance: 0
+    criitcalDamage: 0
+    tempCriticalDamage: 0
+    bonusAoeDamageRate: 0
+    bonusAoeDamageTempDamageRate: 0
+    bonusAoeRange: 0
+    movementSpeed: 0
+    tempMovementSpeed: 0
+    cooldownSpeed: 0
+    tempCooldownSpeed: 0
+  canDeath: 1
+  deathEffect: {fileID: 0}
+  addSafeDestroyComponent: 0
+  destroyChild: 0
+--- !u!65 &6914710617294645723
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278279303040711559}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 4, z: 1}
+  m_Center: {x: 0, y: 2, z: 0}
+--- !u!54 &306763177032169931
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278279303040711559}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &417870912148165874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278279303040711559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba1156713efa49f0b0720b767ec9a21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.InstanceAnimationAuthoring
+  flags: 0
+  data2:
+    index: 0
+  hasStartTime: 1
+  hasDamageTime: 1
+  targets:
+  - {fileID: 8071254102499109223}
+  - {fileID: 8655325853897059388}
+  - {fileID: 1395585037078825947}
+  - {fileID: 6247324276080593864}
+  - {fileID: 2726876683266226271}
+--- !u!1001 &647827876957713285
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6516913834935388214}
+    m_Modifications:
+    - target: {fileID: 1991595129483819102, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_Name
+      value: Crystal bug_Crystalbug.Attack (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1991595129483819102, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710784
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70710576
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8847317783800830104, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: adbea3ebadc3b445a8f17e81855efd42, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1991595129483819102, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5044770457823569241}
+    - targetCorrespondingSourceObject: {fileID: 1991595129483819102, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5009956290639322442}
+  m_SourcePrefab: {fileID: 100100000, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+--- !u!1 &1395585037078825947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1991595129483819102, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+  m_PrefabInstance: {fileID: 647827876957713285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5044770457823569241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395585037078825947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e73111838a4b04d4aa821704584c75de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.StartTimeAuthoring
+  flags: 2
+  enabledByDefault: 1
+--- !u!114 &5009956290639322442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395585037078825947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dff7422b6324395971e32626038bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.DamageTimeAuthoring
+  flags: 0
+--- !u!4 &6974528455167679026 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
+  m_PrefabInstance: {fileID: 647827876957713285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4961530037208093325
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6516913834935388214}
+    m_Modifications:
+    - target: {fileID: 1374668583562385406, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: adbea3ebadc3b445a8f17e81855efd42, type: 2}
+    - target: {fileID: 6993292720074189522, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_Name
+      value: Crystal bug_Crystalbug.Death (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6993292720074189522, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710784
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70710576
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6993292720074189522, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4652366537366907510}
+    - targetCorrespondingSourceObject: {fileID: 6993292720074189522, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4119341104878725908}
+  m_SourcePrefab: {fileID: 100100000, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+--- !u!1 &2726876683266226271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6993292720074189522, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+  m_PrefabInstance: {fileID: 4961530037208093325}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4652366537366907510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2726876683266226271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e73111838a4b04d4aa821704584c75de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.StartTimeAuthoring
+  flags: 2
+  enabledByDefault: 1
+--- !u!114 &4119341104878725908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2726876683266226271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dff7422b6324395971e32626038bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.DamageTimeAuthoring
+  flags: 0
+--- !u!4 &3175971813985248685 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
+  m_PrefabInstance: {fileID: 4961530037208093325}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6054334045658941061
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6516913834935388214}
+    m_Modifications:
+    - target: {fileID: 117740369400349768, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: adbea3ebadc3b445a8f17e81855efd42, type: 2}
+    - target: {fileID: 3177489361130744505, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_Name
+      value: Crystal bug_Crystalbug.Move (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177489361130744505, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265424577893505603, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265424577893505603, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265424577893505603, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265424577893505603, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265424577893505603, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265424577893505603, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265424577893505603, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710784
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265424577893505603, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70710576
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265424577893505603, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265424577893505603, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265424577893505603, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265424577893505603, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265424577893505603, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3177489361130744505, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6819023451742518194}
+    - targetCorrespondingSourceObject: {fileID: 3177489361130744505, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1374227255968124726}
+  m_SourcePrefab: {fileID: 100100000, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+--- !u!4 &213378689047862470 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6265424577893505603, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+  m_PrefabInstance: {fileID: 6054334045658941061}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8655325853897059388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3177489361130744505, guid: ba5930c00e4e44831a9db4cabe3341ce, type: 3}
+  m_PrefabInstance: {fileID: 6054334045658941061}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6819023451742518194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8655325853897059388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e73111838a4b04d4aa821704584c75de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.StartTimeAuthoring
+  flags: 2
+  enabledByDefault: 1
+--- !u!114 &1374227255968124726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8655325853897059388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dff7422b6324395971e32626038bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.DamageTimeAuthoring
+  flags: 0
+--- !u!1001 &8022830392138782973
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6516913834935388214}
+    m_Modifications:
+    - target: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710784
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70710576
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2975474030604864379, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: adbea3ebadc3b445a8f17e81855efd42, type: 2}
+    - target: {fileID: 4171500835107672885, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_Name
+      value: Crystal bug_Crystalbug.TakeDamage (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171500835107672885, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4171500835107672885, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7852245717129060}
+    - targetCorrespondingSourceObject: {fileID: 4171500835107672885, guid: 23de585e50c22482690e6416795d5461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2223073056450469814}
+  m_SourcePrefab: {fileID: 100100000, guid: 23de585e50c22482690e6416795d5461, type: 3}
+--- !u!1 &6247324276080593864 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4171500835107672885, guid: 23de585e50c22482690e6416795d5461, type: 3}
+  m_PrefabInstance: {fileID: 8022830392138782973}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7852245717129060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6247324276080593864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e73111838a4b04d4aa821704584c75de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.StartTimeAuthoring
+  flags: 2
+  enabledByDefault: 1
+--- !u!114 &2223073056450469814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6247324276080593864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dff7422b6324395971e32626038bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.DamageTimeAuthoring
+  flags: 0
+--- !u!4 &8139606228706776957 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
+  m_PrefabInstance: {fileID: 8022830392138782973}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9189904794689329709
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6516913834935388214}
+    m_Modifications:
+    - target: {fileID: 1120203816797631306, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_Name
+      value: Crystal bug_Crystalbug.Idle (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120203816797631306, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563114281713230949, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563114281713230949, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563114281713230949, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563114281713230949, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563114281713230949, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563114281713230949, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563114281713230949, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710784
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563114281713230949, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70710576
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563114281713230949, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563114281713230949, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563114281713230949, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563114281713230949, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563114281713230949, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4121604760298960574, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: adbea3ebadc3b445a8f17e81855efd42, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1120203816797631306, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8264960478084336359}
+    - targetCorrespondingSourceObject: {fileID: 1120203816797631306, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5900791543772865511}
+  m_SourcePrefab: {fileID: 100100000, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+--- !u!4 &6636928590277688904 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2563114281713230949, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+  m_PrefabInstance: {fileID: 9189904794689329709}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8071254102499109223 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1120203816797631306, guid: bdb1c13219c564b689eb34f9f80516e0, type: 3}
+  m_PrefabInstance: {fileID: 9189904794689329709}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8264960478084336359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071254102499109223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e73111838a4b04d4aa821704584c75de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.StartTimeAuthoring
+  flags: 2
+  enabledByDefault: 1
+--- !u!114 &5900791543772865511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071254102499109223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dff7422b6324395971e32626038bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.DamageTimeAuthoring
+  flags: 0

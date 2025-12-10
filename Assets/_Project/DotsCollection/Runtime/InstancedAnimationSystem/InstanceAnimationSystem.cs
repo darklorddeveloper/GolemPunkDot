@@ -27,6 +27,7 @@ namespace DarkLordGame
         {
             state.RequireForUpdate<PlayInstanceAnimation>();
         }
+        
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.TempJob);

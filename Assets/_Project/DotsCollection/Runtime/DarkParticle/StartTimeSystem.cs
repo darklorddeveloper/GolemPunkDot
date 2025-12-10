@@ -16,6 +16,17 @@ namespace DarkLordGame
     }
 
     [BurstCompile]
+    public partial struct DamageTimeJob : IJobEntity
+    {
+        public float value;
+        public void Execute(ref DamageTime time, EnabledRefRW<DamageTime> timeEnables)
+        {
+            time.Value = value;
+            timeEnables.ValueRW = false;
+        }
+    }
+
+    [BurstCompile]
     public partial struct StartTimeSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -26,6 +37,12 @@ namespace DarkLordGame
                 value = value
             };
             job.ScheduleParallel();
+
+             var job2 = new DamageTimeJob
+            {
+                value = value
+            };
+            job2.ScheduleParallel();
         }
     }
 }

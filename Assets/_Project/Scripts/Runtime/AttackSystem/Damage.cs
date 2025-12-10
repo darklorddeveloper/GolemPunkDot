@@ -11,6 +11,7 @@ namespace DarkLordGame
         public float3 damageSourcePosition;
     }
 
+
     public struct AoeDamage : IComponentData, IEnableableComponent
     {
         public float3 position;
