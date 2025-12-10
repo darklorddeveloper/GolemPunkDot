@@ -4,6 +4,22 @@ using UnityEngine;
 namespace DarkLordGame
 {
 
+    public static class ClassBakerUtility
+    {
+        public static int CalculatePriority(MonoBehaviour target)
+        {
+            var all = target.gameObject.GetComponents<MonoBehaviour>();
+            for (int i = 0, length = all.Length; i < length; i++)
+            {
+                if (all[i] == target)
+                {
+                    return i * 32;
+                }
+            }
+            return 0;
+        }
+    }
+
     public class ClassAuthorizer<T1> : MonoBehaviour where T1 : ClassComponentData, IComponentData, new()
     {
         [Header("Must enabledOnly once incase add multiple class baker")]
@@ -20,6 +36,8 @@ namespace DarkLordGame
         public override void Bake(T authoring)
         {
             var e = GetEntity(authoring.flags);
+            var priority = ClassBakerUtility.CalculatePriority(authoring);
+            authoring.data1.priority = priority;
             AddComponentObject(e, authoring.data1);
             if (authoring.addSetupClassComponent)
                 AddComponent(e, new SetupClassComponent());
@@ -46,6 +64,9 @@ namespace DarkLordGame
         public override void Bake(T authoring)
         {
             var e = GetEntity(authoring.flags);
+            var priority = ClassBakerUtility.CalculatePriority(authoring);
+            authoring.data1.priority = priority;
+            authoring.data2.priority = priority + 1;
             AddComponentObject(e, authoring.data1);
             AddComponentObject(e, authoring.data2);
             if (authoring.addSetupClassComponent)
@@ -77,6 +98,10 @@ namespace DarkLordGame
         public override void Bake(T authoring)
         {
             var e = GetEntity(authoring.flags);
+            var priority = ClassBakerUtility.CalculatePriority(authoring);
+            authoring.data1.priority = priority;
+            authoring.data2.priority = priority + 1;
+            authoring.data3.priority = priority + 2;
             AddComponentObject(e, authoring.data1);
             AddComponentObject(e, authoring.data2);
             AddComponentObject(e, authoring.data3);
@@ -111,6 +136,11 @@ namespace DarkLordGame
         public override void Bake(T authoring)
         {
             var e = GetEntity(authoring.flags);
+            var priority = ClassBakerUtility.CalculatePriority(authoring);
+            authoring.data1.priority = priority;
+            authoring.data2.priority = priority + 1;
+            authoring.data3.priority = priority + 2;
+            authoring.data4.priority = priority + 3;
             AddComponentObject(e, authoring.data1);
             AddComponentObject(e, authoring.data2);
             AddComponentObject(e, authoring.data3);

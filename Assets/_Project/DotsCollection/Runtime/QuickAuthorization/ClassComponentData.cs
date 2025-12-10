@@ -5,9 +5,10 @@ namespace DarkLordGame
     public class ClassComponentData : IComponentData
     {
         public bool initialized = false;//check for rush systel
+        public int priority = 0;
         public virtual void Init(Entity entity, EntityManager manager)
         {
-            initialized = true; 
+            initialized = true;
             //instantiate self prefab and assign
         }
     }

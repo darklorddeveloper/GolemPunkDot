@@ -56,9 +56,9 @@ MonoBehaviour:
       y: 0
       z: 0
   data2:
-    velocityLostPerDistance: 10
+    velocityLostPerDistance: 0.1
     maxHeight: 5
-    gravity: 50
+    gravity: 90
     airDamping: 75
     damping: 100
   data3:
@@ -79,7 +79,6 @@ MonoBehaviour:
       riftPower: 0
       pushPower: 0
       canDealDeathImpact: 0
-  dealDeathImpactDamage: 0
   impactRadius: 1
   destroyPeriod: 0.5
 --- !u!1001 &6496518008794723836
