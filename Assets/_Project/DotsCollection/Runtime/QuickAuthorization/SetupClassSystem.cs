@@ -47,7 +47,6 @@ namespace DarkLordGame
                 {
                     targetDatas[i].Init(e, EntityManager);
                 }
-
                 // Done for this entity
                 em.SetComponentEnabled<SetupClassComponent>(e, false);
             }
