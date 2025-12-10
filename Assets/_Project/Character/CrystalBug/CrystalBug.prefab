@@ -75,10 +75,10 @@ MonoBehaviour:
     cooldownSpeed: 0
     tempCooldownSpeed: 0
   canDeath: 1
-  deathEffect: {fileID: 0}
+  deathEffect: {fileID: 7350996835491456667, guid: 445101ef29b3b44d99130c0008838579, type: 3}
   takeDamageAnimationPeriod: 0.6
-  addSafeDestroyComponent: 0
   destroyChild: 0
+  destroyPeriod: 0
 --- !u!65 &6914710617294645723
 BoxCollider:
   m_ObjectHideFlags: 0

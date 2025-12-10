@@ -1,19 +1,19 @@
-using UnityEngine;
+using Unity.Burst;
+using Unity.Entities;
+using Unity.Transforms;
 
 namespace DarkLordGame
 {
-    public class DeathSystem : MonoBehaviour
+    [BurstCompile]
+    public partial struct DeathUnitJob : IJobEntity
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        public EntityCommandBuffer.ParallelWriter ecb;
+        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, in Death death)
         {
-        
         }
+    }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+    public partial struct DeathSystem : ISystem
+    {
     }
 }

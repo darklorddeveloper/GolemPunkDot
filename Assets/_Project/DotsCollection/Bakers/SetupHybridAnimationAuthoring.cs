@@ -20,7 +20,7 @@ namespace DarkLordGame
             AddComponent<PlayHybridAnimation>(e);
             if (authoring.hasLocomotion)
             {
-                AddComponent<HybridLocomotion>(e, new HybridLocomotion { lerpSpeed = authoring.locomotionLerpSpeed });
+                AddComponent(e, new HybridLocomotion { lerpSpeed = authoring.locomotionLerpSpeed });
             }
         }
     }

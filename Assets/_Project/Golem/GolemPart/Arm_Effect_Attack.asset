@@ -31,6 +31,7 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   effectTiming: 0
+  fusionTagValues: []
   attackPrefab: cc71d272da33f4cedb5bb01674761cc4
   attachPoint: 5
   attackRequestData:
@@ -66,6 +67,10 @@ MonoBehaviour:
     extraLifeTime: 0
     bounce: 0
     chainAttack: 0
+    riftPower: 20
+    pushPower: 10
+    canDealDeathImpact: 0
+  canChainAttack: 0
   references:
     version: 2
     RefIds: []

@@ -42,6 +42,11 @@ namespace DarkLordGame
         public float extraLifeTime;
         public int bounce;
         public int chainAttack;
+
+        [Header("Impact")]
+        public float riftPower;
+        public float pushPower;
+        public bool canDealDeathImpact;
     }
 
     [System.Serializable]

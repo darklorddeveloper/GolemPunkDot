@@ -5,6 +5,7 @@ namespace DarkLordGame
 {
     public class UnitAuthoring : StructAuthorizer<Unit, ChangeMovementSpeed, Damage>
     {
+        [Header("Note - this will add safedestroy")]
         [Header("Death")]
         public bool canDeath = true;
         public GameObject deathEffect;
@@ -12,8 +13,7 @@ namespace DarkLordGame
         [Header("TakeDamage")]
         public float takeDamageAnimationPeriod = 0.3f;
 
-        public bool addSafeDestroyComponent;
-        public bool destroyChild;
+        public float destroyPeriod = 0.0f;
     }
 
     public class UnitBaker : StructBaker<UnitAuthoring, Unit, ChangeMovementSpeed, Damage>
@@ -40,13 +40,10 @@ namespace DarkLordGame
                 {
                     AddComponent(e, new DeathEffect { prefab = Entity.Null });
                 }
-                if (authoring.addSafeDestroyComponent)
-                {
-                    AddComponent<SafeDestroyComponent>(e);
-                    AddComponent(e, new DestroyImmediate { destroyChild = authoring.destroyChild });
-                    SetComponentEnabled<SafeDestroyComponent>(e, false);
-                    SetComponentEnabled<DestroyImmediate>(e, false);
-                }
+                AddComponent(e, new SafeDestroyComponent { period = authoring.destroyPeriod });
+                AddComponent(e, new DestroyImmediate { destroyChild = true });
+                SetComponentEnabled<SafeDestroyComponent>(e, false);
+                SetComponentEnabled<DestroyImmediate>(e, false);
             }
             else
             {

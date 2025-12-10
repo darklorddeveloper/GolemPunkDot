@@ -2,8 +2,8 @@ namespace DarkLordGame
 {
     public class DeathImpactAuthoring : StructAuthorizer<DeathImpact, DeathImpactMovement, DeathImpactDamage>
     {
-        public bool dealDeathImpactDamage = true;
         public float impactRadius = 1.0f;
+        public float destroyPeriod = 0.5f;
     }
 
     public class DeathImpactBaker : StructBaker<DeathImpactAuthoring, DeathImpact, DeathImpactMovement, DeathImpactDamage>
@@ -15,8 +15,8 @@ namespace DarkLordGame
             AddComponent(e, new DealDeathImpactDamage { radius = authoring.impactRadius });
             SetComponentEnabled<DealDeathImpactDamage>(e, false);
             AddComponent<InitDeathImpact>(e);
-            AddComponent<SafeDestroyComponent>(e);
-            AddComponent<DestroyImmediate>(e);
+            AddComponent(e, new SafeDestroyComponent { period = authoring.destroyPeriod });
+            AddComponent(e, new DestroyImmediate { destroyChild = true });
             SetComponentEnabled<SafeDestroyComponent>(e, false);
             SetComponentEnabled<DestroyImmediate>(e, false);
         }

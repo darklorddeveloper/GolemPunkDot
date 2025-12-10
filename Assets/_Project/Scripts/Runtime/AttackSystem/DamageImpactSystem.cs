@@ -41,7 +41,7 @@ namespace DarkLordGame
 
             impact.velocityDirection = velocity;
             transform.Position = pos;
-            if (math.lengthsq(velocity.xz) <= 0.1f)
+            if (math.lengthsq(velocity.xz) <= 0.1f && velocity.y < 0 && pos.y <= 0.1f)
             {
                 movementEnable.ValueRW = false;
                 ecb.SetComponentEnabled<SafeDestroyComponent>(chunk, e, true);

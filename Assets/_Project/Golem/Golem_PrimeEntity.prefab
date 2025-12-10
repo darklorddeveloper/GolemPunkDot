@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2990313784155266086}
   - component: {fileID: 8818217638626796749}
   - component: {fileID: 8831691265261923697}
-  - component: {fileID: 7052865018830192994}
   - component: {fileID: 6211343010587168179}
   - component: {fileID: 3280195084012512131}
   - component: {fileID: 2381651463946351956}
@@ -149,21 +148,6 @@ MonoBehaviour:
   data1:
     radius: 0
     interactLayerBit: 0
---- !u!114 &7052865018830192994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5476147893443169591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79bd71c3ac82c4c36821f6ebf42c67e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: DotCollection::DarkLordGame.SafeDestroyAuthoring
-  shouldDestroyFromStart: 0
-  period: 0
-  destroyChild: 1
 --- !u!114 &6211343010587168179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +185,7 @@ MonoBehaviour:
   canDeath: 1
   deathEffect: {fileID: 0}
   takeDamageAnimationPeriod: 0.3
-  addSafeDestroyComponent: 0
+  addSafeDestroyComponent: 1
   destroyChild: 0
 --- !u!114 &3280195084012512131
 MonoBehaviour:

@@ -40,6 +40,7 @@ namespace DarkLordGame
                         ecb.SetComponent(chunk, fx, new DeathImpactDamage { attack = damage.attack });
                         ecb.SetComponentEnabled<DealDeathImpactDamage>(chunk, fx, damage.attack.canDealDeathImpact);
                     }
+                    ecb.SetComponentEnabled<SafeDestroyComponent>(chunk, entity, true);
                 }
                 else
                 {
