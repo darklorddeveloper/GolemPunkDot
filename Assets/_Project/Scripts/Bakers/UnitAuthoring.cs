@@ -5,8 +5,12 @@ namespace DarkLordGame
 {
     public class UnitAuthoring : StructAuthorizer<Unit, ChangeMovementSpeed, Damage>
     {
+        [Header("Death")]
         public bool canDeath = true;
         public GameObject deathEffect;
+
+        [Header("TakeDamage")]
+        public float takeDamageAnimationPeriod = 0.3f;
 
         public bool addSafeDestroyComponent;
         public bool destroyChild;
@@ -48,6 +52,8 @@ namespace DarkLordGame
             {
                 AddComponent(e, new DeathEffect { prefab = Entity.Null });
             }
+
+            AddComponent(e, new TakeDamageAnimationPeriod { period = authoring.takeDamageAnimationPeriod });
         }
     }
 }

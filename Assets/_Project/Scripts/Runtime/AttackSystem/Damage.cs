@@ -1,6 +1,5 @@
 using Unity.Entities;
 using Unity.Mathematics;
-using UnityEngine;
 
 namespace DarkLordGame
 {
@@ -11,7 +10,11 @@ namespace DarkLordGame
         public float3 damageSourcePosition;
     }
 
-
+[System.Serializable]
+    public struct TakeDamageAnimationPeriod : IComponentData
+    {
+        public float period;
+    }
     public struct AoeDamage : IComponentData, IEnableableComponent
     {
         public float3 position;

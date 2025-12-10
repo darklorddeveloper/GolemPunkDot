@@ -349,6 +349,7 @@ MonoBehaviour:
     tempCooldownSpeed: 0
   canDeath: 0
   deathEffect: {fileID: 0}
+  takeDamageAnimationPeriod: 0
   addSafeDestroyComponent: 0
   destroyChild: 0
 --- !u!4 &781832465
@@ -527,14 +528,6 @@ PrefabInstance:
     - target: {fileID: 1278279303040711559, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
       propertyPath: m_Name
       value: CrystalBug
-      objectReference: {fileID: 0}
-    - target: {fileID: 2883167215309169226, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: data1.HP
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 2883167215309169226, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: data1.MaxHP
-      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6516913834935388214, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
       propertyPath: m_LocalPosition.x

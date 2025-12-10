@@ -7,11 +7,15 @@ namespace DarkLordGame
     public partial struct DamageReactionJob : IJobEntity
     {
         public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, in Damage damage, DynamicBuffer<InstanceAnimation> damageReactions, ref CurrentInstanceAnimationIndex index)
+        public const int idleId = (int)InstanceAnimationID.Idle;
+        public const int takeDamageId = (int)InstanceAnimationID.TakeDamage;
+        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, in Damage damage, DynamicBuffer<InstanceAnimation> damageReactions, ref CurrentInstanceAnimationIndex index, in TakeDamageAnimationPeriod period)
         {
-            index.index = 3;
+            index.index = takeDamageId;
             ecb.SetComponentEnabled<DamageTime>(chunk, damageReactions[index.index].target, true);
-            ecb.SetComponentEnabled<PlayInstanceAnimation>(chunk, entity,true );
+            ecb.SetComponentEnabled<PlayInstanceAnimation>(chunk, entity, true);
+            ecb.SetComponentEnabled<InstanceAnimationDelayedPlay>(chunk, entity, true);
+            ecb.SetComponent(chunk, entity, new InstanceAnimationDelayedPlay { targetIndex = idleId, period = period.period });
         }
     }
 
