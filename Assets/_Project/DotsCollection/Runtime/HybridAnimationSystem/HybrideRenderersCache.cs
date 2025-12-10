@@ -5,7 +5,7 @@ using UnityEngine;
 namespace DarkLordGame
 {
     [System.Serializable]
-    public class DamageTimeHybride : ClassComponentData
+    public class HybrideRenderersCache : ClassComponentData
     {
         [Header("Must be add after SetupHybridAnimation")]
         public List<Renderer> renderers = new();

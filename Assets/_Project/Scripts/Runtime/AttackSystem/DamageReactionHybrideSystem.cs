@@ -4,13 +4,13 @@ using UnityEngine;
 namespace DarkLordGame
 {
     [UpdateBefore(typeof(DamageTextSystem))]
-    public partial class DamageTimeHybrideSystem : SystemBase
+    public partial class DamageReactionHybrideSystem : SystemBase
     {
         private int hash = Shader.PropertyToID("_DamageTime");
         protected override void OnUpdate()
         {
             float time = (float)SystemAPI.Time.ElapsedTime;
-            foreach (var (damageHybride, damage, e) in SystemAPI.Query<DamageTimeHybride, Damage>().WithEntityAccess())
+            foreach (var (damageHybride, damage, e) in SystemAPI.Query<HybrideRenderersCache, Damage>().WithEntityAccess())
             {
                 for (int i = 0, length = damageHybride.renderers.Count; i < length; i++)
                 {
