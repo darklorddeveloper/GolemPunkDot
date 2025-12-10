@@ -56,7 +56,7 @@ MonoBehaviour:
     initialized: 0
     prefab: {fileID: 1030165252173676515, guid: 55111586e560548d2af1761e99734a9f, type: 3}
   hasLocomotion: 1
-  lerpSpeed: 10
+  locomotionLerpSpeed: 10
 --- !u!114 &2990313784155266086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: GameBakers::DarkLordGame.UnitAuthoring
   flags: 0
   data1:
+    canDeath: 1
     HP: 0
     MaxHP: 0
     bonusMaxHP: 0
@@ -198,6 +199,9 @@ MonoBehaviour:
     tempCooldownSpeed: 0
   canDeath: 1
   deathEffect: {fileID: 0}
+  takeDamageAnimationPeriod: 0.3
+  addSafeDestroyComponent: 0
+  destroyChild: 0
 --- !u!114 &3280195084012512131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +222,8 @@ MonoBehaviour:
     attackDamageMultipler: 0
     aoeRange: 0
     aoeDamageRate: 0
+    useLimitedAngle: 0
+    limitedDot: 0
     extraCritDamage: 0
     extracriticalChance: 0
     attackProperty: 0

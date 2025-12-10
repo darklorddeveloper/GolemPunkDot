@@ -55,8 +55,8 @@ MonoBehaviour:
   flags: 2
   data1:
     canDeath: 1
-    HP: 200
-    MaxHP: 200
+    HP: 20
+    MaxHP: 20
     bonusMaxHP: 0
     shield: 0
     tempShield: 0
