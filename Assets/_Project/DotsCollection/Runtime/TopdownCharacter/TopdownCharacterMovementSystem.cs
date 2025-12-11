@@ -72,24 +72,26 @@ namespace DarkLordGame
             }
             //movement
             float distance = math.length(characterInput.movement * speed.value * speed.multiplier * deltaTime);
-
-            ColliderCastHit hit;
-            bool hitted = CollisionWorld.SphereCast(pos + movement.castOffset * characterInput.movement, movement.size, characterInput.movement, distance, out hit,
-            new CollisionFilter
+            if (movement.useRaycast)
             {
-                BelongsTo = movement.layerBit,
-                CollidesWith = movement.collideWithLayerBit,
-            });
-            movement.isHittedObstacle = hitted;
-            if (hitted)
-            {
-                distance -= movement.size;
-                distance = math.max(distance, 0);
-                movement.hittedPoint = hit.Position;
-                movement.hittedNormal = hit.SurfaceNormal;
-                var body = CollisionWorld.Bodies[hit.RigidBodyIndex];
+                ColliderCastHit hit;
+                bool hitted = CollisionWorld.SphereCast(pos + movement.castOffset * characterInput.movement, movement.size, characterInput.movement, distance, out hit,
+                new CollisionFilter
+                {
+                    BelongsTo = movement.layerBit,
+                    CollidesWith = movement.collideWithLayerBit,
+                });
+                movement.isHittedObstacle = hitted;
+                if (hitted)
+                {
+                    distance -= movement.size;
+                    distance = math.max(distance, 0);
+                    movement.hittedPoint = hit.Position;
+                    movement.hittedNormal = hit.SurfaceNormal;
+                    var body = CollisionWorld.Bodies[hit.RigidBodyIndex];
 
-                movement.lastHitEntity = body.Entity;
+                    movement.lastHitEntity = body.Entity;
+                }
             }
             movement.lastMovedDistance = distance;
             localTransform.Position = pos + characterInput.movement * distance;

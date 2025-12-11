@@ -124,10 +124,10 @@ namespace DarkLordGame
             //movement
             if (SystemAPI.HasSingleton<PlayerComponent>())
             {
-                //reset movement
+                //reset simple movement
                 frameCount++;
                 var rand = Random.CreateFromIndex(frameCount);
-                var resetJob = new InstanceAIMovementResetJob
+                var resetJob = new InstanceAISimpleMovementResetJob
                 {
                     rand = rand
                 };
@@ -136,7 +136,7 @@ namespace DarkLordGame
                 //movement implementation
                 var player = SystemAPI.GetSingleton<PlayerComponent>();
                 var wall = SystemAPI.GetSingleton<WallPosition>();
-                var movementJob = new InstanceAIMovementJob
+                var movementJob = new InstanceAISimpleMovementJob
                 {
                     playerPosition = player.playerPosition,
                     wallPosition = wall.position

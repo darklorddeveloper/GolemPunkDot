@@ -12,6 +12,7 @@ namespace DarkLordGame
         public float accereration; //max by default
         public bool canTurnOnlyWhileMoving;
         public float turnSpeed; //max by default for best
+        public bool useRaycast;
         public float size;
         public float castOffset;
         public uint layerBit;
