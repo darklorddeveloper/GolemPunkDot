@@ -6,7 +6,7 @@ namespace DarkLordGame
 {
 
     [System.Serializable]
-    public struct AIMovement : IComponentData
+    public struct InstanceAIMovement : IComponentData
     {
         public float approachDistanceSquare;
 

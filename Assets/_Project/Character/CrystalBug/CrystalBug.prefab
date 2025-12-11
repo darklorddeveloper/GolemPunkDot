@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 306763177032169931}
   - component: {fileID: 417870912148165874}
   - component: {fileID: 3328000041714648719}
+  - component: {fileID: 8895384306329333640}
+  - component: {fileID: 7600185714043089218}
+  - component: {fileID: 6742445401131166219}
   m_Layer: 8
   m_Name: CrystalBug
   m_TagString: Untagged
@@ -152,6 +155,143 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.92
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8895384306329333640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278279303040711559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07a99a7d8dbe14f04bf110a0044ea23f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameBakers::DarkLordGame.InstanceAIMovementAuthoring
+  flags: 0
+  data1:
+    approachDistanceSquare: 0
+    approachMinDistance: 0.1
+    approachMaxDistance: 0.5
+--- !u!114 &7600185714043089218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278279303040711559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1532671acd741b885412a1cb56b799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.TopdownCharacterAuthoring
+  flags: 2
+  data1:
+    movement:
+      x: 0
+      y: 0
+      z: 0
+    lookAtTargetPoint:
+      x: 0
+      y: 0
+      z: 0
+    dashAction: 0
+    isHoldingDashAction: 0
+    primaryAction: 0
+    secondaryAction: 0
+    isHoldingPrimaryAction: 0
+    isHoldingSecondaryAction: 0
+    skill1: 0
+    skill2: 0
+    skill3: 0
+    skill4: 0
+    isHoldingSkill1: 0
+    isHoldingSkill2: 0
+    isHoldingSkill3: 0
+    isHoldingSkill4: 0
+  data2:
+    movementSpeed: 5
+    currentSpeed: 0
+    accereration: 0
+    canTurnOnlyWhileMoving: 0
+    turnSpeed: 0
+    size: 0
+    castOffset: 0
+    layerBit: 0
+    collideWithLayerBit: 0
+    isHittedObstacle: 0
+    hittedPoint:
+      x: 0
+      y: 0
+      z: 0
+    hittedNormal:
+      x: 0
+      y: 0
+      z: 0
+    lastMovedDistance: 0
+  data3:
+    value: 5
+    multiplier: 1
+--- !u!114 &6742445401131166219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278279303040711559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f57dcda1a0ce3492c9e556bbc2967cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameBakers::DarkLordGame.AIStateAuthoring
+  flags: 2
+  data1:
+    timeSinceStarted: 0
+    loopCount: 0
+    interupDamage: 0
+    storedDamage: 0
+    currentStateData:
+      animationIndex: 0
+      stateType: 0
+      stateMaxPeriod: 1
+      nextState: 1
+      loop: 0
+      loopInterval: 0
+    isInterupted: 0
+    interuptState:
+      animationIndex: 0
+      stateType: 0
+      stateMaxPeriod: 0
+      nextState: 0
+      loop: 0
+      loopInterval: 0
+    idleState:
+      animationIndex: 0
+      stateType: 0
+      stateMaxPeriod: 0.2
+      nextState: 1
+      loop: 0
+      loopInterval: 0
+    moveState:
+      animationIndex: 1
+      stateType: 1
+      stateMaxPeriod: 1000
+      nextState: 2
+      loop: 0
+      loopInterval: 0
+    attackState:
+      animationIndex: 2
+      stateType: 2
+      stateMaxPeriod: 0.7
+      nextState: 1
+      loop: 0
+      loopInterval: 0
+    takeDamageState:
+      animationIndex: 3
+      stateType: 3
+      stateMaxPeriod: 0.3
+      nextState: 0
+      loop: 0
+      loopInterval: 0
 --- !u!1001 &647827876957713285
 PrefabInstance:
   m_ObjectHideFlags: 0

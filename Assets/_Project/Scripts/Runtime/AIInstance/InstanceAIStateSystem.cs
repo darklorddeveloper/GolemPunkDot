@@ -1,7 +1,7 @@
+using System.Diagnostics;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
-using UnityEngine.InputSystem.LowLevel;
 
 namespace DarkLordGame
 {
@@ -19,6 +19,7 @@ namespace DarkLordGame
                 state.timeSinceStarted = 0;
                 state.loopCount++;
                 ecb.SetComponentEnabled<PlayInstanceAnimation>(chunk, entity, true);
+                ecb.SetComponentEnabled<InstanceAIStateChanged>(chunk, entity, true);
                 return;
             }
 
@@ -29,9 +30,10 @@ namespace DarkLordGame
                 state.currentStateData = state.interuptState;
                 changed = true;
             }
-            else if (state.timeSinceStarted <= state.currentStateData.stateMaxPeriod)
+            else if (state.timeSinceStarted >= state.currentStateData.stateMaxPeriod)
             {
                 changed = true;
+
                 switch (state.currentStateData.nextState)
                 {
                     case InstanceAIStateType.Idle:
@@ -63,6 +65,7 @@ namespace DarkLordGame
                 ecb.SetComponentEnabled<InstanceAIStateFlagAttack>(chunk, entity, stateType == InstanceAIStateType.Attack);
                 ecb.SetComponentEnabled<InstanceAIStateChanged>(chunk, entity, true);
                 ecb.SetComponent(chunk, entity, new TopdownCharacterInput());
+
             }
         }
     }
@@ -119,26 +122,29 @@ namespace DarkLordGame
             handle.Complete();
 
             //movement
-            //reset movement
-            frameCount++;
-            var rand = Random.CreateFromIndex(frameCount);
-            var resetJob = new AIMovementResetJob
+            if (SystemAPI.HasSingleton<PlayerComponent>())
             {
-                rand = rand
-            };
-            handle = resetJob.ScheduleParallel(state.Dependency);
-            handle.Complete();
+                //reset movement
+                frameCount++;
+                var rand = Random.CreateFromIndex(frameCount);
+                var resetJob = new InstanceAIMovementResetJob
+                {
+                    rand = rand
+                };
+                handle = resetJob.ScheduleParallel(state.Dependency);
+                handle.Complete();
+                //movement implementation
+                var player = SystemAPI.GetSingleton<PlayerComponent>();
+                var wall = SystemAPI.GetSingleton<WallPosition>();
+                var movementJob = new InstanceAIMovementJob
+                {
+                    playerPosition = player.playerPosition,
+                    wallPosition = wall.position
+                };
 
-            //movement implementation
-            var player = SystemAPI.GetSingleton<PlayerComponent>();
-            var wall = SystemAPI.GetSingleton<WallPosition>();
-            var movementJob = new AIMovementJob
-            {
-                playerPosition = player.playerPosition,
-                wallPosition = wall.position
-            };
-            handle = movementJob.ScheduleParallel(state.Dependency);
-            handle.Complete();
+                handle = movementJob.ScheduleParallel(state.Dependency);
+                handle.Complete();
+            }
 
             //attack
 

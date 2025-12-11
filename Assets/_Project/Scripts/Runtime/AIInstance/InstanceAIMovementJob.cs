@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -8,10 +9,10 @@ namespace DarkLordGame
 
     [BurstCompile]
     [WithAll(typeof(InstanceAIStateFlagMove), typeof(InstanceAIStateChanged))]
-    public partial struct AIMovementResetJob : IJobEntity
+    public partial struct InstanceAIMovementResetJob : IJobEntity
     {
         public Random rand;
-        public void Execute([ChunkIndexInQuery] int chunk, ref AIMovement movementForward)
+        public void Execute([ChunkIndexInQuery] int chunk, ref InstanceAIMovement movementForward)
         {
             rand.state += (uint)chunk;
             var distance = rand.NextFloat(movementForward.approachMinDistance, movementForward.approachMaxDistance);
@@ -21,12 +22,12 @@ namespace DarkLordGame
 
     [BurstCompile]
     [WithAll(typeof(InstanceAIStateFlagMove))]
-    public partial struct AIMovementJob : IJobEntity
+    public partial struct InstanceAIMovementJob : IJobEntity
     {
         public float3 wallPosition;
         public float3 playerPosition;
 
-        public void Execute(ref TopdownCharacterInput input, in AIMovement movement, in LocalTransform transform, ref InstanceAIState state)
+        public void Execute(ref TopdownCharacterInput input, in InstanceAIMovement movement, in LocalTransform transform, ref InstanceAIState state)
         {
             float3 wallPos = wallPosition;
             wallPos.z = transform.Position.z;
@@ -37,12 +38,15 @@ namespace DarkLordGame
             input.lookAtTargetPoint = lookAtPoint;
             var forward = transform.Forward();
             input.movement = forward;
-//TODO: AVOIDANCE using circle cast then change
+
+
+            //TODO: AVOIDANCE using circle cast then change
             var distanceToTarget = distanceFromWall < distanceFromplayer ? distanceFromWall : distanceFromplayer;
-            float dot = math.dot(forward, lookAtPoint);
+            float dot = math.dot(forward, math.normalize(lookAtPoint - pos));
             if (distanceToTarget < movement.approachDistanceSquare && dot > 0.9985f)
             {
-                state.interuptState = state.attackState;
+
+                state.timeSinceStarted += state.currentStateData.stateMaxPeriod;
             }
         }
     }

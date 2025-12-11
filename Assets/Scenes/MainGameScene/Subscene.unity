@@ -534,7 +534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6516913834935388214, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.35
+      value: 23.4
       objectReference: {fileID: 0}
     - target: {fileID: 6516913834935388214, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
       propertyPath: m_LocalPosition.y
@@ -542,7 +542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6516913834935388214, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.83
+      value: 5.12
       objectReference: {fileID: 0}
     - target: {fileID: 6516913834935388214, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
       propertyPath: m_LocalRotation.w
@@ -571,6 +571,30 @@ PrefabInstance:
     - target: {fileID: 6516913834935388214, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7600185714043089218, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: data2.size
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7600185714043089218, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: data2.turnSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7600185714043089218, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: data2.castOffset
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7600185714043089218, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: data2.currentSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895384306329333640, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: data1.approachMaxDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895384306329333640, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: data1.approachMinDistance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -840,6 +864,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1747343940}
+  - component: {fileID: 1747343941}
   m_Layer: 0
   m_Name: WallPosition
   m_TagString: Untagged
@@ -856,12 +881,30 @@ Transform:
   m_GameObject: {fileID: 1747343939}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -22, y: 0, z: 3.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2008723921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1747343941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747343939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42dc398a801714c6c8b548c6d92b5ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameBakers::DarkLordGame.WallPositionAuthoring
+  flags: 2
+  data1:
+    position:
+      x: 0
+      y: 0
+      z: 0
 --- !u!1 &1790061155
 GameObject:
   m_ObjectHideFlags: 0
