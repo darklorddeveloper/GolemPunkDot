@@ -170,8 +170,8 @@ MonoBehaviour:
   flags: 0
   data1:
     approachDistanceSquare: 0
-    approachMinDistance: 0.1
-    approachMaxDistance: 0.5
+    approachMinDistance: 1
+    approachMaxDistance: 2
 --- !u!114 &7600185714043089218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,12 +210,12 @@ MonoBehaviour:
     isHoldingSkill4: 0
   data2:
     movementSpeed: 5
-    currentSpeed: 0
+    currentSpeed: 1
     accereration: 0
     canTurnOnlyWhileMoving: 0
-    turnSpeed: 0
-    size: 0
-    castOffset: 0
+    turnSpeed: 1
+    size: 0.2
+    castOffset: 0.3
     layerBit: 0
     collideWithLayerBit: 0
     isHittedObstacle: 0
