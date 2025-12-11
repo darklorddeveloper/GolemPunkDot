@@ -9,13 +9,9 @@ namespace DarkLordGame
         public EntityCommandBuffer.ParallelWriter ecb;
         public const int idleId = (int)InstanceAnimationID.Idle;
         public const int takeDamageId = (int)InstanceAnimationID.TakeDamage;
-        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, in Damage damage, DynamicBuffer<InstanceAnimation> damageReactions, ref CurrentInstanceAnimationIndex index, in TakeDamageAnimationPeriod period)
+        public void Execute([ChunkIndexInQuery] int chunk, in Damage damage, DynamicBuffer<InstanceAnimation> damageReactions, ref CurrentInstanceAnimationIndex index)
         {
-            index.index = takeDamageId;
             ecb.SetComponentEnabled<DamageTime>(chunk, damageReactions[index.index].target, true);
-            ecb.SetComponentEnabled<PlayInstanceAnimation>(chunk, entity, true);
-            ecb.SetComponentEnabled<InstanceAnimationDelayedPlay>(chunk, entity, true);
-            ecb.SetComponent(chunk, entity, new InstanceAnimationDelayedPlay { targetIndex = idleId, period = period.period });
         }
     }
 

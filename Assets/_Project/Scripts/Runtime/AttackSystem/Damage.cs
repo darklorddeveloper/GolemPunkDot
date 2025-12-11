@@ -10,7 +10,7 @@ namespace DarkLordGame
         public float3 damageSourcePosition;
     }
 
-[System.Serializable]
+    [System.Serializable]
     public struct TakeDamageAnimationPeriod : IComponentData
     {
         public float period;

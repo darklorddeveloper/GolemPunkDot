@@ -54,6 +54,7 @@ MonoBehaviour:
   flags: 2
   data1:
     initialized: 0
+    priority: 0
     prefab: {fileID: 1030165252173676515, guid: 55111586e560548d2af1761e99734a9f, type: 3}
   hasLocomotion: 1
   locomotionLerpSpeed: 10
@@ -73,6 +74,7 @@ MonoBehaviour:
   flags: 0
   data1:
     initialized: 0
+    priority: 32
 --- !u!114 &8818217638626796749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,8 +187,7 @@ MonoBehaviour:
   canDeath: 1
   deathEffect: {fileID: 0}
   takeDamageAnimationPeriod: 0.3
-  addSafeDestroyComponent: 1
-  destroyChild: 0
+  destroyPeriod: 0
 --- !u!114 &3280195084012512131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +234,9 @@ MonoBehaviour:
     extraLifeTime: 0
     bounce: 0
     chainAttack: 0
+    riftPower: 0
+    pushPower: 0
+    canDealDeathImpact: 0
 --- !u!114 &2381651463946351956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,4 +253,5 @@ MonoBehaviour:
   flags: 0
   data1:
     initialized: 0
+    priority: 192
     renderers: []

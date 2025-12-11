@@ -4,8 +4,8 @@ using Unity.Mathematics;
 namespace DarkLordGame
 {
     [System.Serializable]
-    public struct PlayerComponent : IComponentData
+    public struct WallPosition : IComponentData
     {
-        public float3 playerPosition;
+        public float3 position;
     }
 }

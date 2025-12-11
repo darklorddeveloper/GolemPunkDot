@@ -125,12 +125,13 @@ namespace DarkLordGame
                 controllerDirection = math.lengthsq(diff) > 0.01f ? new float3(diff.x, 0, diff.y) : currentInput.movement;
             }
 
-            foreach (var (inputCharacter, character, transform, e) in SystemAPI.Query<PlayerComponent, TopdownCharacterInput, LocalTransform>().WithEntityAccess())
+            foreach (var (inputCharacter, character, transform, e) in SystemAPI.Query<RefRW<PlayerComponent>, TopdownCharacterInput, LocalTransform>().WithEntityAccess())
             {
                 if (isUsingMouseKeyboard == false)
                 {
                     currentInput.lookAtTargetPoint = transform.Position + controllerDirection;
                 }
+                inputCharacter.ValueRW.playerPosition = transform.Position;
                 EntityManager.SetComponentData(e, currentInput);
             }
         }

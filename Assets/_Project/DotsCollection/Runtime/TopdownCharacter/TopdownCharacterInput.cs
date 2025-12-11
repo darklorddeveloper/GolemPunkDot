@@ -8,7 +8,7 @@ namespace DarkLordGame
     public struct TopdownCharacterInput : IComponentData, IEnableableComponent
     {
         public float3 movement;
-        public float3 lookAtTargetPoint;
+        public float3 lookAtTargetPoint;//world position
         public bool dashAction;
         public bool isHoldingDashAction;
         public bool primaryAction, secondaryAction;
