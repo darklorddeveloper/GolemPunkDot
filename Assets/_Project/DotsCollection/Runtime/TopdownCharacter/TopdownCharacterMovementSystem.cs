@@ -74,29 +74,34 @@ namespace DarkLordGame
             if (movement.useRaycast)
             {
                 ColliderCastHit hit;
-                bool hitted = CollisionWorld.SphereCast(pos + movement.castOffset * characterInput.movement, movement.size, characterInput.movement, distance, out hit,
-                new CollisionFilter
+                var filter = new CollisionFilter
                 {
                     BelongsTo = movement.layerBit,
                     CollidesWith = movement.collideWithLayerBit,
-                });
+                };
+                bool hitted = CollisionWorld.SphereCast(pos + movement.castOffset * characterInput.movement, movement.size, characterInput.movement, distance, out hit,
+                filter);
                 movement.isHittedObstacle = hitted;
                 if (hitted)
                 {
-
-
                     var body = CollisionWorld.Bodies[hit.RigidBodyIndex];
-
-
                     var targpos = hit.Position + hit.SurfaceNormal * (movement.castOffset + movement.size);
-                    
-                    targpos = pos + math.normalizesafe(targpos - pos, float3.zero) * distance;
-                    
+                    var moveDir = math.normalizesafe(targpos - pos, float3.zero);
+                    targpos = pos + moveDir * distance;
+
                     movement.hittedPoint = hit.Position;
                     movement.hittedNormal = hit.SurfaceNormal;
                     movement.lastHitEntity = body.Entity;
                     movement.lastMovedDistance = distance;
-                    localTransform.Position = targpos;
+                    var raycastInput = new RaycastInput
+                    {
+                        Start = pos,
+                        Filter = filter,
+                        End = pos + moveDir * (distance + movement.size + movement.castOffset)
+                    };
+                    hitted = CollisionWorld.CastRay(raycastInput);
+                    if (hitted == false)
+                        localTransform.Position = targpos;
                     return;
 
                 }
