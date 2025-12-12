@@ -6,7 +6,6 @@ using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
-
 namespace DarkLordGame
 {
 
@@ -84,13 +83,22 @@ namespace DarkLordGame
                 movement.isHittedObstacle = hitted;
                 if (hitted)
                 {
-                    distance -= movement.size;
-                    distance = math.max(distance, 0);
-                    movement.hittedPoint = hit.Position;
-                    movement.hittedNormal = hit.SurfaceNormal;
+
+
                     var body = CollisionWorld.Bodies[hit.RigidBodyIndex];
 
+
+                    var targpos = hit.Position + hit.SurfaceNormal * (movement.castOffset + movement.size);
+                    
+                    targpos = pos + math.normalizesafe(targpos - pos, float3.zero) * distance;
+                    
+                    movement.hittedPoint = hit.Position;
+                    movement.hittedNormal = hit.SurfaceNormal;
                     movement.lastHitEntity = body.Entity;
+                    movement.lastMovedDistance = distance;
+                    localTransform.Position = targpos;
+                    return;
+
                 }
             }
             movement.lastMovedDistance = distance;

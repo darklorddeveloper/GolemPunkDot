@@ -88,6 +88,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: DotCollection::DarkLordGame.TopdownPlayerCharacterAuthoring
   flags: 2
+  data1:
+    playerPosition:
+      x: 0
+      y: 0
+      z: 0
   data2:
     movement:
       x: 0
@@ -117,10 +122,11 @@ MonoBehaviour:
     accereration: 0
     canTurnOnlyWhileMoving: 0
     turnSpeed: 1000
+    useRaycast: 1
     size: 1
-    castOffset: 0
-    layerBit: 0
-    collideWithLayerBit: 0
+    castOffset: 1
+    layerBit: 1
+    collideWithLayerBit: 1
     isHittedObstacle: 0
     hittedPoint:
       x: 0

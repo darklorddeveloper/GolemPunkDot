@@ -139,7 +139,8 @@ namespace DarkLordGame
                 var movementJob = new InstanceAISimpleMovementJob
                 {
                     playerPosition = player.playerPosition,
-                    wallPosition = wall.position
+                    wallPosition = wall.position,
+                    deltaTime = deltaTime
                 };
 
                 handle = movementJob.ScheduleParallel(state.Dependency);

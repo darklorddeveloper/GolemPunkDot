@@ -172,6 +172,13 @@ MonoBehaviour:
     approachDistanceSquare: 0
     approachMinDistance: 1
     approachMaxDistance: 2
+    isAvoiding: 0
+    avoidingDirection:
+      x: 0
+      y: 0
+      z: 0
+    avoidanceTimeCount: 0
+    avoidancePeriod: 3
 --- !u!114 &7600185714043089218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,15 +216,16 @@ MonoBehaviour:
     isHoldingSkill3: 0
     isHoldingSkill4: 0
   data2:
-    movementSpeed: 5
+    movementSpeed: 8
     currentSpeed: 1
     accereration: 0
     canTurnOnlyWhileMoving: 0
-    turnSpeed: 1
-    size: 0.2
+    turnSpeed: 3
+    useRaycast: 1
+    size: 1
     castOffset: 0.3
-    layerBit: 0
-    collideWithLayerBit: 0
+    layerBit: 1
+    collideWithLayerBit: 1
     isHittedObstacle: 0
     hittedPoint:
       x: 0

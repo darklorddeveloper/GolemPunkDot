@@ -59,6 +59,7 @@ namespace DarkLordGame
                 movement.avoidingDirection = hitDot >= 0 ? new float3(norm.z, 0, -norm.x) : new float3(-norm.z, 0, norm.x);
                 input.lookAtTargetPoint = movement.avoidingDirection + pos;
                 movement.isAvoiding = true;
+                movement.avoidanceTimeCount = 0;
             }
             else
             {
