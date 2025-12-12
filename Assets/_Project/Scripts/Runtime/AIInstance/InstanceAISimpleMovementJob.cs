@@ -81,7 +81,6 @@ namespace DarkLordGame
             }
 
 
-            //TODO: AVOIDANCE using circle cast then change
             var distanceToTarget = distanceFromWall < distanceFromplayer ? distanceFromWall : distanceFromplayer;
             float dot = math.dot(forward, math.normalize(lookAtPoint - pos));
             if (distanceToTarget < movement.approachDistanceSquare && dot > 0.9985f)

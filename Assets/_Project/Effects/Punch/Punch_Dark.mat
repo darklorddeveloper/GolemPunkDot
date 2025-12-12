@@ -54,7 +54,7 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _CastShadows: 1
-    - _Cull: 2
+    - _Cull: 0
     - _DEBUG: 0
     - _DstBlend: 10
     - _DstBlendAlpha: 10
@@ -64,7 +64,7 @@ Material:
     - _QueueOffset: 0
     - _SrcBlend: 5
     - _SrcBlendAlpha: 1
-    - _StartTime: -0.05
+    - _StartTime: -0.17
     - _Surface: 1
     - _ZTest: 4
     - _ZWrite: 0
