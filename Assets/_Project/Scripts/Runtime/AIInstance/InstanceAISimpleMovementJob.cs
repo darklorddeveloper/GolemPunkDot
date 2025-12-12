@@ -44,6 +44,7 @@ namespace DarkLordGame
             {
                 movement.avoidanceTimeCount += deltaTime;
                 movement.isAvoiding = movement.avoidanceTimeCount < movement.avoidancePeriod;
+                movement.isPreviouslyAvoiding = true;
                 input.lookAtTargetPoint = movement.avoidingDirection + pos;
 
             }
@@ -64,7 +65,17 @@ namespace DarkLordGame
             }
             else
             {
-                input.lookAtTargetPoint = lookAtPoint;
+                if (movement.isPreviouslyAvoiding)
+                {
+                    movement.isPreviouslyAvoiding = false;
+                    //
+                    input.movement = math.normalizesafe(lookAtPoint - pos, forward);
+                    input.lookAtTargetPoint = movement.avoidingDirection + pos;
+                }
+                else
+                {
+                    input.lookAtTargetPoint = lookAtPoint;
+                }
                 movement.avoidanceTimeCount = 0;
                 movement.isAvoiding = false;
             }

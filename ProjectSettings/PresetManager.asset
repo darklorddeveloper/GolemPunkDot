@@ -15,6 +15,14 @@ PresetManager:
       m_Disabled: 0
   - first:
       m_NativeTypeID: 114
+      m_ManagedTypePPtr: {fileID: 11500000, guid: 07a99a7d8dbe14f04bf110a0044ea23f, type: 3}
+      m_ManagedTypeFallback: 
+    second:
+    - m_Preset: {fileID: 2655988077585873504, guid: afcbce1853ec64097a9d790d081cd25e, type: 2}
+      m_Filter: 
+      m_Disabled: 0
+  - first:
+      m_NativeTypeID: 114
       m_ManagedTypePPtr: {fileID: 11500000, guid: f57dcda1a0ce3492c9e556bbc2967cb6, type: 3}
       m_ManagedTypeFallback: 
     second:

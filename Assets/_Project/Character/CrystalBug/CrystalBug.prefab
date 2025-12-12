@@ -173,12 +173,13 @@ MonoBehaviour:
     approachMinDistance: 1
     approachMaxDistance: 2
     isAvoiding: 0
+    isPreviouslyAvoiding: 0
     avoidingDirection:
       x: 0
       y: 0
       z: 0
     avoidanceTimeCount: 0
-    avoidancePeriod: 3
+    avoidancePeriod: 0.5
 --- !u!114 &7600185714043089218
 MonoBehaviour:
   m_ObjectHideFlags: 0

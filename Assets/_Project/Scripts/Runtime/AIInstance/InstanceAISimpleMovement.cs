@@ -14,6 +14,7 @@ namespace DarkLordGame
         public float approachMinDistance;
         public float approachMaxDistance;//attack range
         public bool isAvoiding;
+        public bool isPreviouslyAvoiding;
         public float3 avoidingDirection;
         public float avoidanceTimeCount;
         public float avoidancePeriod;

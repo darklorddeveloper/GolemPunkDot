@@ -684,34 +684,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7600185714043089218, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: data2.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7600185714043089218, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: data2.layerBit
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7600185714043089218, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: data2.turnSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7600185714043089218, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: data2.useRaycast
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7600185714043089218, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: data2.movementSpeed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7600185714043089218, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: data2.collideWithLayerBit
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895384306329333640, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: data1.avoidancePeriod
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
