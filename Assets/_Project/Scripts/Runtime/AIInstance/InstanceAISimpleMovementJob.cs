@@ -50,13 +50,14 @@ namespace DarkLordGame
             else if (topdownCharacterMovement.isHittedObstacle)
             {
                 //movement.avoidDirection
-                var diff = math.normalizesafe(topdownCharacterMovement.hittedPoint - pos, forward);
-                var right = transform.Right();
-                float hitDot = math.dot(right, diff);
+                // var diff = math.normalizesafe(topdownCharacterMovement.hittedPoint - pos, forward);
                 var norm = -topdownCharacterMovement.hittedNormal;
                 norm.y = 0;
                 norm = math.normalizesafe(norm, forward);
-                movement.avoidingDirection = hitDot >= 0 ? new float3(norm.z, 0, -norm.x) : new float3(-norm.z, 0, norm.x);
+
+                var l = new float3(norm.z, 0, -norm.x);
+                var dotl = math.sign(math.dot(forward, l));
+                movement.avoidingDirection = dotl >= 0 ? l : new float3(-norm.z, 0, norm.x);
                 input.lookAtTargetPoint = movement.avoidingDirection + pos;
                 movement.isAvoiding = true;
                 movement.avoidanceTimeCount = 0;
