@@ -85,7 +85,6 @@ namespace DarkLordGame
         }
     }
     //calculate damage pass to attack
-    [UpdateAfter(typeof(AttackAutoAssignSystem))]
     [BurstCompile]
     public partial struct AttackSystem : ISystem
     {

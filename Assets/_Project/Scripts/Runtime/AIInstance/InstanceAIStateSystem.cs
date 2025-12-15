@@ -145,9 +145,18 @@ namespace DarkLordGame
 
                 handle = movementJob.ScheduleParallel(state.Dependency);
                 handle.Complete();
+
+
+                ////reset attack
+                var resetAttackJob = new InstanceAIAttackResetJob();
+                handle = resetAttackJob.ScheduleParallel(state.Dependency);
+                handle.Complete();
+                //attack
+                var attackJob = new InstanceAIAttackJob();
+                handle = attackJob.ScheduleParallel(state.Dependency);
+                handle.Complete();
             }
 
-            //attack
 
             var disableJob = new DisableInstanceAIStateChangeFlagJob();
             handle = disableJob.ScheduleParallel(state.Dependency);

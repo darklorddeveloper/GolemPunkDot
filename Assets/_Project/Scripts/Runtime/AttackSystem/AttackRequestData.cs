@@ -49,15 +49,4 @@ namespace DarkLordGame
         public bool canDealDeathImpact;
     }
 
-    [System.Serializable]
-    public struct AttackRequestAutoAssignAttacker : IComponentData, IEnableableComponent
-    {
-
-    }
-
-    [System.Serializable]
-    public struct AttackRequestAutoAssignPrefab : IComponentData, IEnableableComponent
-    {
-        public Entity prefab;
-    }
 }
