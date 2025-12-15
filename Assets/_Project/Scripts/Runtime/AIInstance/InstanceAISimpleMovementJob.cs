@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -46,6 +45,7 @@ namespace DarkLordGame
                 movement.isAvoiding = movement.avoidanceTimeCount < movement.avoidancePeriod;
                 movement.isPreviouslyAvoiding = true;
                 input.lookAtTargetPoint = movement.avoidingDirection + pos;
+                UnityEngine.Debug.Log("here avoid");
 
             }
             else if (topdownCharacterMovement.isHittedObstacle)
@@ -83,8 +83,10 @@ namespace DarkLordGame
 
             var distanceToTarget = distanceFromWall < distanceFromplayer ? distanceFromWall : distanceFromplayer;
             float dot = math.dot(forward, math.normalize(lookAtPoint - pos));
-            if (distanceToTarget < movement.approachDistanceSquare && dot > 0.9985f)
+
+            if (distanceToTarget < movement.approachDistanceSquare && dot > 0.985f)
             {
+                input.movement = float3.zero;
                 state.timeSinceStarted += state.currentStateData.stateMaxPeriod;
             }
         }

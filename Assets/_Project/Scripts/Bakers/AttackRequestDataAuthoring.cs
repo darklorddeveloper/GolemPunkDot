@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
-    public class AttackRequestDataAuthoring : StructAuthorizer<AttackRequestData>
+    public class AttackRequestDataAuthoring : StructAuthorizer<AttackRequestData, AttackRequestTransform>
     {
         public GameObject prefab;
     }
@@ -25,6 +25,7 @@ namespace DarkLordGame
             }
             AddComponent(e, dat);
             SetComponentEnabled<AttackRequestData>(e, false);
+            AddComponent(e, authoring.data2);
         }
     }
 }

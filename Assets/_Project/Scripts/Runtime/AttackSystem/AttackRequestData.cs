@@ -34,8 +34,6 @@ namespace DarkLordGame
         public float loopCastInterval;
         public float loopTimeCount;
         public int extraBounce;
-        public float3 position;
-        public quaternion rotation;
 
         //attack movement stat
         [Header("Movement aspect")]
@@ -49,4 +47,11 @@ namespace DarkLordGame
         public bool canDealDeathImpact;
     }
 
+    [System.Serializable]
+    public struct AttackRequestTransform : IComponentData
+    {
+        public float forwardOffset;
+        public float3 position;
+        public quaternion rotation;
+    }
 }

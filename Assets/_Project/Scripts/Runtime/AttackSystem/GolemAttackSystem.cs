@@ -25,13 +25,17 @@ namespace DarkLordGame
             // data.position = 
             var golem = EntityManager.GetComponentObject<GolemEntity>(attacker).golem;
             var point = golem.GetAttachPoint(GolemAttachPoint.AttackForwardPoint);
-            data.position = point.position;
-            data.rotation = point.rotation;
+
             golem.currentRequestData = data;
             if (canChainEffect) //normally not null
             {
                 golem.ActiveAllEffects(attacker, EntityManager, EffectTiming.OnAttack);
             }
+            EntityManager.SetComponentData(attacker, new AttackRequestTransform
+            {
+                position = point.position,
+                rotation = point.rotation
+            });
             EntityManager.SetComponentData(attacker, golem.currentRequestData);
             EntityManager.SetComponentEnabled<AttackRequestData>(attacker, true);
         }

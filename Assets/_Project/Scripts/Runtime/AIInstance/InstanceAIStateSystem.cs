@@ -20,6 +20,7 @@ namespace DarkLordGame
                 state.loopCount++;
                 ecb.SetComponentEnabled<PlayInstanceAnimation>(chunk, entity, true);
                 ecb.SetComponentEnabled<InstanceAIStateChanged>(chunk, entity, true);
+
                 return;
             }
 
@@ -64,7 +65,7 @@ namespace DarkLordGame
                 ecb.SetComponentEnabled<InstanceAIStateFlagTakeDamage>(chunk, entity, stateType == InstanceAIStateType.TakeDamage);
                 ecb.SetComponentEnabled<InstanceAIStateFlagAttack>(chunk, entity, stateType == InstanceAIStateType.Attack);
                 ecb.SetComponentEnabled<InstanceAIStateChanged>(chunk, entity, true);
-                ecb.SetComponent(chunk, entity, new TopdownCharacterInput());
+                // ecb.SetComponent(chunk, entity, new TopdownCharacterInput());
 
             }
         }
@@ -109,17 +110,7 @@ namespace DarkLordGame
             var handle = damageJob.ScheduleParallel(state.Dependency);
             handle.Complete();
 
-            var job = new InstanceAIStateJob
-            {
-                deltaTime = deltaTime,
-                ecb = ecb.AsParallelWriter()
-            };
-            handle = job.ScheduleParallel(state.Dependency);
-            handle.Complete();
 
-            var job2 = new InstanceAIDamageJob();
-            handle = job2.ScheduleParallel(state.Dependency);
-            handle.Complete();
 
             //movement
             if (SystemAPI.HasSingleton<PlayerComponent>())
@@ -132,7 +123,6 @@ namespace DarkLordGame
                     rand = rand
                 };
                 handle = resetJob.ScheduleParallel(state.Dependency);
-                handle.Complete();
                 //movement implementation
                 var player = SystemAPI.GetSingleton<PlayerComponent>();
                 var wall = SystemAPI.GetSingleton<WallPosition>();
@@ -143,20 +133,31 @@ namespace DarkLordGame
                     deltaTime = deltaTime
                 };
 
-                handle = movementJob.ScheduleParallel(state.Dependency);
-                handle.Complete();
-
+                handle = movementJob.ScheduleParallel(handle);
 
                 ////reset attack
                 var resetAttackJob = new InstanceAIAttackResetJob();
-                handle = resetAttackJob.ScheduleParallel(state.Dependency);
-                handle.Complete();
+                handle = resetAttackJob.ScheduleParallel(handle);
                 //attack
-                var attackJob = new InstanceAIAttackJob();
-                handle = attackJob.ScheduleParallel(state.Dependency);
+                var attackJob = new InstanceAIAttackJob
+                {
+                    ecb = ecb.AsParallelWriter()
+                };
+                handle = attackJob.ScheduleParallel(handle);
                 handle.Complete();
             }
 
+            var job = new InstanceAIStateJob
+            {
+                deltaTime = deltaTime,
+                ecb = ecb.AsParallelWriter()
+            };
+            handle = job.ScheduleParallel(state.Dependency);
+            handle.Complete();
+
+            var job2 = new InstanceAIDamageJob();
+            handle = job2.ScheduleParallel(state.Dependency);
+            handle.Complete();
 
             var disableJob = new DisableInstanceAIStateChangeFlagJob();
             handle = disableJob.ScheduleParallel(state.Dependency);

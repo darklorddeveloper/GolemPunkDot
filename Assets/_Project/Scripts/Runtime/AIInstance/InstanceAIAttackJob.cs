@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Entities.UniversalDelegates;
@@ -21,16 +22,18 @@ namespace DarkLordGame
     [WithAll(typeof(InstanceAIStateFlagAttack))]
     public partial struct InstanceAIAttackJob : IJobEntity
     {
-        public void Execute(ref InstanceAIState state, ref AttackRequestData request,
-        EnabledRefRW<AttackRequestData> enableRequest, ref InstanceAIAttack attack,
+        public EntityCommandBuffer.ParallelWriter ecb;
+        public void Execute([ChunkIndexInQuery] int chunk, Entity e, ref InstanceAIState state,
+        ref AttackRequestTransform request,
+        ref InstanceAIAttack attack,
         in LocalTransform transform)
         {
             if (attack.attacked == false && state.timeSinceStarted > attack.delayed)
             {
-                enableRequest.ValueRW = true;
-                request.position = transform.Position;
+                request.position = transform.Forward() * request.forwardOffset + transform.Position;
                 request.rotation = transform.Rotation;
                 attack.attacked = true;
+                ecb.SetComponentEnabled<AttackRequestData>(chunk, e, true);
             }
         }
     }

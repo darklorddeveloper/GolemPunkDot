@@ -12,7 +12,7 @@ namespace DarkLordGame
     {
         public EntityCommandBuffer.ParallelWriter ecb;
         public float deltaTime;
-        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref AttackRequestData attackRequest, in Unit unit)
+        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref AttackRequestData attackRequest, in AttackRequestTransform transform, in Unit unit)
         {
 
             attackRequest.loopTimeCount += deltaTime;
@@ -46,8 +46,8 @@ namespace DarkLordGame
                 riftPower = attackRequest.riftPower
             };
 
-            var rot = attackRequest.rotation;
-            var pos = attackRequest.position;
+            var rot = transform.rotation;
+            var pos = transform.position;
 
             if (attackRequest.extraSplit > 0)
             {

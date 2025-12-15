@@ -528,6 +528,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1180039337497129531, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: data2.forwardOffset
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1278279303040711559, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
       propertyPath: m_Name
       value: CrystalBug
@@ -1172,6 +1176,7 @@ MonoBehaviour:
   - {fileID: 6923455519616429878, guid: 2952de413f30042c0966d487c6e9ef5a, type: 3}
   orderKeeping:
   - {fileID: 7350996835491456667, guid: 445101ef29b3b44d99130c0008838579, type: 3}
+  - {fileID: 1535904547477154691, guid: 85dbc12788b9e40579e9df2d80b54b36, type: 3}
 --- !u!1001 &8002288235457570399
 PrefabInstance:
   m_ObjectHideFlags: 0
