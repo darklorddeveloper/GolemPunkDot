@@ -268,7 +268,6 @@ MonoBehaviour:
       loop: 0
       loopInterval: 0
     isInterupted: 0
-    forcedEndState: 0
     interuptState:
       animationIndex: 0
       stateType: 0
@@ -321,8 +320,8 @@ MonoBehaviour:
     belongToLayer: 1
     hitLayer: 512
     bonusDamage: 10
-    attackDamageMultipler: 10
-    aoeRange: 1.2
+    attackDamageMultipler: 1
+    aoeRange: 1
     aoeDamageRate: 0
     useLimitedAngle: 0
     limitedDot: 0
@@ -337,6 +336,14 @@ MonoBehaviour:
     loopCastInterval: 0
     loopTimeCount: 0
     extraBounce: 0
+    extraLifeTime: 0
+    bounce: 0
+    chainAttack: 0
+    riftPower: 0
+    pushPower: 0
+    canDealDeathImpact: 0
+  data2:
+    forwardOffset: 3
     position:
       x: 0
       y: 0
@@ -347,12 +354,6 @@ MonoBehaviour:
         y: 0
         z: 0
         w: 0
-    extraLifeTime: 0
-    bounce: 0
-    chainAttack: 0
-    riftPower: 0
-    pushPower: 0
-    canDealDeathImpact: 0
   prefab: {fileID: 1535904547477154691, guid: 85dbc12788b9e40579e9df2d80b54b36, type: 3}
 --- !u!114 &5413144045093926681
 MonoBehaviour:

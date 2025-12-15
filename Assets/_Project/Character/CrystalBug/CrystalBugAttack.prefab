@@ -85,9 +85,9 @@ MonoBehaviour:
   data2:
     inheritRotation: 1
   data3:
-    belongToLayer: 0
-    hitLayer: 0
-    damage: 0
+    belongToLayer: 1
+    hitLayer: 512
+    damage: 5
     aoeRange: 0
     aoeDamage: 0
     useLimitedAngle: 0

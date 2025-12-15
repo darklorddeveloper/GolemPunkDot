@@ -528,10 +528,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1180039337497129531, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: data2.forwardOffset
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 1278279303040711559, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
       propertyPath: m_Name
       value: CrystalBug

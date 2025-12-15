@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 6211343010587168179}
   - component: {fileID: 3280195084012512131}
   - component: {fileID: 2381651463946351956}
-  m_Layer: 0
+  - component: {fileID: 640959727360421095}
+  m_Layer: 9
   m_Name: Golem_PrimeEntity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,6 +228,14 @@ MonoBehaviour:
     loopCastInterval: 0
     loopTimeCount: 0
     extraBounce: 0
+    extraLifeTime: 0
+    bounce: 0
+    chainAttack: 0
+    riftPower: 0
+    pushPower: 0
+    canDealDeathImpact: 0
+  data2:
+    forwardOffset: 0
     position:
       x: 0
       y: 0
@@ -237,12 +246,7 @@ MonoBehaviour:
         y: 0
         z: 0
         w: 0
-    extraLifeTime: 0
-    bounce: 0
-    chainAttack: 0
-    riftPower: 0
-    pushPower: 0
-    canDealDeathImpact: 0
+  prefab: {fileID: 0}
 --- !u!114 &2381651463946351956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,3 +265,24 @@ MonoBehaviour:
     initialized: 0
     priority: 192
     renderers: []
+--- !u!135 &640959727360421095
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476147893443169591}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
