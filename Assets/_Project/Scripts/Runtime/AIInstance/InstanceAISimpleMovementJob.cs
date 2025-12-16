@@ -46,7 +46,6 @@ namespace DarkLordGame
                 movement.isAvoiding = movement.avoidanceTimeCount < movement.avoidancePeriod;
                 movement.isPreviouslyAvoiding = true;
                 input.lookAtTargetPoint = movement.avoidingDirection + pos;
-                UnityEngine.Debug.Log("here avoid");
 
             }
             else if (topdownCharacterMovement.isHittedObstacle)
@@ -57,9 +56,9 @@ namespace DarkLordGame
                 norm.y = 0;
                 norm = math.normalizesafe(norm, forward);
 
-                var l = new float3(norm.z, 0, -norm.x);
+                var l = new half3((half)norm.z, (half)0.0, (half)(-norm.x));
                 var dotl = math.sign(math.dot(forward, l));
-                movement.avoidingDirection = dotl >= 0 ? l : new float3(-norm.z, 0, norm.x);
+                movement.avoidingDirection = dotl >= 0 ? l : new half3((half)(-norm.z), (half)0.0f, (half)norm.x);
                 input.lookAtTargetPoint = movement.avoidingDirection + pos;
                 movement.isAvoiding = true;
                 movement.avoidanceTimeCount = 0;
