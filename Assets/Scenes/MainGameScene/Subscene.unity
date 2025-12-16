@@ -574,7 +574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
       propertyPath: data1.takeDamageState.stateMaxPeriod
-      value: 0.6
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

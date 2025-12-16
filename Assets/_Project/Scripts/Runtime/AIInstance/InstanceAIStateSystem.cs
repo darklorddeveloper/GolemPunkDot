@@ -66,8 +66,6 @@ namespace DarkLordGame
                 ecb.SetComponentEnabled<InstanceAIStateFlagAttack>(chunk, entity, stateType == InstanceAIStateType.Attack);
                 ecb.SetComponentEnabled<InstanceAIStateChanged>(chunk, entity, true);
                 // ecb.SetComponent(chunk, entity, new TopdownCharacterInput());
-                UnityEngine.Debug.Log("current state " + state.currentStateData.stateType.ToString());
-
             }
         }
     }
@@ -75,7 +73,7 @@ namespace DarkLordGame
     [BurstCompile]
     public partial struct InstanceAIDamageJob : IJobEntity
     {
-        public void Execute(in Damage damage, ref InstanceAIState state)
+        public void Execute(in Damage damage, ref InstanceAIState state, ref TopdownCharacterInput input)
         {
             state.storedDamage += damage.attack.damage;
             if (state.storedDamage < state.interupDamage)
@@ -85,6 +83,7 @@ namespace DarkLordGame
             state.storedDamage = 0;
             state.isInterupted = true;
             state.interuptState = state.takeDamageState;
+            input.movement = float3.zero;
         }
     }
 
