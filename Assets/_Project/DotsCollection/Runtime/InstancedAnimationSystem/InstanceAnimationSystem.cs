@@ -1,5 +1,6 @@
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Transforms;
 using UnityEngine;
 
 namespace DarkLordGame
@@ -39,6 +40,8 @@ namespace DarkLordGame
     // }
 
     [BurstCompile]
+    [UpdateInGroup(typeof(SimulationSystemGroup), OrderFirst = true)]
+    [UpdateBefore(typeof(TransformSystemGroup))]
     public partial struct InstanceAnimationSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -55,12 +58,12 @@ namespace DarkLordGame
             };
             var handle = job.ScheduleParallel(state.Dependency);
             handle.Complete();
-            
+
             // float deltaTime = SystemAPI.Time.DeltaTime;
             // var job2 = new DelayPlayInstanceAnimationJob { deltaTime = deltaTime, ecb = ecb.AsParallelWriter() };
             // handle = job2.ScheduleParallel(state.Dependency);
             // handle.Complete();
-            
+
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
         }
