@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
+    [InternalBufferCapacity(0)]
     public struct InstanceAnimation : IBufferElementData
     {
         public Entity target;
