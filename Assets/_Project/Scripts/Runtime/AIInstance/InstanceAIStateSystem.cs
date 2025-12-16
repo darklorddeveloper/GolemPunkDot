@@ -147,6 +147,10 @@ namespace DarkLordGame
                 handle.Complete();
             }
 
+            var job2 = new InstanceAIDamageJob();
+            handle = job2.ScheduleParallel(state.Dependency);
+            handle.Complete();
+            
             var job = new InstanceAIStateJob
             {
                 deltaTime = deltaTime,
@@ -155,9 +159,6 @@ namespace DarkLordGame
             handle = job.ScheduleParallel(state.Dependency);
             handle.Complete();
 
-            var job2 = new InstanceAIDamageJob();
-            handle = job2.ScheduleParallel(state.Dependency);
-            handle.Complete();
 
             var disableJob = new DisableInstanceAIStateChangeFlagJob();
             handle = disableJob.ScheduleParallel(state.Dependency);

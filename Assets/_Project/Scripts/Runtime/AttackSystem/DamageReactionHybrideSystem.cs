@@ -17,11 +17,11 @@ namespace DarkLordGame
                     damageHybride.renderers[i].material.SetFloat(hash, time);
                 }
                 //move this to somewhere else
-                // if (EntityManager.HasComponent<PlayHybridAnimation>(e))
-                // {
-                //     EntityManager.SetComponentData(e, new PlayHybridAnimation { animationName = "TakeDamage", period = 0.0f});
-                //     EntityManager.SetComponentEnabled<PlayHybridAnimation>(e, true);
-                // }
+                if (EntityManager.HasComponent<PlayHybridAnimation>(e))
+                {
+                    EntityManager.SetComponentData(e, new PlayHybridAnimation { animationName = "TakeDamage", period = 0.0f});
+                    EntityManager.SetComponentEnabled<PlayHybridAnimation>(e, true);
+                }
             }
         }
     }

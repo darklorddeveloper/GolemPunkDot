@@ -299,7 +299,7 @@ MonoBehaviour:
     takeDamageState:
       animationIndex: 3
       stateType: 3
-      stateMaxPeriod: 0.3
+      stateMaxPeriod: 0.6
       nextState: 0
       loop: 0
       loopInterval: 0
