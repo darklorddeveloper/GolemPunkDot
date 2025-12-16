@@ -22,9 +22,9 @@ namespace DarkLordGame
             }
             attackRequest.loopTimeCount = 0;
 
-            float baseDamage = (unit.attack + unit.tempAttack + attackRequest.bonusDamage) * (1 + unit.tempAttackMultiplier + attackRequest.attackDamageMultipler);
-            float critDamage = unit.criitcalDamage + unit.tempCriticalDamage;
-            float critChance = unit.criticalChance + unit.tempCriticalChance;
+            float baseDamage = (unit.attack + attackRequest.bonusDamage) * (1 + attackRequest.attackDamageMultipler);
+            float critDamage = unit.criitcalDamage ;
+            float critChance = unit.criticalChance ;
             var attack = new Attack
             {
                 belongToLayer = attackRequest.belongToLayer,
