@@ -20,7 +20,7 @@ namespace DarkLordGame
                 var e = GetEntity(TransformUsageFlags.Dynamic);
                 var blobRef = FloatCurveUtility.CreateFloatCurveBlobReference(authoring.curve, authoring.looped);
                 // Let the baker dedupe and manage lifetime
-
+                AddBlobAsset(ref blobRef, out var _);
                 AddComponent(e, new ParticleMovementOvertime
                 {
                     data = blobRef,

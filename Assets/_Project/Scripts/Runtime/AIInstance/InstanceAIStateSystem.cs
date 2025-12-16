@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -10,11 +9,15 @@ namespace DarkLordGame
     {
         public float deltaTime;
         public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref InstanceAIState state)
+
+
+        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref InstanceAIState state,
+        in InstanceAIStateSetting settingComponent)
         {
             state.timeSinceStarted += deltaTime;
-
-            if (state.loopCount < state.currentStateData.loop && state.timeSinceStarted > state.currentStateData.loopInterval)
+            ref var setting = ref settingComponent.setting.Value;
+            var currentState = InstanceAIStateDataUtility.GetStateData(setting, state.currentStateType);
+            if (state.loopCount < currentState.loop && state.timeSinceStarted > currentState.loopInterval)
             {
                 state.timeSinceStarted = 0;
                 state.loopCount++;
@@ -28,38 +31,26 @@ namespace DarkLordGame
             if (state.isInterupted)//manual active or take damage
             {
                 state.isInterupted = false;
-                state.currentStateData = state.interuptState;
+                state.currentStateType = state.inturuptStateType;
                 changed = true;
             }
-            else if (state.timeSinceStarted >= state.currentStateData.stateMaxPeriod)
+
+            else if (state.timeSinceStarted >= currentState.stateMaxPeriod)
             {
                 changed = true;
-
-                switch (state.currentStateData.nextState)
-                {
-                    case InstanceAIStateType.Idle:
-                        state.currentStateData = state.idleState;
-                        break;
-                    case InstanceAIStateType.Move:
-                        state.currentStateData = state.moveState;
-                        break;
-                    case InstanceAIStateType.Attack:
-                        state.currentStateData = state.attackState;
-                        break;
-                    case InstanceAIStateType.TakeDamage:
-                        state.currentStateData = state.takeDamageState;
-                        break;
-                }
+                state.currentStateType = currentState.nextState;
             }
+
             if (changed)
             {
                 state.loopCount = 0;
                 state.timeSinceStarted = 0;
+                currentState = InstanceAIStateDataUtility.GetStateData(setting, state.currentStateType);
 
-                int animationID = (int)state.currentStateData.animationIndex;
+                int animationID = (int)currentState.animationIndex;
                 ecb.SetComponent(chunk, entity, new CurrentInstanceAnimationIndex { index = animationID });
                 ecb.SetComponentEnabled<PlayInstanceAnimation>(chunk, entity, true);
-                var stateType = state.currentStateData.stateType;
+                var stateType = currentState.stateType;
                 ecb.SetComponentEnabled<InstanceAIStateFlagIdle>(chunk, entity, stateType == InstanceAIStateType.Idle);
                 ecb.SetComponentEnabled<InstanceAIStateFlagMove>(chunk, entity, stateType == InstanceAIStateType.Move);
                 ecb.SetComponentEnabled<InstanceAIStateFlagTakeDamage>(chunk, entity, stateType == InstanceAIStateType.TakeDamage);
@@ -73,16 +64,18 @@ namespace DarkLordGame
     [BurstCompile]
     public partial struct InstanceAIDamageJob : IJobEntity
     {
-        public void Execute(in Damage damage, ref InstanceAIState state, ref TopdownCharacterInput input)
+        public void Execute(in Damage damage, ref InstanceAIState state, ref TopdownCharacterInput input,
+        in InstanceAIStateSetting settingComponent)
         {
             state.storedDamage += damage.attack.damage;
-            if (state.storedDamage < state.interupDamage)
+            ref var setting = ref settingComponent.setting.Value;
+            if (state.storedDamage < setting.interupDamage)
             {
                 return;
             }
             state.storedDamage = 0;
             state.isInterupted = true;
-            state.interuptState = state.takeDamageState;
+            state.inturuptStateType = InstanceAIStateType.TakeDamage;
             input.movement = float3.zero;
         }
     }
@@ -150,7 +143,7 @@ namespace DarkLordGame
             var job2 = new InstanceAIDamageJob();
             handle = job2.ScheduleParallel(state.Dependency);
             handle.Complete();
-            
+
             var job = new InstanceAIStateJob
             {
                 deltaTime = deltaTime,

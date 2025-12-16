@@ -41,7 +41,6 @@ Transform:
   - {fileID: 213378689047862470}
   - {fileID: 6974528455167679026}
   - {fileID: 8139606228706776957}
-  - {fileID: 3175971813985248685}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2883167215309169226
@@ -97,14 +96,12 @@ MonoBehaviour:
   flags: 0
   data2:
     index: 0
-  hasStartTime: 1
   hasDamageTime: 1
   targets:
   - {fileID: 8071254102499109223}
   - {fileID: 8655325853897059388}
   - {fileID: 1395585037078825947}
   - {fileID: 6247324276080593864}
-  - {fileID: 2726876683266226271}
   autoDelayedPlay: 0
   delayedPlayTargetIndex: 0
   delayed: 0.3
@@ -230,48 +227,37 @@ MonoBehaviour:
   data1:
     timeSinceStarted: 0
     loopCount: 0
-    interupDamage: 0
     storedDamage: 0
-    currentStateData:
-      animationIndex: 0
-      stateType: 0
-      stateMaxPeriod: 1
-      nextState: 1
-      loop: 0
-      loopInterval: 0
+    currentStateType: 0
     isInterupted: 0
-    interuptState:
+    inturuptStateType: 0
+  blob:
+    interupDamage: 0
+    idleState:
       animationIndex: 0
       stateType: 0
       stateMaxPeriod: 0
       nextState: 0
       loop: 0
       loopInterval: 0
-    idleState:
+    moveState:
       animationIndex: 0
       stateType: 0
-      stateMaxPeriod: 0.2
-      nextState: 1
-      loop: 0
-      loopInterval: 0
-    moveState:
-      animationIndex: 1
-      stateType: 1
-      stateMaxPeriod: 1000
-      nextState: 2
+      stateMaxPeriod: 0
+      nextState: 0
       loop: 0
       loopInterval: 0
     attackState:
-      animationIndex: 2
-      stateType: 2
-      stateMaxPeriod: 1
-      nextState: 1
+      animationIndex: 0
+      stateType: 0
+      stateMaxPeriod: 0
+      nextState: 0
       loop: 0
       loopInterval: 0
     takeDamageState:
-      animationIndex: 3
-      stateType: 3
-      stateMaxPeriod: 0.5
+      animationIndex: 0
+      stateType: 0
+      stateMaxPeriod: 0
       nextState: 0
       loop: 0
       loopInterval: 0
@@ -460,132 +446,11 @@ MonoBehaviour:
   flags: 0
   data1:
     Value: 0
+  enabledByDefault: 0
 --- !u!4 &6974528455167679026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7509484823513622967, guid: 2266f69102fee43dd816f8d1bfc59684, type: 3}
   m_PrefabInstance: {fileID: 647827876957713285}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &4961530037208093325
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6516913834935388214}
-    m_Modifications:
-    - target: {fileID: 1374668583562385406, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: adbea3ebadc3b445a8f17e81855efd42, type: 2}
-    - target: {fileID: 6993292720074189522, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_Name
-      value: Crystal bug_Crystalbug.Death (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6993292720074189522, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.70710784
-      objectReference: {fileID: 0}
-    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.70710576
-      objectReference: {fileID: 0}
-    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6993292720074189522, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4652366537366907510}
-    - targetCorrespondingSourceObject: {fileID: 6993292720074189522, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4119341104878725908}
-  m_SourcePrefab: {fileID: 100100000, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
---- !u!1 &2726876683266226271 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6993292720074189522, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-  m_PrefabInstance: {fileID: 4961530037208093325}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4652366537366907510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2726876683266226271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e73111838a4b04d4aa821704584c75de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Bakers::DarkLordGame.StartTimeAuthoring
-  flags: 2
-  enabledByDefault: 1
---- !u!114 &4119341104878725908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2726876683266226271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62dff7422b6324395971e32626038bda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Bakers::DarkLordGame.DamageTimeAuthoring
-  flags: 0
-  data1:
-    Value: 0
---- !u!4 &3175971813985248685 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7550764994489906976, guid: 8ed177c1477bd4b728130798b334b5c2, type: 3}
-  m_PrefabInstance: {fileID: 4961530037208093325}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6054334045658941061
 PrefabInstance:
@@ -693,7 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Bakers::DarkLordGame.StartTimeAuthoring
   flags: 2
-  enabledByDefault: 1
+  enabledByDefault: 0
 --- !u!114 &1374227255968124726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,6 +574,7 @@ MonoBehaviour:
   flags: 0
   data1:
     Value: 0
+  enabledByDefault: 0
 --- !u!1001 &8022830392138782973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -826,6 +692,7 @@ MonoBehaviour:
   flags: 0
   data1:
     Value: 0
+  enabledByDefault: 1
 --- !u!4 &8139606228706776957 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2279772495202226048, guid: 23de585e50c22482690e6416795d5461, type: 3}
@@ -937,7 +804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Bakers::DarkLordGame.StartTimeAuthoring
   flags: 2
-  enabledByDefault: 1
+  enabledByDefault: 0
 --- !u!114 &5900791543772865511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -953,3 +820,4 @@ MonoBehaviour:
   flags: 0
   data1:
     Value: 0
+  enabledByDefault: 0

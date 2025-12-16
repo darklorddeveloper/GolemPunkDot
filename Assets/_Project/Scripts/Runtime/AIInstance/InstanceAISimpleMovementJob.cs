@@ -28,7 +28,8 @@ namespace DarkLordGame
         public float deltaTime;
         public void Execute(ref TopdownCharacterInput input,
         in TopdownCharacterMovement topdownCharacterMovement,
-        ref InstanceAISimpleMovement movement, in LocalTransform transform, ref InstanceAIState state)
+        ref InstanceAISimpleMovement movement, in LocalTransform transform, ref InstanceAIState state,
+        in InstanceAIStateSetting settingComponent)
         {
 
             float3 wallPos = wallPosition;
@@ -87,7 +88,9 @@ namespace DarkLordGame
             if (distanceToTarget < movement.approachDistanceSquare && dot > 0.985f)
             {
                 input.movement = float3.zero;
-                state.timeSinceStarted += state.currentStateData.stateMaxPeriod;
+                ref var setting = ref settingComponent.setting.Value;
+                var currentState = InstanceAIStateDataUtility.GetStateData(setting, state.currentStateType);
+                state.timeSinceStarted += currentState.stateMaxPeriod;
             }
         }
     }

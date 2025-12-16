@@ -21,6 +21,7 @@ namespace DarkLordGame
                 }
                 var blob = Float4CurveUtility.CreateBlob(authoring.gradient, authoring.looped);
                 var col = new float4(authoring.testColor.r, authoring.testColor.g, authoring.testColor.b, authoring.testColor.a);
+                AddBlobAsset(ref blob, out var _);
                 AddComponent(e, new ParticleColorOverTime
                 {
                     data = blob

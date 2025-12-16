@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
-    public class DamageTimeAuthoring : StructAuthorizer<DamageTime>
+    public class DamageTimeAuthoring : EnableStructAuthorizer<DamageTime>
     {
     }
 
-    public class DamageTimeBaker : StructBaker<DamageTimeAuthoring, DamageTime>
+    public class DamageTimeBaker : EnableStructBaker<DamageTimeAuthoring, DamageTime>
     {
 
     }

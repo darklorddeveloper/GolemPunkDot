@@ -15,6 +15,7 @@ namespace DarkLordGame
             {
                 var e = GetEntity(TransformUsageFlags.Dynamic);
                 var blob = Float4CurveUtility.CreateBlob(authoring.gradient, authoring.looped);
+                AddBlobAsset(ref blob, out var _);
                 AddComponent(e, new Float4Curve
                 {
                     data = blob,

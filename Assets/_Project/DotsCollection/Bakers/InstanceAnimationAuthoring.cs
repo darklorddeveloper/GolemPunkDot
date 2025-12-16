@@ -5,7 +5,6 @@ namespace DarkLordGame
 {
     public class InstanceAnimationAuthoring : StructAuthorizer<PlayInstanceAnimation, CurrentInstanceAnimationIndex>
     {
-        public bool hasStartTime = true;
         public bool hasDamageTime = true;
         
         public List<GameObject> targets = new();

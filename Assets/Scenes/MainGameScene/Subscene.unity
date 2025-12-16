@@ -572,6 +572,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: blob.idleState.nextState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: blob.moveState.nextState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: blob.moveState.stateType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: blob.attackState.nextState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: blob.attackState.stateType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: blob.idleState.stateMaxPeriod
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: blob.moveState.animationIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: blob.moveState.stateMaxPeriod
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: blob.takeDamageState.stateType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: blob.attackState.animationIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: blob.attackState.stateMaxPeriod
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: blob.takeDamageState.animationIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: blob.takeDamageState.stateMaxPeriod
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
