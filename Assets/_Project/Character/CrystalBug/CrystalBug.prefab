@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6516913834935388214}
   - component: {fileID: 2883167215309169226}
-  - component: {fileID: 306763177032169931}
   - component: {fileID: 417870912148165874}
   - component: {fileID: 3328000041714648719}
   - component: {fileID: 8895384306329333640}
@@ -83,33 +82,6 @@ MonoBehaviour:
   deathEffect: {fileID: 7350996835491456667, guid: 445101ef29b3b44d99130c0008838579, type: 3}
   takeDamageAnimationPeriod: 0.6
   destroyPeriod: 0
---- !u!54 &306763177032169931
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278279303040711559}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &417870912148165874
 MonoBehaviour:
   m_ObjectHideFlags: 0
