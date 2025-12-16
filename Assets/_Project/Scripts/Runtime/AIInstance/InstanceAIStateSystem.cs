@@ -66,6 +66,7 @@ namespace DarkLordGame
                 ecb.SetComponentEnabled<InstanceAIStateFlagAttack>(chunk, entity, stateType == InstanceAIStateType.Attack);
                 ecb.SetComponentEnabled<InstanceAIStateChanged>(chunk, entity, true);
                 // ecb.SetComponent(chunk, entity, new TopdownCharacterInput());
+                UnityEngine.Debug.Log("current state " + state.currentStateData.stateType.ToString());
 
             }
         }
