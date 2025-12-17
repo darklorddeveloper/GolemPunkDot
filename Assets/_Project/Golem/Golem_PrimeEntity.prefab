@@ -118,17 +118,15 @@ MonoBehaviour:
     isHoldingSkill3: 0
     isHoldingSkill4: 0
   data3:
-    movementSpeed: 10
-    currentSpeed: 0
-    accereration: 0
     canTurnOnlyWhileMoving: 0
-    turnSpeed: 1000
     useRaycast: 1
+    isHittedObstacle: 0
+    turnSpeed: 1000
     size: 1
     castOffset: 1
+    lastMovedDistance: 0
     layerBit: 1
     collideWithLayerBit: 1
-    isHittedObstacle: 0
     hittedPoint:
       x: 0
       y: 0
@@ -137,7 +135,6 @@ MonoBehaviour:
       x: 0
       y: 0
       z: 0
-    lastMovedDistance: 0
   data4:
     value: 20
     multiplier: 1
@@ -172,25 +169,14 @@ MonoBehaviour:
   flags: 0
   data1:
     canDeath: 1
-    HP: 0
-    MaxHP: 0
-    bonusMaxHP: 0
+    HP: 5000
+    MaxHP: 5000
     shield: 0
-    tempShield: 0
     attack: 0
-    tempAttack: 0
-    tempAttackMultiplier: 0
     criticalChance: 0
-    tempCriticalChance: 0
     criitcalDamage: 0
-    tempCriticalDamage: 0
     bonusAoeDamageRate: 0
-    bonusAoeDamageTempDamageRate: 0
     bonusAoeRange: 0
-    movementSpeed: 0
-    tempMovementSpeed: 0
-    cooldownSpeed: 0
-    tempCooldownSpeed: 0
   canDeath: 1
   deathEffect: {fileID: 0}
   takeDamageAnimationPeriod: 0.3
