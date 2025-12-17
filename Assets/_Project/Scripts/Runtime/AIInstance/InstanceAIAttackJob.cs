@@ -16,11 +16,9 @@ namespace DarkLordGame
         ref InstanceAIAttack attack,
         EnabledRefRW<InstanceAIStateFlagAttack> attackEnable)
         {
-            UnityEngine.Debug.Log($"here {state.timeSinceStarted} > {attack.delayed}");
             if (state.timeSinceStarted > attack.delayed)
             {
                 attackEnable.ValueRW = false;
-            UnityEngine.Debug.Log($"here =============== spawn request true");
 
                 ecb.SetComponentEnabled<SpawnAttackRequest>(chunk, e, true);
             }

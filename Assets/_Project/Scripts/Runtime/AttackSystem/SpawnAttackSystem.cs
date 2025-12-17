@@ -33,6 +33,7 @@ namespace DarkLordGame
             {
                 int split = setting.split + 1;
                 float startAngle = -setting.splitAngle * (split - 1.0f) / 2.0f;
+                UnityEngine.Debug.Log("here spawn multiple");
 
                 //instantiate                
                 NativeArray<Entity> entities = new NativeArray<Entity>(split, Allocator.TempJob);
@@ -67,14 +68,16 @@ namespace DarkLordGame
         public void OnUpdate(ref SystemState state)
         {
             float deltaTime = SystemAPI.Time.DeltaTime;
-            var ecbSystem = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
-            var ecb = ecbSystem.CreateCommandBuffer(state.WorldUnmanaged);
+            var ecb = new EntityCommandBuffer( Allocator.TempJob);
             var job = new SpawnAttackJob
             {
                 deltaTime = deltaTime,
                 ecb = ecb.AsParallelWriter()
             };
-            job.ScheduleParallel();
+            var handle = job.ScheduleParallel(state.Dependency);
+            handle.Complete();
+            ecb.Playback(state.EntityManager);
+            ecb.Dispose();
         }
     }
 }

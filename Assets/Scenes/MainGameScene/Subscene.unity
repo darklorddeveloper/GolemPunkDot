@@ -521,6 +521,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrystalBug
       objectReference: {fileID: 0}
+    - target: {fileID: 3345816578924658011, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+      propertyPath: blob.forwardOffset
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6516913834935388214, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.4

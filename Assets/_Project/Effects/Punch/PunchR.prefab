@@ -181,10 +181,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: fc2603c72fadd4242810561472e959dd, type: 3}
-      propertyPath: m_RenderingLayerMask
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f5f388cb2e4404f45b42113ac7a47779, type: 2}
@@ -302,10 +298,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: fc2603c72fadd4242810561472e959dd, type: 3}
       propertyPath: m_LightProbeUsage
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: fc2603c72fadd4242810561472e959dd, type: 3}
-      propertyPath: m_RenderingLayerMask
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: fc2603c72fadd4242810561472e959dd, type: 3}
