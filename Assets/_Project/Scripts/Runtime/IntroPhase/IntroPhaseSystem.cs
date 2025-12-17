@@ -5,27 +5,11 @@ namespace DarkLordGame
 {
     public partial class IntroPhaseSystem : SystemBase
     {
-        private EntityQuery targetQuery;
         private float timeCount = 0;
         private const float WaitPeriod = 0.5f;
-        protected override void OnCreate()
-        {
-            base.OnCreate();
-            targetQuery = SystemAPI.QueryBuilder()
-            .WithAll<IntroPhase>()
-            .Build();
-        }
 
         protected override void OnUpdate()
         {
-            if (targetQuery.IsEmpty)
-            {
-                return;
-            }
-            //check the animation is done. --- intro only
-            // play the current page
-            // fade out then next page
-            // fadeout last page then go to gamephase
             if (SystemAPI.TryGetSingleton<CurrentPhase>(out var phase))
             {
                 if (phase.isChangingPhase)

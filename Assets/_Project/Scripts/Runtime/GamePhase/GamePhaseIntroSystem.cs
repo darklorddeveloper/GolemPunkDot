@@ -9,21 +9,11 @@ namespace DarkLordGame
     public partial class GamePhaseIntroSystem : SystemBase
     {
 
-        private EntityQuery targetQuery;
         private IEnumerator introEnumberator;
         private float timeCount = 0;
-        protected override void OnCreate()
-        {
-            base.OnCreate();
-            targetQuery = SystemAPI.QueryBuilder()
-            .WithAll<GamePhaseIntro>()
-            .Build();
-        }
 
         protected override void OnUpdate()
         {
-            if (targetQuery.IsEmpty) return;
-
             var currentPhase = SystemAPI.GetSingleton<CurrentPhase>();
             var e = SystemAPI.GetSingletonEntity<CurrentPhase>();
             if (currentPhase.isChangingPhase)
@@ -57,7 +47,6 @@ namespace DarkLordGame
             currentPhase.phase = PhaseType.GamePhase;
             SystemAPI.SetSingleton(currentPhase);
             introEnumberator = null;
-            //Change phase to others
         }
 
         private IEnumerator Intro(Entity entity, float introPeriod)
@@ -74,6 +63,9 @@ namespace DarkLordGame
                 t += SystemAPI.Time.DeltaTime;
                 yield return null;
             }
+
+            //play story here
+            //check skip
             transform.Position = startPos.targetPosition;
             EntityManager.SetComponentData(entity, transform);
         }
