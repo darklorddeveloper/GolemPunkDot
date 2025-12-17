@@ -11,6 +11,7 @@ namespace DarkLordGame
         public float MaxHP;
         public float shield;//always temp
         public float attack;
+        //can be moved
         public float criticalChance;//50%
         public float criitcalDamage;//1.5f
         public float bonusAoeDamageRate;
