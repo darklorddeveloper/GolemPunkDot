@@ -37,7 +37,7 @@ namespace DarkLordGame
 
                 if (Singleton.instance.playerSaveData.playCount == 0)
                 {
-                    phase.phase = PhaseType.GamePhase;
+                    phase.phase = PhaseType.GamePhaseIntro;
                 }
                 else
                 {

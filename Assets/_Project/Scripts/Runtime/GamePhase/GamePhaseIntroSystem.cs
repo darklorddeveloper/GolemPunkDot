@@ -15,7 +15,6 @@ namespace DarkLordGame
         protected override void OnCreate()
         {
             base.OnCreate();
-            base.OnCreate();
             targetQuery = SystemAPI.QueryBuilder()
             .WithAll<GamePhaseIntro>()
             .Build();
@@ -33,7 +32,7 @@ namespace DarkLordGame
             }
 
             var intro = EntityManager.GetComponentData<GamePhaseIntro>(e);
-            if(timeCount <= intro.delayed)
+            if (timeCount <= intro.delayed)
             {
                 timeCount += SystemAPI.Time.DeltaTime;
                 if (timeCount > intro.delayed)
@@ -42,7 +41,6 @@ namespace DarkLordGame
                     var id = Singleton.instance.playerSaveData.selectedClassID;
                     var collection = SystemAPI.GetSingletonBuffer<GolemClassCollection>();
                     var entity = EntityManager.Instantiate(collection[id].prefab);
-                    EntityManager.SetComponentEnabled<TopdownCharacterInput>(entity, false);
                     introEnumberator = Intro(entity, intro.period);
                 }
             }
@@ -56,9 +54,10 @@ namespace DarkLordGame
             {
                 return;
             }
-
-            EntityManager.SetComponentEnabled<GamePhaseIntro>(e, false);
+            currentPhase.phase = PhaseType.GamePhase;
+            SystemAPI.SetSingleton(currentPhase);
             introEnumberator = null;
+            //Change phase to others
         }
 
         private IEnumerator Intro(Entity entity, float introPeriod)
@@ -76,7 +75,6 @@ namespace DarkLordGame
                 yield return null;
             }
             transform.Position = startPos.targetPosition;
-            EntityManager.SetComponentEnabled<TopdownCharacterInput>(entity, true);
             EntityManager.SetComponentData(entity, transform);
         }
     }

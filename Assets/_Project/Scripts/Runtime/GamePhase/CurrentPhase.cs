@@ -9,6 +9,7 @@ namespace DarkLordGame
         BootStrap,
         Intro, // do cinematic intro
         GamePhase,
+        GamePhaseIntro,
         SettingPhase,
         HomeStandbyphase,
     }
