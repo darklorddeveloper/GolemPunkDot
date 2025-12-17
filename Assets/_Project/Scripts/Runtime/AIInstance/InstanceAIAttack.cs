@@ -7,6 +7,5 @@ namespace DarkLordGame
     public struct InstanceAIAttack : IComponentData
     {
         public float delayed;
-        public bool attacked;
     }
 }

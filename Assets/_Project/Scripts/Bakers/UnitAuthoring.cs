@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
-    public class UnitAuthoring : StructAuthorizer<Unit, ChangeMovementSpeed, Damage>
+    public class UnitAuthoring : StructAuthorizer<Unit, Damage>
     {
         [Header("Note - this will add safedestroy")]
         [Header("Death")]
@@ -16,7 +16,7 @@ namespace DarkLordGame
         public float destroyPeriod = 0.0f;
     }
 
-    public class UnitBaker : StructBaker<UnitAuthoring, Unit, ChangeMovementSpeed, Damage>
+    public class UnitBaker : StructBaker<UnitAuthoring, Unit, Damage>
     {
         public override void Bake(UnitAuthoring authoring)
         {

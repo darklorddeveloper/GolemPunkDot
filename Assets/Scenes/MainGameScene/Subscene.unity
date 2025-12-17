@@ -332,23 +332,12 @@ MonoBehaviour:
     canDeath: 0
     HP: 100
     MaxHP: 100
-    bonusMaxHP: 0
     shield: 0
-    tempShield: 0
     attack: 0
-    tempAttack: 0
-    tempAttackMultiplier: 0
     criticalChance: 0
-    tempCriticalChance: 0
     criitcalDamage: 0
-    tempCriticalDamage: 0
     bonusAoeDamageRate: 0
-    bonusAoeDamageTempDamageRate: 0
     bonusAoeRange: 0
-    movementSpeed: 0
-    tempMovementSpeed: 0
-    cooldownSpeed: 0
-    tempCooldownSpeed: 0
   canDeath: 0
   deathEffect: {fileID: 0}
   takeDamageAnimationPeriod: 1
@@ -571,58 +560,6 @@ PrefabInstance:
     - target: {fileID: 6516913834935388214, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: blob.idleState.nextState
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: blob.moveState.nextState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: blob.moveState.stateType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: blob.attackState.nextState
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: blob.attackState.stateType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: blob.idleState.stateMaxPeriod
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: blob.moveState.animationIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: blob.moveState.stateMaxPeriod
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: blob.takeDamageState.stateType
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: blob.attackState.animationIndex
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: blob.attackState.stateMaxPeriod
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: blob.takeDamageState.animationIndex
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6742445401131166219, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
-      propertyPath: blob.takeDamageState.stateMaxPeriod
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

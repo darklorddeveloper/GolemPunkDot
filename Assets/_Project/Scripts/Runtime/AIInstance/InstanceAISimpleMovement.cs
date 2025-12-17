@@ -21,12 +21,11 @@ namespace DarkLordGame
         public float avoidancePeriod;
     }
 
-    public struct InstanceAISimpleMovementSettingBlob
-    {
-        [Header("Min Max Attack Range")]
-        public float approachMinDistance;
-        public float approachMaxDistance;//attack range
-        public float avoidancePeriod;
-
-    }
+    // public struct InstanceAISimpleMovementSettingBlob
+    // {
+    //     [Header("Min Max Attack Range")]
+    //     public float approachMinDistance;
+    //     public float approachMaxDistance;//attack range
+    //     public float avoidancePeriod;
+    // }
 }

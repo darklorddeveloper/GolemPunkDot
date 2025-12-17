@@ -28,8 +28,8 @@ namespace DarkLordGame
                 var child = GetEntity(authoring.targets[i], Unity.Entities.TransformUsageFlags.Dynamic);
                 buff.Add(new InstanceAnimation { target = child });
             }
-            AddComponent(e, new InstanceAnimationDelayedPlay{ period = authoring.delayed, targetIndex = authoring.delayedPlayTargetIndex});
-            SetComponentEnabled<InstanceAnimationDelayedPlay>(e, authoring.autoDelayedPlay);
+            // AddComponent(e, new InstanceAnimationDelayedPlay{ period = authoring.delayed, targetIndex = authoring.delayedPlayTargetIndex});
+            // SetComponentEnabled<InstanceAnimationDelayedPlay>(e, authoring.autoDelayedPlay);
         }
     }
 }

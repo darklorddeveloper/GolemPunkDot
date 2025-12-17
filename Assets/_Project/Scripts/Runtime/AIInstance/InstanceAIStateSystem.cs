@@ -128,9 +128,6 @@ namespace DarkLordGame
 
                 handle = movementJob.ScheduleParallel(handle);
 
-                ////reset attack
-                var resetAttackJob = new InstanceAIAttackResetJob();
-                handle = resetAttackJob.ScheduleParallel(handle);
                 //attack
                 var attackJob = new InstanceAIAttackJob
                 {

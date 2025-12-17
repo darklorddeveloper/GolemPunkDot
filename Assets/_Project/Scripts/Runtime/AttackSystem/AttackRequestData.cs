@@ -4,9 +4,11 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
+    //for AI just change to spawner and attack spawner is simply set
     [System.Serializable]
     public struct AttackRequestData : IComponentData, IEnableableComponent
     {
+        [Header("Use for complex unit and powerful unit")]
         public Entity attacker;
         public Entity prefab;//entity with attack
         [Header("hit")]
@@ -26,7 +28,7 @@ namespace DarkLordGame
         public int propertyValue;
 
         //attack itself stats
-        [Header("attack request stats")]
+        [Header("attack request stats")]//setting data
         public int extraSplit;
         public float splitAngle;
         public int loopCast;//minimal 1
@@ -36,13 +38,13 @@ namespace DarkLordGame
         public int extraBounce;
 
         //attack movement stat
-        [Header("Movement aspect")]
+        [Header("Movement aspect")]//setting data
         public float extraLifeTime;
         public int bounce;
         public int chainAttack;
 
         [Header("Impact")]
-        public float riftPower;
+        public float riftPower;//setting data
         public float pushPower;
         public bool canDealDeathImpact;
     }

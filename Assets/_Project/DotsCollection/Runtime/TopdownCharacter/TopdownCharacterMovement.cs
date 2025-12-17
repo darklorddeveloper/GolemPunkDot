@@ -7,18 +7,18 @@ namespace DarkLordGame
     [System.Serializable]
     public struct TopdownCharacterMovement : IComponentData
     {
-        public bool canTurnOnlyWhileMoving; //setting related
-        public bool useRaycast;//setting related
+        public bool canTurnOnlyWhileMoving; //settingdata
+        public bool useRaycast;//settingdata
         public bool isHittedObstacle;
-        public float turnSpeed; //setting related
-        public float size;//setting related
-        public float castOffset; //setting related
+        public float turnSpeed; //settingdata
+        public float size;//settingdata
+        public float castOffset; //settingdata
         public float lastMovedDistance;
-        public uint layerBit;//setting related
-        public uint collideWithLayerBit;//setting related
-        public float3 hittedPoint;
+        public uint layerBit;//settingdata
+        public uint collideWithLayerBit;//settingdata
+        public float3 hittedPoint; //pending to remove might not needed
         public float3 hittedNormal;
-        public Entity lastHitEntity;
+        public Entity lastHitEntity; // might not needed
     
     }
 }

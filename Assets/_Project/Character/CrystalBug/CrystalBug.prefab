@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 8895384306329333640}
   - component: {fileID: 7600185714043089218}
   - component: {fileID: 6742445401131166219}
-  - component: {fileID: 1180039337497129531}
   - component: {fileID: 5413144045093926681}
+  - component: {fileID: 3345816578924658011}
   m_Layer: 8
   m_Name: CrystalBug
   m_TagString: Untagged
@@ -60,23 +60,12 @@ MonoBehaviour:
     canDeath: 1
     HP: 20
     MaxHP: 20
-    bonusMaxHP: 0
     shield: 0
-    tempShield: 0
     attack: 0
-    tempAttack: 0
-    tempAttackMultiplier: 0
     criticalChance: 0
-    tempCriticalChance: 0
     criitcalDamage: 0
-    tempCriticalDamage: 0
     bonusAoeDamageRate: 0
-    bonusAoeDamageTempDamageRate: 0
     bonusAoeRange: 0
-    movementSpeed: 0
-    tempMovementSpeed: 0
-    cooldownSpeed: 0
-    tempCooldownSpeed: 0
   canDeath: 1
   deathEffect: {fileID: 7350996835491456667, guid: 445101ef29b3b44d99130c0008838579, type: 3}
   takeDamageAnimationPeriod: 0.6
@@ -140,15 +129,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: GameBakers::DarkLordGame.InstanceAIMovementAuthoring
   flags: 0
   data1:
+    isAvoiding: 0
+    isPreviouslyAvoiding: 0
     approachDistanceSquare: 16
     approachMinDistance: 4
     approachMaxDistance: 5
-    isAvoiding: 0
-    isPreviouslyAvoiding: 0
     avoidingDirection:
-      x: 0
-      y: 0
-      z: 0
+      x:
+        value: 0
+      y:
+        value: 0
+      z:
+        value: 0
     avoidanceTimeCount: 0
     avoidancePeriod: 0.5
 --- !u!114 &7600185714043089218
@@ -188,17 +180,15 @@ MonoBehaviour:
     isHoldingSkill3: 0
     isHoldingSkill4: 0
   data2:
-    movementSpeed: 8
-    currentSpeed: 1
-    accereration: 0
     canTurnOnlyWhileMoving: 0
-    turnSpeed: 3
     useRaycast: 1
+    isHittedObstacle: 0
+    turnSpeed: 3
     size: 1
     castOffset: 0.3
+    lastMovedDistance: 0
     layerBit: 1
     collideWithLayerBit: 1
-    isHittedObstacle: 0
     hittedPoint:
       x: 0
       y: 0
@@ -207,7 +197,6 @@ MonoBehaviour:
       x: 0
       y: 0
       z: 0
-    lastMovedDistance: 0
   data3:
     value: 5
     multiplier: 1
@@ -226,8 +215,8 @@ MonoBehaviour:
   flags: 2
   data1:
     timeSinceStarted: 0
-    loopCount: 0
     storedDamage: 0
+    loopCount: 0
     currentStateType: 0
     isInterupted: 0
     inturuptStateType: 0
@@ -236,83 +225,31 @@ MonoBehaviour:
     idleState:
       animationIndex: 0
       stateType: 0
-      stateMaxPeriod: 0
-      nextState: 0
+      stateMaxPeriod: 0.2
+      nextState: 1
       loop: 0
       loopInterval: 0
     moveState:
-      animationIndex: 0
-      stateType: 0
-      stateMaxPeriod: 0
-      nextState: 0
+      animationIndex: 1
+      stateType: 1
+      stateMaxPeriod: 1000
+      nextState: 2
       loop: 0
       loopInterval: 0
     attackState:
-      animationIndex: 0
-      stateType: 0
-      stateMaxPeriod: 0
-      nextState: 0
+      animationIndex: 2
+      stateType: 2
+      stateMaxPeriod: 1
+      nextState: 1
       loop: 0
       loopInterval: 0
     takeDamageState:
-      animationIndex: 0
-      stateType: 0
-      stateMaxPeriod: 0
+      animationIndex: 3
+      stateType: 3
+      stateMaxPeriod: 0.5
       nextState: 0
       loop: 0
       loopInterval: 0
---- !u!114 &1180039337497129531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278279303040711559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6c22e4bcb1f844afa7c1f89373e0fd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: GameBakers::DarkLordGame.AttackRequestDataAuthoring
-  flags: 2
-  data1:
-    belongToLayer: 1
-    hitLayer: 512
-    bonusDamage: 10
-    attackDamageMultipler: 1
-    aoeRange: 1
-    aoeDamageRate: 0
-    useLimitedAngle: 0
-    limitedDot: 0
-    extraCritDamage: 0
-    extracriticalChance: 0
-    attackProperty: 0
-    propertyValue: 0
-    extraSplit: 0
-    splitAngle: 0
-    loopCast: 0
-    loopCasted: 0
-    loopCastInterval: 0
-    loopTimeCount: 0
-    extraBounce: 0
-    extraLifeTime: 0
-    bounce: 0
-    chainAttack: 0
-    riftPower: 0
-    pushPower: 0
-    canDealDeathImpact: 0
-  data2:
-    forwardOffset: 3
-    position:
-      x: 0
-      y: 0
-      z: 0
-    rotation:
-      value:
-        x: 0
-        y: 0
-        z: 0
-        w: 0
-  prefab: {fileID: 1535904547477154691, guid: 85dbc12788b9e40579e9df2d80b54b36, type: 3}
 --- !u!114 &5413144045093926681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +266,26 @@ MonoBehaviour:
   data1:
     delayed: 0.3
     attacked: 0
+--- !u!114 &3345816578924658011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278279303040711559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0571bbd42bf4cb98956f709bef4eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameBakers::DarkLordGame.SpawnAttackRequestAuthoring
+  prefab: {fileID: 1535904547477154691, guid: 85dbc12788b9e40579e9df2d80b54b36, type: 3}
+  blob:
+    forwardOffset: 1
+    skews: 0
+    splitAngle: 0
+    loopCastInterval: 0
+    split: 0
+    loopCast: 0
 --- !u!1001 &647827876957713285
 PrefabInstance:
   m_ObjectHideFlags: 0

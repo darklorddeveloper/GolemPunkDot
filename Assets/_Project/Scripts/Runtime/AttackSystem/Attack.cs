@@ -18,7 +18,7 @@ namespace DarkLordGame
     {
         //hit damage related
         [Header("Hit")]
-        public uint belongToLayer;
+        public uint belongToLayer; //setting data
         public uint hitLayer;
         [Header("stat")]
         public float damage;
@@ -35,7 +35,7 @@ namespace DarkLordGame
         public int bounce;
         public int chainAttack;
 
-        [Header("Impact movement")]
+        [Header("Impact movement")] //setting data
         public float riftPower;
         public float pushPower;
         public bool canDealDeathImpact;

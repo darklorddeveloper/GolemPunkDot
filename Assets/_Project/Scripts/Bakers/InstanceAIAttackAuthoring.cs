@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
-    [RequireComponent(typeof(AttackRequestDataAuthoring))]
+    [RequireComponent(typeof(SpawnAttackRequest))]
     public class InstanceAIAttackAuthoring : StructAuthorizer<InstanceAIAttack>
     {
     }
