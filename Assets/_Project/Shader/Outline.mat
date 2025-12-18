@@ -104,7 +104,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _ColorThreadhold: 1.59
+    - _ColorThreadhold: 6.77
     - _Cull: 2
     - _Cutoff: 0.5
     - _DepthThreadhold: 0.007
@@ -117,7 +117,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NormalThreadhold: 0.56
+    - _NormalThreadhold: 1.13
     - _OVERLAY: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -135,8 +135,8 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorLength: {r: 0.6, g: 0.9, b: 0, a: 0}
-    - _DepthLength: {r: 0.6, g: 0.9, b: 0, a: 0}
+    - _ColorLength: {r: 0, g: 0, b: 0, a: 0}
+    - _DepthLength: {r: 2, g: 2, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NormalLength: {r: 0.6, g: 0.9, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}

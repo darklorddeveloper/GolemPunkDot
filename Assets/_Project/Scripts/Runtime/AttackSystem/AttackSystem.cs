@@ -12,7 +12,8 @@ namespace DarkLordGame
     {
         public EntityCommandBuffer.ParallelWriter ecb;
         public float deltaTime;
-        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref AttackRequestData attackRequest, in AttackRequestTransform transform, in Unit unit)
+        public void Execute([ChunkIndexInQuery] int chunk, Entity entity, ref AttackRequestData attackRequest, in AttackRequestTransform transform, in Unit unit,
+        in Crit crit, in AOE aoe)
         {
 
             attackRequest.loopTimeCount += deltaTime;
@@ -23,8 +24,8 @@ namespace DarkLordGame
             attackRequest.loopTimeCount = 0;
 
             float baseDamage = (unit.attack + attackRequest.bonusDamage) * (1 + attackRequest.attackDamageMultipler);
-            float critDamage = unit.criitcalDamage ;
-            float critChance = unit.criticalChance ;
+            float critDamage = crit.criitcalDamage ;
+            float critChance = crit.criticalChance ;
             var attack = new Attack
             {
                 belongToLayer = attackRequest.belongToLayer,
@@ -32,8 +33,8 @@ namespace DarkLordGame
                 damage = baseDamage,
                 attackProperty = attackRequest.attackProperty,
                 propertyValue = attackRequest.propertyValue,
-                aoeDamage = baseDamage * (unit.bonusAoeDamageRate + attackRequest.aoeDamageRate),
-                aoeRange = unit.bonusAoeRange + attackRequest.aoeRange,
+                aoeDamage = baseDamage * (aoe.bonusAOEDamageRate + attackRequest.aoeDamageRate),
+                aoeRange = aoe.bonusAoeRange + attackRequest.aoeRange,
                 useLimitedAngle = attackRequest.useLimitedAngle,
                 limitedDot = attackRequest.limitedDot,
                 criticalDamage = critDamage + attackRequest.extraCritDamage,

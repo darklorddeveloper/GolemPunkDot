@@ -173,14 +173,20 @@ MonoBehaviour:
     MaxHP: 5000
     shield: 0
     attack: 0
-    criticalChance: 0
-    criitcalDamage: 0
-    bonusAoeDamageRate: 0
-    bonusAoeRange: 0
   canDeath: 1
   deathEffect: {fileID: 0}
   takeDamageAnimationPeriod: 0.3
   destroyPeriod: 0
+  isComplexUnit: 1
+  crit:
+    criticalChance: 0
+    criitcalDamage: 0
+  aOE:
+    bonusAOEDamageRate: 0
+    bonusAoeRange: 0
+  hasCooldown: 1
+  cooldownSpeed:
+    cooldownSpeed: 1
 --- !u!114 &3280195084012512131
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,11 +11,6 @@ namespace DarkLordGame
         public float MaxHP;
         public float shield;//always temp
         public float attack;
-        //can be moved
-        public float criticalChance;//50%
-        public float criitcalDamage;//1.5f
-        public float bonusAoeDamageRate;
-        public float bonusAoeRange;
     }
 
     public struct IsDeath : IComponentData, IEnableableComponent
@@ -24,25 +19,26 @@ namespace DarkLordGame
 
     public struct CanDeath : IComponentData
     {
-        
+
     }
 
+    [System.Serializable]
+    public struct Crit : IComponentData
+    {
+        public float criticalChance;
+        public float criitcalDamage;
+    }
+
+    [System.Serializable]
     public struct CooldownSpeed : IComponentData//only player
     {
         public float cooldownSpeed;
     }
 
+    [System.Serializable]
     public struct AOE : IComponentData
     {
-        public ushort bonusAOEDamage;
+        public ushort bonusAOEDamageRate;
         public ushort bonusAoeRange;
-    }
-
-    
-
-    [System.Serializable]
-    public struct ChangeMovementSpeed : IComponentData, IEnableableComponent
-    {
-
     }
 }

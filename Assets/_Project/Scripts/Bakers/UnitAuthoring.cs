@@ -12,8 +12,16 @@ namespace DarkLordGame
 
         [Header("TakeDamage")]
         public float takeDamageAnimationPeriod = 0.3f;
-
         public float destroyPeriod = 0.0f;
+
+        [Header("Complex unit")]
+        public bool isComplexUnit = false;
+        public Crit crit;
+        public AOE aOE;
+
+        [Header("HasCooldown speed")]
+        public bool hasCooldown = false;
+        public CooldownSpeed cooldownSpeed = new CooldownSpeed { cooldownSpeed = 1.0f };
     }
 
     public class UnitBaker : StructBaker<UnitAuthoring, Unit, Damage>
@@ -49,7 +57,16 @@ namespace DarkLordGame
             {
                 AddComponent(e, new DeathEffect { prefab = Entity.Null });
             }
+            if (authoring.isComplexUnit)
+            {
+                AddComponent(e, authoring.crit);
+                AddComponent(e, authoring.aOE);
+            }
 
+            if (authoring.hasCooldown)
+            {
+                AddComponent(e, authoring.cooldownSpeed);
+            }
             AddComponent(e, new TakeDamageAnimationPeriod { period = authoring.takeDamageAnimationPeriod });
         }
     }
