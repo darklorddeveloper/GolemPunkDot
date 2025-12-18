@@ -42,7 +42,6 @@ namespace DarkLordGame
                 //movement
                 bounce = attackRequest.bounce,
                 chainAttack = attackRequest.chainAttack,
-                canDealDeathImpact = attackRequest.canDealDeathImpact,
                 pushPower = attackRequest.pushPower,
                 riftPower = attackRequest.riftPower
             };

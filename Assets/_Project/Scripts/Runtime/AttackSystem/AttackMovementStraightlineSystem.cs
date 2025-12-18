@@ -59,7 +59,9 @@ namespace DarkLordGame
                 }
                 if (attack.aoeRange <= 1.0f)
                 {
-                    ecb.SetComponent(chunk, hit.Entity, new Damage { damagePosition = hit.Position, damageSourcePosition = pos, attack = attack });
+                    var diff = math.normalizesafe(hit.Position - pos, new float3(0, 1, 0));
+                    var impactDirection = diff * attack.pushPower + new float3(0.0f, attack.riftPower, 0.0f);
+                    ecb.SetComponent(chunk, hit.Entity, new Damage { damagePosition = hit.Position, damageSourcePosition = pos, damageToken = attack.damage, impactDirection = impactDirection});
                     ecb.SetComponentEnabled<Damage>(chunk, hit.Entity, true);
                 }
                 else

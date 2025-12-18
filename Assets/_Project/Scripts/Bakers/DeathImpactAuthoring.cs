@@ -13,7 +13,6 @@ namespace DarkLordGame
             base.Bake(authoring);
             var e = GetEntity(Unity.Entities.TransformUsageFlags.Dynamic);
             AddComponent(e, new DealDeathImpactDamage { radius = authoring.impactRadius });
-            SetComponentEnabled<DealDeathImpactDamage>(e, false);
             AddComponent<InitDeathImpact>(e);
             AddComponent(e, new SafeDestroyComponent { period = authoring.destroyPeriod });
             AddComponent(e, new DestroyImmediate { destroyChild = true });

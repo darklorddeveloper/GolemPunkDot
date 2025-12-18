@@ -6,7 +6,7 @@ namespace DarkLordGame
     [System.Serializable]
     public struct DeathImpact : IComponentData
     {
-        public float3 velocityDirection;
+        public float3 impactDirection;
         public float3 sourcePosition;
     }
 
@@ -25,7 +25,7 @@ namespace DarkLordGame
     }
 
     [System.Serializable]
-    public struct DealDeathImpactDamage : IComponentData, IEnableableComponent
+    public struct DealDeathImpactDamage : IComponentData
     {
         public float radius;
     }
@@ -33,6 +33,6 @@ namespace DarkLordGame
     [System.Serializable]
     public struct DeathImpactDamage : IComponentData
     {
-        public Attack attack;
+        public float damage;
     }
 }

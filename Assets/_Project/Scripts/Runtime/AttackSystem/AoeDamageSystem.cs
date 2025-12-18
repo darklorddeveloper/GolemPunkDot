@@ -50,9 +50,12 @@ namespace DarkLordGame
                         }
                         if (state.EntityManager.HasComponent<Damage>(e))
                         {
+                            var diff = math.normalizesafe(hits[j].Position - components[i].position, new float3(0, 1, 0));
+                            var impactDirection = diff * attack.pushPower + new float3(0.0f, attack.riftPower, 0.0f);
                             state.EntityManager.SetComponentData(e, new Damage
                             {
-                                attack = attack,
+                                damageToken = attack.damage,
+                                impactDirection = impactDirection,
                                 damagePosition = hits[j].Position,
                                 damageSourcePosition = components[i].position,
                             });

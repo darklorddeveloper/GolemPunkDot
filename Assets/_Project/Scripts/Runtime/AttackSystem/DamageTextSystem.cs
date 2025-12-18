@@ -57,7 +57,7 @@ namespace DarkLordGame
                     damageTexts[i].gameObject.SetActive(true);
                     damageTexts[i].timeCount = 0;
                     damageTexts[i].root.position = CalculatePosition(damages[i].damagePosition);
-                    damageTexts[i].text.SetText(damages[i].attack.damage.ToString());
+                    damageTexts[i].text.SetText(damages[i].damageToken.ToString());
                     damageTexts[i].startPosition = damageTexts[i].root.anchoredPosition;
                 }
                 runningDamageTexts.AddRange(damageTexts);

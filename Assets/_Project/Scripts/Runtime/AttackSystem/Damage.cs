@@ -5,7 +5,8 @@ namespace DarkLordGame
 {
     public struct Damage : IComponentData, IEnableableComponent
     {
-        public Attack attack;
+        public float damageToken;
+        public float3 impactDirection;
         public float3 damagePosition; //needed this for pushback so change to push back
         public float3 damageSourcePosition;
     }

@@ -16,7 +16,7 @@ namespace DarkLordGame
         ref LocalTransform localTransform,
         EnabledRefRW<Damage> damageEnable, in DeathEffect effect)
         {
-            float dealtDamage = damage.attack.damage;
+            float dealtDamage = damage.damageToken;
             float shield = unit.shield;
             unit.shield -= dealtDamage;
             unit.shield = math.max(0, unit.shield);
@@ -31,14 +31,12 @@ namespace DarkLordGame
                     {
                         var fx = ecb.Instantiate(chunk, effect.prefab);
                         ecb.SetComponent(chunk, fx, localTransform);
-                        var diff = math.normalizesafe(localTransform.Position - damage.damageSourcePosition, new float3(0, 1, 0));
                         ecb.SetComponent(chunk, fx, new DeathImpact
                         {
-                            velocityDirection = diff * damage.attack.pushPower + new float3(0.0f, damage.attack.riftPower, 0.0f),
+                            impactDirection = damage.impactDirection,
                             sourcePosition = damage.damageSourcePosition,
                         });
-                        ecb.SetComponent(chunk, fx, new DeathImpactDamage { attack = damage.attack });
-                        ecb.SetComponentEnabled<DealDeathImpactDamage>(chunk, fx, damage.attack.canDealDeathImpact);
+                        ecb.SetComponent(chunk, fx, new DeathImpactDamage { damage = damage.damageToken });
                     }
                     ecb.SetComponentEnabled<SafeDestroyComponent>(chunk, entity, true);
                 }

@@ -11,8 +11,8 @@ namespace DarkLordGame
         public void Execute(EnabledRefRW<InitDeathImpact> init, ref DeathImpact deathImpact, in LocalTransform transform, in DeathImpactMovement movmeent)
         {
 
-            var velo = math.max(math.length(deathImpact.velocityDirection) - math.length(deathImpact.sourcePosition - transform.Position) * movmeent.velocityLostPerDistance, 0.0f);
-            deathImpact.velocityDirection = math.normalizesafe(deathImpact.velocityDirection, new float3(0, 0, 0)) * velo;
+            var velo = math.max(math.length(deathImpact.impactDirection) - math.length(deathImpact.sourcePosition - transform.Position) * movmeent.velocityLostPerDistance, 0.0f);
+            deathImpact.impactDirection = math.normalizesafe(deathImpact.impactDirection, new float3(0, 0, 0)) * velo;
             init.ValueRW = false;
         }
     }
@@ -25,7 +25,7 @@ namespace DarkLordGame
         public void Execute([ChunkIndexInQuery] int chunk, Entity e, ref LocalTransform transform, ref DeathImpactMovement impactMovement, EnabledRefRW<DeathImpactMovement> movementEnable, ref DeathImpact impact)
         {
             var pos = transform.Position;
-            var velocity = impact.velocityDirection;
+            var velocity = impact.impactDirection;
             velocity.y -= impactMovement.gravity * deltaTime;
             if (pos.y <= 0 && velocity.y <= 0)
             {
@@ -39,7 +39,7 @@ namespace DarkLordGame
             }
             pos.y = math.clamp(pos.y, 0, impactMovement.maxHeight);
 
-            impact.velocityDirection = velocity;
+            impact.impactDirection = velocity;
             transform.Position = pos;
             if (math.lengthsq(velocity.xz) <= 0.1f && velocity.y < 0 && pos.y <= 0.1f)
             {

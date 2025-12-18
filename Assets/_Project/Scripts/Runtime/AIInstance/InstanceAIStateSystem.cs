@@ -67,7 +67,7 @@ namespace DarkLordGame
         public void Execute(in Damage damage, ref InstanceAIState state, ref TopdownCharacterInput input,
         in InstanceAIStateSetting settingComponent)
         {
-            state.storedDamage += damage.attack.damage;
+            state.storedDamage += damage.damageToken;
             ref var setting = ref settingComponent.setting.Value;
             if (state.storedDamage < setting.interupDamage)
             {
