@@ -11,7 +11,7 @@ namespace DarkLordGame
     {
         public EntityCommandBuffer.ParallelWriter ecb;
 
-        public void Execute([ChunkIndexInQuery] int chunk, EnabledRefRW<Setupline> setup, in Line line, in LocalToWorld transform, DynamicBuffer<TrailBones> bones)
+        public void Execute([ChunkIndexInQuery] int chunk, EnabledRefRW<Setupline> setup, in Line line, in LocalToWorld transform, in DynamicBuffer<TrailBones> bones)
         {
             float3 translation = transform.Position;       // parent world pos
             quaternion rotation = math.inverse(transform.Rotation);
@@ -34,7 +34,7 @@ namespace DarkLordGame
     {
         public EntityCommandBuffer.ParallelWriter ecb;
 
-        public void Execute([ChunkIndexInQuery] int chunk, in Line line, in DynamicLine dynamicLine, in LocalToWorld transform, DynamicBuffer<TrailBones> bones)
+        public void Execute([ChunkIndexInQuery] int chunk, in Line line, in DynamicLine dynamicLine, in LocalToWorld transform, in DynamicBuffer<TrailBones> bones)
         {
             float3 translation = transform.Position;       // parent world pos
             quaternion rotation = math.inverse(transform.Rotation);

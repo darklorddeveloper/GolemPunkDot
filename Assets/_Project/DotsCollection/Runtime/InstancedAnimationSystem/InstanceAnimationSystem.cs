@@ -9,7 +9,7 @@ namespace DarkLordGame
     public partial struct PlayInstanceAnimationJob : IJobEntity
     {
         public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunk, EnabledRefRW<PlayInstanceAnimation> enableAnimation, DynamicBuffer<InstanceAnimation> instanceAnimations, in CurrentInstanceAnimationIndex currentAnimationIndex)
+        public void Execute([ChunkIndexInQuery] int chunk, EnabledRefRW<PlayInstanceAnimation> enableAnimation, in DynamicBuffer<InstanceAnimation> instanceAnimations, in CurrentInstanceAnimationIndex currentAnimationIndex)
         {
             for (int i = 0, length = instanceAnimations.Length; i < length; i++)
             {

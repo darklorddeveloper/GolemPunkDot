@@ -9,7 +9,7 @@ namespace DarkLordGame
     [BurstCompile]
     public partial struct SetupTrailJob : IJobEntity
     {
-        public void Execute(ref Trail trail, DynamicBuffer<TrailPoints> points, EnabledRefRW<SetupTrail> setupTrail, in LocalToWorld transform)
+        public void Execute(ref Trail trail, ref DynamicBuffer<TrailPoints> points, EnabledRefRW<SetupTrail> setupTrail, in LocalToWorld transform)
         {
             var pos = transform.Position;
 
@@ -28,7 +28,7 @@ namespace DarkLordGame
     [BurstCompile]
     public partial struct TrailJob : IJobEntity
     {
-        public void Execute(ref Trail trail, LocalToWorld transform, DynamicBuffer<TrailPoints> points)
+        public void Execute(ref Trail trail, LocalToWorld transform, ref DynamicBuffer<TrailPoints> points)
         {
             var pos = transform.Position;
             var forward = transform.Forward;
@@ -71,7 +71,7 @@ namespace DarkLordGame
     {
         public EntityCommandBuffer.ParallelWriter ecb;
         public float deltaTime;
-        public void Execute([ChunkIndexInQuery] int chunk, in Trail trail, in LocalToWorld ltw, DynamicBuffer<TrailBones> bones, DynamicBuffer<TrailPoints> points)
+        public void Execute([ChunkIndexInQuery] int chunk, in Trail trail, in LocalToWorld ltw, in DynamicBuffer<TrailBones> bones, ref DynamicBuffer<TrailPoints> points)
         {
             float3 translation = ltw.Position;       // parent world pos
             quaternion rotation = math.inverse(ltw.Rotation);
