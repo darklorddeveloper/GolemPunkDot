@@ -36,7 +36,7 @@ namespace DarkLordGame
     public struct DynamicFlowFieldTarget : IComponentData
     {
         public int layer;
-        public FloatField targetType;
+        public FlowFieldTargetType targetType;
     }
 
     public struct FlowCell

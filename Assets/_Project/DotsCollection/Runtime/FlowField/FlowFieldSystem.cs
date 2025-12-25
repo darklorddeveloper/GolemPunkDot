@@ -5,6 +5,7 @@ using Unity.Entities.UniversalDelegates;
 using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
+using UnityEngine;
 
 namespace DarkLordGame
 {
@@ -100,9 +101,15 @@ namespace DarkLordGame
             if (math.dot(diff, direction) > 0.88f)
             {
                 directions[index] = diff;
-                return;
             }
-            directions[index] = direction;
+            else
+            {
+                directions[index] = direction;
+            }
+
+            // debug
+            // Debug.DrawLine(cell.localPosition + layer.origin, cell.localPosition + layer.origin + directions[index] * layer.cellSize * 0.5f);
+            
         }
     }
 
@@ -156,7 +163,7 @@ namespace DarkLordGame
                             var index = layer.layerIndexOffset + j;
                             var x = j % layer.x;
                             var y = j / layer.x;
-                            float posX = layer.cellSize * root3 * (x + y / 2);
+                            float posX = layer.cellSize * root3 * (x + y * 0.5f);
                             float posZ = layer.cellSize * 1.5f * y;
                             cells[index] = new FlowCell
                             {

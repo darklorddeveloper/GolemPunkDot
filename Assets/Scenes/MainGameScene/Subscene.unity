@@ -334,14 +334,21 @@ MonoBehaviour:
     MaxHP: 100
     shield: 0
     attack: 0
-    criticalChance: 0
-    criitcalDamage: 0
-    bonusAoeDamageRate: 0
-    bonusAoeRange: 0
+  isEnemy: 1
   canDeath: 0
   deathEffect: {fileID: 0}
   takeDamageAnimationPeriod: 1
   destroyPeriod: 0
+  isComplexUnit: 0
+  crit:
+    criticalChance: 0
+    criitcalDamage: 0
+  aOE:
+    bonusAOEDamageRate: 0
+    bonusAoeRange: 0
+  hasCooldown: 0
+  cooldownSpeed:
+    cooldownSpeed: 1
 --- !u!4 &781832465
 Transform:
   m_ObjectHideFlags: 0
@@ -570,6 +577,64 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4eba454da81741ed9f4608ee7435514, type: 3}
+--- !u!1 &1014388011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1014388013}
+  - component: {fileID: 1014388012}
+  m_Layer: 0
+  m_Name: FlowField
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1014388012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014388011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b4588e55499459a93d9e169da20cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.FlowFieldAuthoring
+  layers:
+  - layerIndexOffset: 0
+    x: 37
+    y: 18
+    cellSize: 1
+    origin:
+      x: 0
+      y: 0
+      z: 0
+    targetType: 0
+    targetPoint:
+      x: 0
+      y: 0
+      z: 0
+--- !u!4 &1014388013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014388011}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -38.1, y: 0, z: -13.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1404953115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,3 +1204,4 @@ SceneRoots:
   - {fileID: 2008723921}
   - {fileID: 781832465}
   - {fileID: 985370398}
+  - {fileID: 1014388013}
