@@ -62,14 +62,21 @@ MonoBehaviour:
     MaxHP: 20
     shield: 0
     attack: 0
-    criticalChance: 0
-    criitcalDamage: 0
-    bonusAoeDamageRate: 0
-    bonusAoeRange: 0
+  isEnemy: 1
   canDeath: 1
   deathEffect: {fileID: 7350996835491456667, guid: 445101ef29b3b44d99130c0008838579, type: 3}
   takeDamageAnimationPeriod: 0.6
   destroyPeriod: 0
+  isComplexUnit: 0
+  crit:
+    criticalChance: 0
+    criitcalDamage: 0
+  aOE:
+    bonusAOEDamageRate: 0
+    bonusAoeRange: 0
+  hasCooldown: 0
+  cooldownSpeed:
+    cooldownSpeed: 1
 --- !u!114 &417870912148165874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +188,7 @@ MonoBehaviour:
     isHoldingSkill4: 0
   data2:
     canTurnOnlyWhileMoving: 0
-    useRaycast: 1
+    useRaycast: 0
     isHittedObstacle: 0
     turnSpeed: 3
     size: 1
@@ -265,7 +272,6 @@ MonoBehaviour:
   flags: 2
   data1:
     delayed: 0.3
-    attacked: 0
 --- !u!114 &3345816578924658011
 MonoBehaviour:
   m_ObjectHideFlags: 0

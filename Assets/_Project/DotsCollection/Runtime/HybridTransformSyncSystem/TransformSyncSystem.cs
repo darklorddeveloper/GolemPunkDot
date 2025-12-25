@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace DarkLordGame
 {
+    [UpdateInGroup(typeof(PresentationSystemGroup))]
+[UpdateBefore(typeof(Unity.Rendering.EntitiesGraphicsSystem))]
     public partial class TransformSyncSystem : SystemBase
     {
         protected override void OnUpdate()

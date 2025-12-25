@@ -38,7 +38,7 @@ namespace DarkLordGame
                   typeof(TopdownPlayerInputSystem),
                   typeof(TopdownCharacterMovementSystem),
                   typeof(InstanceAIStateSystem),
-                  //wavephase
+                  typeof(GamePhaseSystem)
                   //GamePhase
                 }
              },

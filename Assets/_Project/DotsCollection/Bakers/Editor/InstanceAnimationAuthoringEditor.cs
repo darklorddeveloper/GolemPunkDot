@@ -1,5 +1,5 @@
+#if UNITY_EDITOR
 using UnityEditor;
-using UnityEngine;
 
 namespace DarkLordGame
 {
@@ -32,3 +32,4 @@ namespace DarkLordGame
         }
     }
 }
+#endif

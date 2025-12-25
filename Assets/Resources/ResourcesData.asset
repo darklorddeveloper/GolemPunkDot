@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: ResourcesData
   m_EditorClassIdentifier: Assembly-CSharp::DarkLordGame.ResourcesData
   golemClasses: []
+  difficultyDatas:
+  - {fileID: 11400000, guid: c2afc16161eff4776bb8057f5370777e, type: 2}

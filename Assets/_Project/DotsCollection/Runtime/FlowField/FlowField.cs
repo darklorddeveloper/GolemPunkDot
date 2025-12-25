@@ -20,6 +20,7 @@ namespace DarkLordGame
         //active state
         public int layerIndexOffset; //can be setup in baker x*y
         public int x, y;//grid size
+        public int totalCount;
         public float cellSize;      //go with horizontal size 2x vertical root 3 
         public float3 origin;
         public FlowFieldTargetType targetType;

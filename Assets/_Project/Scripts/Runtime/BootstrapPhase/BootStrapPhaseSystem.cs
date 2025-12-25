@@ -13,6 +13,7 @@ namespace DarkLordGame
         {
             base.OnCreate();
             Singleton.Init();
+            Application.targetFrameRate = 120;
         }
 
         protected override void OnUpdate()

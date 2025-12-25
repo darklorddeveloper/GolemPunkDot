@@ -77,7 +77,7 @@ namespace DarkLordGame
             float minCost = math.INFINITY;
             float3 direction = float3.zero;
             var pos = cell.localPosition;
-            for (int i = 0, length = borderIndice.Length; i < length; i++)
+            for (int i = 0, length = 6; i < length; i++)
             {
                 var x = cell.x + borderIndice[i].x;
                 var y = cell.y + borderIndice[i].y;
@@ -86,7 +86,9 @@ namespace DarkLordGame
                     continue;//out of bound
                 }
 
-                int borderIndex = layer.layerIndexOffset + y * layer.x + layer.x;
+                int borderIndex = layer.layerIndexOffset + y * layer.x + x;
+                // Debug.Log($"index {borderIndex}  layer.layerIndexOffset {layer.layerIndexOffset}  x{x} layerX{layer.x} y{y} layerY{layer.y}");
+
                 var d = costs[borderIndex];
                 if (d > cost) continue;
 
@@ -109,7 +111,7 @@ namespace DarkLordGame
 
             // debug
             // Debug.DrawLine(cell.localPosition + layer.origin, cell.localPosition + layer.origin + directions[index] * layer.cellSize * 0.5f);
-            
+
         }
     }
 
@@ -216,6 +218,14 @@ namespace DarkLordGame
             };
             state.Dependency = directionJob.Schedule(cells.Length, 64, state.Dependency);
             //agent job
+
+            var agentJob = new FlowFieldAgentJob
+            {
+                directions = directions,
+                layers = layers
+            };
+            state.Dependency = agentJob.ScheduleParallel(state.Dependency);
+
             //resolver system after this
         }
     }

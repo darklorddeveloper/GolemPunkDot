@@ -2,7 +2,6 @@ using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
 using Unity.Mathematics;
-using UnityEditorInternal;
 using Unity.Collections;
 
 namespace DarkLordGame

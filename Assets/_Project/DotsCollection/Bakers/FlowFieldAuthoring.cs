@@ -16,6 +16,7 @@ namespace DarkLordGame
             for (int i = 0, length = layers.Count; i < length; i++)
             {
                 var layer = layers[i];
+                layer.totalCount = layer.x * layer.y;
                 for (int j = 0, num = layer.x * layer.y; j < num; j++)
                 {
                     var x = j % layer.x;
