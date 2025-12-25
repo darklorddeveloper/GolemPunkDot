@@ -5,7 +5,10 @@ namespace DarkLordGame
 {
     public class UnitAuthoring : StructAuthorizer<Unit, Damage>
     {
+        [Header("is Enemy")]
+        public bool isEnemy = true;
         [Header("Note - this will add safedestroy")]
+
         [Header("Death")]
         public bool canDeath = true;
         public GameObject deathEffect;
@@ -66,6 +69,10 @@ namespace DarkLordGame
             if (authoring.hasCooldown)
             {
                 AddComponent(e, authoring.cooldownSpeed);
+            }
+            if(authoring.isEnemy)
+            {
+                AddComponent<EnemyComponent>(e);
             }
             AddComponent(e, new TakeDamageAnimationPeriod { period = authoring.takeDamageAnimationPeriod });
         }

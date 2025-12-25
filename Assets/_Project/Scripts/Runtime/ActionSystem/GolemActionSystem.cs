@@ -136,17 +136,21 @@ namespace DarkLordGame
             }
             else if (input.primaryAction)
             {
-                part = golem.GetPart(GolemPartType.Arms);
+                part = golem.GetPart(GolemPartType.ArmL);
             }
             else if (input.secondaryAction)
             {
-                part = golem.GetPart(GolemPartType.Head);
+                part = golem.GetPart(GolemPartType.ArmR);
             }
             else if (input.skill1)
             {
-                part = golem.GetPart(GolemPartType.Body);
+                part = golem.GetPart(GolemPartType.Head);
             }
             else if (input.skill2)
+            {
+                part = golem.GetPart(GolemPartType.Body);
+            }
+            else if (input.skill3)
             {
                 part = golem.GetPart(GolemPartType.Core);
             }
@@ -164,14 +168,16 @@ namespace DarkLordGame
             {
                 case GolemPartType.Legs:
                     return input.isHoldingDashAction;
-                case GolemPartType.Arms:
+                case GolemPartType.ArmL:
                     return input.isHoldingPrimaryAction;
-                case GolemPartType.Head:
+                case GolemPartType.ArmR:
                     return input.isHoldingSecondaryAction;
-                case GolemPartType.Body:
+                case GolemPartType.Head:
                     return input.isHoldingSkill1;
-                case GolemPartType.Core:
+                case GolemPartType.Body:
                     return input.isHoldingSkill2;
+                case GolemPartType.Core:
+                    return input.isHoldingSkill3;
             }
             return false;
         }
@@ -182,14 +188,16 @@ namespace DarkLordGame
             {
                 case GolemPartType.Legs:
                     return EffectTiming.ActiveDash;
-                case GolemPartType.Arms:
+                case GolemPartType.ArmL:
                     return EffectTiming.ActivePrimary;
-                case GolemPartType.Head:
+                    case GolemPartType.ArmR:
                     return EffectTiming.ActiveSecondary;
+                case GolemPartType.Head:
+                    return EffectTiming.ActiveSkill1;
                 case GolemPartType.Body:
-                    return EffectTiming.ActiveSpecial1;
+                    return EffectTiming.ActiveSkill2;
                 case GolemPartType.Core:
-                    return EffectTiming.ActiveSpecial2;
+                    return EffectTiming.ActiveSkill3;//ultimate skill
                 default:
                     return EffectTiming.ActivePrimary;
             }
@@ -223,7 +231,7 @@ namespace DarkLordGame
                 parts.AddRange(part.linkedPart);
                 if (SystemAPI.ManagedAPI.TryGetSingleton<EffectFusionTableEntity>(out var table))
                 {
-                    var effects  =table.table.GetClosestFusionEffect(parts);
+                    var effects = table.table.GetClosestFusionEffect(parts);
                     for (int i = 0, length = effects.Count; i < length; i++)
                     {
                         effects[i].OnActivate(entity, EntityManager);

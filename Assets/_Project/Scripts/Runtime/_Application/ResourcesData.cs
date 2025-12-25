@@ -9,8 +9,10 @@ namespace DarkLordGame
     public class ResourcesData : ScriptableObject
     {
         public List<GolemClass> golemClasses = new();
+        public List<DifficultyData> difficultyDatas = new();
         public void Init()
         {
+            
         }
 
         public GolemClass GetClassID(int id)

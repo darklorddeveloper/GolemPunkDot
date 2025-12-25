@@ -119,6 +119,9 @@ namespace DarkLordGame
                 case PhaseType.SettingPhase:
                     targetMovement = state.EntityManager.GetComponentData<SettingPhase>(e).targetCameraMovement;
                     break;
+                    case PhaseType.Result:
+                    targetMovement = state.EntityManager.GetComponentData<SettingPhase>(e).targetCameraMovement;
+                    break;
             }
 
             currentPhase.previousPhase = currentPhase.phase;

@@ -12,6 +12,7 @@ namespace DarkLordGame
         GamePhaseIntro,
         SettingPhase,
         HomeStandbyphase,
+        Result,
     }
     
     [System.Serializable]

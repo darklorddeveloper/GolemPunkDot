@@ -17,6 +17,7 @@ namespace DarkLordGame
 
         public CurrentRunData currentRunData;
         public int selectedClassID;
+        public int selectedDifficulty;
         public int playCount = 0;
     }
 
