@@ -1,6 +1,7 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace DarkLordGame
 {
@@ -25,21 +26,23 @@ namespace DarkLordGame
         public float3 targetPoint;
     }
 
+    [System.Serializable]
     public struct DynamicFlowFieldOrigin : IComponentData
     {
         public int layer;
     }
+    
+    [System.Serializable]
     public struct DynamicFlowFieldTarget : IComponentData
     {
         public int layer;
+        public FloatField targetType;
     }
 
     public struct FlowCell
     {
         public int layer;
         public int x, y;
-        public float cost;
-        public float3 position;
-        public float3 direction;
+        public float3 localPosition;
     }
 }
