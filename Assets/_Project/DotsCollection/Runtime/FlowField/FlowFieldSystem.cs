@@ -84,17 +84,25 @@ namespace DarkLordGame
                 {
                     continue;//out of bound
                 }
+
                 int borderIndex = layer.layerIndexOffset + y * layer.x + layer.x;
-                var border = cells[borderIndex];
                 var d = costs[borderIndex];
+                if (d > cost) continue;
+
+                var border = cells[borderIndex];
                 if (d < minCost)
                 {
                     direction = border.localPosition - pos;
                     minCost = d;
                 }
             }
+            var diff = math.normalizesafe(layer.targetPoint - cell.localPosition, float3.zero);
+            if (math.dot(diff, direction) > 0.88f)
+            {
+                directions[index] = diff;
+                return;
+            }
             directions[index] = direction;
-            // layer.x
         }
     }
 
