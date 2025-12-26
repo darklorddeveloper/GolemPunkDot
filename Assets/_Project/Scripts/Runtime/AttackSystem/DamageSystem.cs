@@ -50,8 +50,6 @@ namespace DarkLordGame
     }
 
     [BurstCompile]
-    [UpdateInGroup(typeof(SimulationSystemGroup))]
-    [UpdateBefore(typeof(TransformSystemGroup))]
     public partial struct DamageSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -60,15 +58,17 @@ namespace DarkLordGame
         }
         public void OnUpdate(ref SystemState state)
         {
-            var ecb = new EntityCommandBuffer(Allocator.TempJob);
+            var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+            var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
             var job = new DamageJob
             {
                 ecb = ecb.AsParallelWriter(),
             };
-            var handle = job.ScheduleParallel(state.Dependency);
-            handle.Complete();
-            ecb.Playback(state.EntityManager);
-            ecb.Dispose();
+            job.ScheduleParallel();
+            // var handle = job.ScheduleParallel(state.Dependency);
+            // handle.Complete();
+            // ecb.Playback(state.EntityManager);
+            // ecb.Dispose();
         }
     }
 }
