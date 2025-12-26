@@ -11,7 +11,7 @@ namespace DarkLordGame
     public partial struct DamageJob : IJobEntity
     {
         public EntityCommandBuffer.ParallelWriter ecb;
-        public void Execute([ChunkIndexInQuery] int chunk, 
+        public void Execute([ChunkIndexInQuery] int chunk,
         Entity entity, ref Unit unit, ref Damage damage,
         ref LocalTransform localTransform,
         EnabledRefRW<Damage> damageEnable, in DeathEffect effect)
@@ -50,6 +50,8 @@ namespace DarkLordGame
     }
 
     [BurstCompile]
+    [UpdateInGroup(typeof(SimulationSystemGroup))]
+    [UpdateBefore(typeof(TransformSystemGroup))]
     public partial struct DamageSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
