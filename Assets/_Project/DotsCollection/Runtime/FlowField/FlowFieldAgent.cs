@@ -6,7 +6,7 @@ namespace DarkLordGame
     [System.Serializable]
     public struct FlowFieldAgent : IComponentData
     {
-        public int layer;
+        public LayerMaskFlag layerMask;
         public float lastDistanceToTarget;
         public float3 movement;
         public float3 lastTargetPoint;

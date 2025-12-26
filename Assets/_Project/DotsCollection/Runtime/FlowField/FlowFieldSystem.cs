@@ -231,6 +231,7 @@ namespace DarkLordGame
 
             var agentJob = new FlowFieldAgentJob
             {
+                costs = costs,
                 directions = directions,
                 layers = layers
             };

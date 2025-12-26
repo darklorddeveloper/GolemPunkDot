@@ -4,7 +4,7 @@ namespace DarkLordGame
 {
     public class FlowFieldAgentAuthoring : MonoBehaviour
     {
-        public int layer;
+        public LayerMaskFlag layer;
     }
 
     public class FlowFieldAgentBaker : Baker<FlowFieldAgentAuthoring>
@@ -12,7 +12,7 @@ namespace DarkLordGame
         public override void Bake(FlowFieldAgentAuthoring authoring)
         {
             var e = GetEntity(TransformUsageFlags.Dynamic);
-            AddComponent(e, new FlowFieldAgent { layer = authoring.layer });
+            AddComponent(e, new FlowFieldAgent { layerMask = authoring.layer });
         }
     }
 }
