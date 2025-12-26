@@ -17,6 +17,7 @@ namespace DarkLordGame
         {
             var layer = layers[origin.layer];
             layer.origin = localTransform.Position;
+            layers[origin.layer] = layer;
         }
     }
 
@@ -28,6 +29,7 @@ namespace DarkLordGame
         {
             var layer = layers[target.layer];
             layer.targetPoint = localTransform.Position;
+            layers[target.layer] = layer;
         }
     }
 
@@ -42,6 +44,7 @@ namespace DarkLordGame
             var cell = cells[i];
             var layer = layers[cell.layer];
             var pos = cell.localPosition + layer.origin;
+            
             switch (layer.targetType)
             {
                 case FlowFieldTargetType.Point:
@@ -57,6 +60,10 @@ namespace DarkLordGame
                     costs[i] = math.abs(pos.z - layer.targetPoint.z);
                     break;
             }
+
+            //debug 
+            // Debug.DrawLine(pos, layer.targetPoint, Color.green);
+            // Debug.DrawLine(pos, pos + new float3(0, 1, 0), Color.red);
         }
     }
 
@@ -110,7 +117,10 @@ namespace DarkLordGame
             }
 
             // debug
-            // Debug.DrawLine(cell.localPosition + layer.origin, cell.localPosition + layer.origin + directions[index] * layer.cellSize * 0.5f);
+            var posOrigin = cell.localPosition + layer.origin;
+            var targ = posOrigin+ directions[index] * layer.cellSize * 0.5f;
+            Debug.DrawLine(posOrigin, targ, Color.green);
+            Debug.DrawLine(posOrigin, posOrigin + new float3(0, 1, 0), Color.red);
 
         }
     }

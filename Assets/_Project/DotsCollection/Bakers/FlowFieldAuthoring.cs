@@ -45,7 +45,7 @@ namespace DarkLordGame
             {
                 var layer = authoring.layers[i];
                 layer.origin = origin;
-                buff.Add(authoring.layers[i]);
+                buff.Add(layer);
             }
         }
     }

@@ -83,7 +83,7 @@ namespace DarkLordGame
             // }
 
             var forward = transform.Forward();
-            var distanceToTarget = agent.lastDistanceToTarget;
+            var distanceToTarget = agent.lastDistanceToTarget * agent.lastDistanceToTarget;
             var pos = transform.Position;
             input.lookAtTargetPoint = agent.movement;
             input.movement = forward;

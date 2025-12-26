@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3280195084012512131}
   - component: {fileID: 2381651463946351956}
   - component: {fileID: 640959727360421095}
+  - component: {fileID: 1136490927291597322}
   m_Layer: 9
   m_Name: Golem_PrimeEntity
   m_TagString: Untagged
@@ -173,6 +174,7 @@ MonoBehaviour:
     MaxHP: 5000
     shield: 0
     attack: 0
+  isEnemy: 1
   canDeath: 1
   deathEffect: {fileID: 0}
   takeDamageAnimationPeriod: 0.3
@@ -278,3 +280,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1136490927291597322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476147893443169591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4450d3e5738d46b5aca213ae13989b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bakers::DarkLordGame.FlowFieldDynamicTargetAuthoring
+  flags: 2
+  data1:
+    layer: 0
+    targetType: 0
