@@ -106,7 +106,7 @@ namespace DarkLordGame
                     minCost = d;
                 }
             }
-            var diff = math.normalizesafe(layer.targetPoint - cell.localPosition, float3.zero);
+            var diff = math.normalizesafe(layer.targetPoint - cell.localPosition - layer.origin, float3.zero);
             if (math.dot(diff, direction) > 0.88f)
             {
                 directions[index] = diff;
@@ -117,10 +117,10 @@ namespace DarkLordGame
             }
 
             // debug
-            var posOrigin = cell.localPosition + layer.origin;
-            var targ = posOrigin+ directions[index] * layer.cellSize * 0.5f;
-            Debug.DrawLine(posOrigin, targ, Color.green);
-            Debug.DrawLine(posOrigin, posOrigin + new float3(0, 1, 0), Color.red);
+            // var posOrigin = cell.localPosition + layer.origin;
+            // var targ = posOrigin+ directions[index] * layer.cellSize * 0.5f;
+            // Debug.DrawLine(posOrigin, targ, Color.green);
+            // Debug.DrawLine(posOrigin, posOrigin + new float3(0, 1, 0), Color.red);
 
         }
     }

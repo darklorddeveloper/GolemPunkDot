@@ -105,37 +105,27 @@ namespace DarkLordGame
 
 
 
-            //movement
-            if (SystemAPI.HasSingleton<PlayerComponent>())
+            //movement======================
+            frameCount++;
+            var rand = Random.CreateFromIndex(frameCount);
+            var resetJob = new InstanceAISimpleMovementResetJob
             {
-                //reset simple movement
-                frameCount++;
-                var rand = Random.CreateFromIndex(frameCount);
-                var resetJob = new InstanceAISimpleMovementResetJob
-                {
-                    rand = rand
-                };
-                handle = resetJob.ScheduleParallel(state.Dependency);
-                //movement implementation
-                var player = SystemAPI.GetSingleton<PlayerComponent>();
-                var wall = SystemAPI.GetSingleton<WallPosition>();
-                var movementJob = new InstanceAISimpleMovementJob
-                {
-                    playerPosition = player.playerPosition,
-                    wallPosition = wall.position,
-                    deltaTime = deltaTime
-                };
+                rand = rand
+            };
+            handle = resetJob.ScheduleParallel(state.Dependency);
+            var movementJob = new InstanceAISimpleMovementJob
+            {
+            };
 
-                handle = movementJob.ScheduleParallel(handle);
+            handle = movementJob.ScheduleParallel(handle);
 
-                //attack
-                var attackJob = new InstanceAIAttackJob
-                {
-                    ecb = ecb.AsParallelWriter()
-                };
-                handle = attackJob.ScheduleParallel(handle);
-                handle.Complete();
-            }
+            //attack======================
+            var attackJob = new InstanceAIAttackJob
+            {
+                ecb = ecb.AsParallelWriter()
+            };
+            handle = attackJob.ScheduleParallel(handle);
+            handle.Complete();
 
             var job2 = new InstanceAIDamageJob();
             handle = job2.ScheduleParallel(state.Dependency);

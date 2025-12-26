@@ -24,9 +24,6 @@ namespace DarkLordGame
     [WithAll(typeof(InstanceAIStateFlagMove))]
     public partial struct InstanceAISimpleMovementJob : IJobEntity
     {
-        public float3 wallPosition;
-        public float3 playerPosition;
-        public float deltaTime;
         public void Execute(ref TopdownCharacterInput input,
         in FlowFieldAgent agent,
         // in TopdownCharacterMovement topdownCharacterMovement,
@@ -85,8 +82,9 @@ namespace DarkLordGame
             var forward = transform.Forward();
             var distanceToTarget = agent.lastDistanceToTarget * agent.lastDistanceToTarget;
             var pos = transform.Position;
-            input.lookAtTargetPoint = agent.movement;
+            input.lookAtTargetPoint = pos + agent.movement;
             input.movement = forward;
+
 
             // var distanceToTarget = distanceFromWall < distanceFromplayer ? distanceFromWall : distanceFromplayer;
 
